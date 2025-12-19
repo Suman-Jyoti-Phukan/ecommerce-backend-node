@@ -1,5 +1,7 @@
 import env from "./config/env";
 
+import cors from "cors";
+
 import express from "express";
 
 import { errorHandler } from "./middleware/errorHandler";
@@ -9,6 +11,15 @@ import userRoutes from "./routes/userRoutes";
 import adminRoutes from "./routes/adminRoutes";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
