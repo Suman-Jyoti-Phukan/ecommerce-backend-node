@@ -14,6 +14,8 @@ import adminRoutes from "./routes/adminRoutes";
 
 import categoryRoutes from "./routes/categoryRoutes";
 
+import adminCategoryRoutes from "./routes/adminCategoryRoutes";
+
 import adminProductRoutes from "./routes/adminProductRoutes";
 
 import userProductRoutes from "./routes/userProductRoutes";
@@ -32,7 +34,6 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from uploads directory
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 app.use("/api/v1/users", userRoutes);
@@ -40,6 +41,8 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/admin", adminRoutes);
 
 app.use("/api/v1/categories", categoryRoutes);
+
+app.use("/api/v1/admin/categories", adminCategoryRoutes);
 
 app.use("/api/v1/admin/products", adminProductRoutes);
 

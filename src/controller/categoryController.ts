@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 
 import { AuthRequest } from "../middleware/auth";
 
@@ -40,14 +40,10 @@ export const createCategory = async (
 };
 
 export const getAllCategories = async (
-  req: AuthRequest,
+  req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    if (!req.user) {
-      throw new CustomError("User not authenticated", 401);
-    }
-
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
     const includeInactive = req.query.includeInactive === "true";
@@ -73,14 +69,10 @@ export const getAllCategories = async (
 };
 
 export const getCategoryById = async (
-  req: AuthRequest,
+  req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    if (!req.user) {
-      throw new CustomError("User not authenticated", 401);
-    }
-
     const { categoryId } = req.params;
 
     if (!categoryId) {
@@ -100,14 +92,10 @@ export const getCategoryById = async (
 };
 
 export const getCategoryBySlug = async (
-  req: AuthRequest,
+  req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    if (!req.user) {
-      throw new CustomError("User not authenticated", 401);
-    }
-
     const { slug } = req.params;
 
     if (!slug) {
@@ -127,14 +115,10 @@ export const getCategoryBySlug = async (
 };
 
 export const getRootCategories = async (
-  req: AuthRequest,
+  _: Request,
   res: Response
 ): Promise<void> => {
   try {
-    if (!req.user) {
-      throw new CustomError("User not authenticated", 401);
-    }
-
     const categories = await categoryService.getRootCategories();
 
     res.status(200).json({
@@ -148,14 +132,10 @@ export const getRootCategories = async (
 };
 
 export const getCategoryChildren = async (
-  req: AuthRequest,
+  req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    if (!req.user) {
-      throw new CustomError("User not authenticated", 401);
-    }
-
     const { categoryId } = req.params;
 
     if (!categoryId) {
