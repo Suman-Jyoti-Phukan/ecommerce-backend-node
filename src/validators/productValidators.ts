@@ -64,7 +64,7 @@ export const createProductValidation = [
     .trim()
     .notEmpty()
     .withMessage("Payment type is required")
-    .isIn(["cash", "credit", "debit", "upi", "all"])
+    .isIn(["COD", "Online Payment", "Both"])
     .withMessage("Invalid payment type"),
 
   body("masterCategoryId")
