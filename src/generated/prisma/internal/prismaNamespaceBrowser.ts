@@ -58,7 +58,8 @@ export const ModelName = {
   Cart: 'Cart',
   Address: 'Address',
   Wishlist: 'Wishlist',
-  ColorScheme: 'ColorScheme'
+  ColorScheme: 'ColorScheme',
+  SizeChart: 'SizeChart'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -192,6 +193,18 @@ export const ColorSchemeScalarFieldEnum = {
 export type ColorSchemeScalarFieldEnum = (typeof ColorSchemeScalarFieldEnum)[keyof typeof ColorSchemeScalarFieldEnum]
 
 
+export const SizeChartScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  sizes: 'sizes',
+  colors: 'colors',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SizeChartScalarFieldEnum = (typeof SizeChartScalarFieldEnum)[keyof typeof SizeChartScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -206,6 +219,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: 'JsonNull'
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const UserOrderByRelevanceFieldEnum = {
@@ -317,4 +337,12 @@ export const ColorSchemeOrderByRelevanceFieldEnum = {
 } as const
 
 export type ColorSchemeOrderByRelevanceFieldEnum = (typeof ColorSchemeOrderByRelevanceFieldEnum)[keyof typeof ColorSchemeOrderByRelevanceFieldEnum]
+
+
+export const SizeChartOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type SizeChartOrderByRelevanceFieldEnum = (typeof SizeChartOrderByRelevanceFieldEnum)[keyof typeof SizeChartOrderByRelevanceFieldEnum]
 

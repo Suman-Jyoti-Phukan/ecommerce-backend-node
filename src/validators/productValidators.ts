@@ -22,8 +22,7 @@ export const createProductValidation = [
 
   // mainImage is handled as file upload - no body validation needed
 
-  body("youtubeLink")
-    .optional(),
+  body("youtubeLink").optional(),
 
   body("size")
     .optional()

@@ -30,6 +30,8 @@ import swaggerDocument from "./swagger-output.json";
 
 import adminColorSchemeRoutes from "./routes/adminColorSchemeRoutes";
 
+import adminSizeChartRoutes from "./routes/adminSizeChartRoutes";
+
 const app = express();
 
 app.use(
@@ -86,6 +88,8 @@ app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/admin/categories", adminCategoryRoutes);
 
 app.use("/api/v1/admin/color-schemes", adminColorSchemeRoutes);
+
+app.use("/api/v1/admin/size-charts", adminSizeChartRoutes);
 
 app.use("/api/v1/admin/products", adminProductRoutes);
 

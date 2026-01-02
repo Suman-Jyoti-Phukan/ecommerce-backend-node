@@ -148,3 +148,12 @@ model ColorScheme {
   description String?
   createdAt   DateTime @default(now())
 }
+
+model SizeChart {
+  id        String   @id @default(uuid())
+  name      String
+  sizes     Json
+  colors    Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

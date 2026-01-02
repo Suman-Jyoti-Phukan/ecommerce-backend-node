@@ -391,7 +391,8 @@ export const ModelName = {
   Cart: 'Cart',
   Address: 'Address',
   Wishlist: 'Wishlist',
-  ColorScheme: 'ColorScheme'
+  ColorScheme: 'ColorScheme',
+  SizeChart: 'SizeChart'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -407,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "bankDetails" | "category" | "product" | "cart" | "address" | "wishlist" | "colorScheme"
+    modelProps: "user" | "bankDetails" | "category" | "product" | "cart" | "address" | "wishlist" | "colorScheme" | "sizeChart"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -939,6 +940,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SizeChart: {
+      payload: Prisma.$SizeChartPayload<ExtArgs>
+      fields: Prisma.SizeChartFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SizeChartFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizeChartPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SizeChartFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizeChartPayload>
+        }
+        findFirst: {
+          args: Prisma.SizeChartFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizeChartPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SizeChartFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizeChartPayload>
+        }
+        findMany: {
+          args: Prisma.SizeChartFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizeChartPayload>[]
+        }
+        create: {
+          args: Prisma.SizeChartCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizeChartPayload>
+        }
+        createMany: {
+          args: Prisma.SizeChartCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.SizeChartDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizeChartPayload>
+        }
+        update: {
+          args: Prisma.SizeChartUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizeChartPayload>
+        }
+        deleteMany: {
+          args: Prisma.SizeChartDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SizeChartUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.SizeChartUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizeChartPayload>
+        }
+        aggregate: {
+          args: Prisma.SizeChartAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSizeChart>
+        }
+        groupBy: {
+          args: Prisma.SizeChartGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SizeChartGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SizeChartCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SizeChartCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1093,6 +1160,18 @@ export const ColorSchemeScalarFieldEnum = {
 export type ColorSchemeScalarFieldEnum = (typeof ColorSchemeScalarFieldEnum)[keyof typeof ColorSchemeScalarFieldEnum]
 
 
+export const SizeChartScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  sizes: 'sizes',
+  colors: 'colors',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SizeChartScalarFieldEnum = (typeof SizeChartScalarFieldEnum)[keyof typeof SizeChartScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1107,6 +1186,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const UserOrderByRelevanceFieldEnum = {
@@ -1218,6 +1304,14 @@ export const ColorSchemeOrderByRelevanceFieldEnum = {
 } as const
 
 export type ColorSchemeOrderByRelevanceFieldEnum = (typeof ColorSchemeOrderByRelevanceFieldEnum)[keyof typeof ColorSchemeOrderByRelevanceFieldEnum]
+
+
+export const SizeChartOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type SizeChartOrderByRelevanceFieldEnum = (typeof SizeChartOrderByRelevanceFieldEnum)[keyof typeof SizeChartOrderByRelevanceFieldEnum]
 
 
 
@@ -1377,6 +1471,7 @@ export type GlobalOmitConfig = {
   address?: Prisma.AddressOmit
   wishlist?: Prisma.WishlistOmit
   colorScheme?: Prisma.ColorSchemeOmit
+  sizeChart?: Prisma.SizeChartOmit
 }
 
 /* Types for Logging */

@@ -57,3 +57,8 @@ export type Wishlist = Prisma.WishlistModel
  * 
  */
 export type ColorScheme = Prisma.ColorSchemeModel
+/**
+ * Model SizeChart
+ * 
+ */
+export type SizeChart = Prisma.SizeChartModel
