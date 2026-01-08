@@ -20,13 +20,17 @@ export const validateCoupon = asyncHandler(
       return;
     }
 
-    const { code, cartTotal, productIds, categoryIds } = req.body;
+    const { code, cartTotal, productIds, items } = req.body;
+
+    let cartItems = items;
+    if (!cartItems && productIds) {
+      cartItems = productIds.map((id: string) => ({ productId: id }));
+    }
 
     const coupon = await couponService.validateCouponForCart(
       code,
       cartTotal,
-      productIds,
-      categoryIds
+      cartItems || []
     );
 
     let discount = 0;

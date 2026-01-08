@@ -48,20 +48,22 @@ export type ProductMinAggregateOutputType = {
   mainImage: string | null
   productImages: string | null
   youtubeLink: string | null
-  size: string | null
-  expiryDate: Date | null
+  masterCategoryId: string | null
+  lastCategoryId: string | null
+  isFeatured: boolean | null
+  isBestSelling: boolean | null
+  isNewCollection: boolean | null
+  isActive: boolean | null
+  hasCashOnDelivery: boolean | null
+  hasVariants: boolean | null
   buyingPrice: number | null
   maximumRetailPrice: number | null
   sellingPrice: number | null
   quantity: number | null
-  paymentType: string | null
-  isFeatured: boolean | null
-  isBestSelling: boolean | null
-  isNewCollection: boolean | null
+  size: string | null
+  expiryDate: Date | null
   isRelatedItem: boolean | null
-  isActive: boolean | null
-  masterCategoryId: string | null
-  lastCategoryId: string | null
+  paymentType: string | null
   sizeChartId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -75,20 +77,22 @@ export type ProductMaxAggregateOutputType = {
   mainImage: string | null
   productImages: string | null
   youtubeLink: string | null
-  size: string | null
-  expiryDate: Date | null
+  masterCategoryId: string | null
+  lastCategoryId: string | null
+  isFeatured: boolean | null
+  isBestSelling: boolean | null
+  isNewCollection: boolean | null
+  isActive: boolean | null
+  hasCashOnDelivery: boolean | null
+  hasVariants: boolean | null
   buyingPrice: number | null
   maximumRetailPrice: number | null
   sellingPrice: number | null
   quantity: number | null
-  paymentType: string | null
-  isFeatured: boolean | null
-  isBestSelling: boolean | null
-  isNewCollection: boolean | null
+  size: string | null
+  expiryDate: Date | null
   isRelatedItem: boolean | null
-  isActive: boolean | null
-  masterCategoryId: string | null
-  lastCategoryId: string | null
+  paymentType: string | null
   sizeChartId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -102,22 +106,24 @@ export type ProductCountAggregateOutputType = {
   mainImage: number
   productImages: number
   youtubeLink: number
-  size: number
-  expiryDate: number
+  metaData: number
+  masterCategoryId: number
+  lastCategoryId: number
+  isFeatured: number
+  isBestSelling: number
+  isNewCollection: number
+  isActive: number
+  hasCashOnDelivery: number
+  hasVariants: number
   buyingPrice: number
   maximumRetailPrice: number
   sellingPrice: number
   quantity: number
-  paymentType: number
+  size: number
+  expiryDate: number
   dimensions: number
-  metaData: number
-  isFeatured: number
-  isBestSelling: number
-  isNewCollection: number
   isRelatedItem: number
-  isActive: number
-  masterCategoryId: number
-  lastCategoryId: number
+  paymentType: number
   sizeChartId: number
   createdAt: number
   updatedAt: number
@@ -147,20 +153,22 @@ export type ProductMinAggregateInputType = {
   mainImage?: true
   productImages?: true
   youtubeLink?: true
-  size?: true
-  expiryDate?: true
+  masterCategoryId?: true
+  lastCategoryId?: true
+  isFeatured?: true
+  isBestSelling?: true
+  isNewCollection?: true
+  isActive?: true
+  hasCashOnDelivery?: true
+  hasVariants?: true
   buyingPrice?: true
   maximumRetailPrice?: true
   sellingPrice?: true
   quantity?: true
-  paymentType?: true
-  isFeatured?: true
-  isBestSelling?: true
-  isNewCollection?: true
+  size?: true
+  expiryDate?: true
   isRelatedItem?: true
-  isActive?: true
-  masterCategoryId?: true
-  lastCategoryId?: true
+  paymentType?: true
   sizeChartId?: true
   createdAt?: true
   updatedAt?: true
@@ -174,20 +182,22 @@ export type ProductMaxAggregateInputType = {
   mainImage?: true
   productImages?: true
   youtubeLink?: true
-  size?: true
-  expiryDate?: true
+  masterCategoryId?: true
+  lastCategoryId?: true
+  isFeatured?: true
+  isBestSelling?: true
+  isNewCollection?: true
+  isActive?: true
+  hasCashOnDelivery?: true
+  hasVariants?: true
   buyingPrice?: true
   maximumRetailPrice?: true
   sellingPrice?: true
   quantity?: true
-  paymentType?: true
-  isFeatured?: true
-  isBestSelling?: true
-  isNewCollection?: true
+  size?: true
+  expiryDate?: true
   isRelatedItem?: true
-  isActive?: true
-  masterCategoryId?: true
-  lastCategoryId?: true
+  paymentType?: true
   sizeChartId?: true
   createdAt?: true
   updatedAt?: true
@@ -201,22 +211,24 @@ export type ProductCountAggregateInputType = {
   mainImage?: true
   productImages?: true
   youtubeLink?: true
-  size?: true
-  expiryDate?: true
+  metaData?: true
+  masterCategoryId?: true
+  lastCategoryId?: true
+  isFeatured?: true
+  isBestSelling?: true
+  isNewCollection?: true
+  isActive?: true
+  hasCashOnDelivery?: true
+  hasVariants?: true
   buyingPrice?: true
   maximumRetailPrice?: true
   sellingPrice?: true
   quantity?: true
-  paymentType?: true
+  size?: true
+  expiryDate?: true
   dimensions?: true
-  metaData?: true
-  isFeatured?: true
-  isBestSelling?: true
-  isNewCollection?: true
   isRelatedItem?: true
-  isActive?: true
-  masterCategoryId?: true
-  lastCategoryId?: true
+  paymentType?: true
   sizeChartId?: true
   createdAt?: true
   updatedAt?: true
@@ -317,22 +329,24 @@ export type ProductGroupByOutputType = {
   mainImage: string
   productImages: string | null
   youtubeLink: string | null
-  size: string | null
-  expiryDate: Date | null
+  metaData: runtime.JsonValue | null
+  masterCategoryId: string
+  lastCategoryId: string | null
+  isFeatured: boolean
+  isBestSelling: boolean
+  isNewCollection: boolean
+  isActive: boolean
+  hasCashOnDelivery: boolean
+  hasVariants: boolean
   buyingPrice: number | null
   maximumRetailPrice: number | null
   sellingPrice: number | null
   quantity: number
-  paymentType: string
+  size: string | null
+  expiryDate: Date | null
   dimensions: runtime.JsonValue | null
-  metaData: runtime.JsonValue | null
-  isFeatured: boolean
-  isBestSelling: boolean
-  isNewCollection: boolean
   isRelatedItem: boolean
-  isActive: boolean
-  masterCategoryId: string
-  lastCategoryId: string | null
+  paymentType: string | null
   sizeChartId: string | null
   createdAt: Date
   updatedAt: Date
@@ -369,31 +383,35 @@ export type ProductWhereInput = {
   mainImage?: Prisma.StringFilter<"Product"> | string
   productImages?: Prisma.StringNullableFilter<"Product"> | string | null
   youtubeLink?: Prisma.StringNullableFilter<"Product"> | string | null
-  size?: Prisma.StringNullableFilter<"Product"> | string | null
-  expiryDate?: Prisma.DateTimeNullableFilter<"Product"> | Date | string | null
+  metaData?: Prisma.JsonNullableFilter<"Product">
+  masterCategoryId?: Prisma.StringFilter<"Product"> | string
+  lastCategoryId?: Prisma.StringNullableFilter<"Product"> | string | null
+  isFeatured?: Prisma.BoolFilter<"Product"> | boolean
+  isBestSelling?: Prisma.BoolFilter<"Product"> | boolean
+  isNewCollection?: Prisma.BoolFilter<"Product"> | boolean
+  isActive?: Prisma.BoolFilter<"Product"> | boolean
+  hasCashOnDelivery?: Prisma.BoolFilter<"Product"> | boolean
+  hasVariants?: Prisma.BoolFilter<"Product"> | boolean
   buyingPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
   maximumRetailPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
   sellingPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
   quantity?: Prisma.IntFilter<"Product"> | number
-  paymentType?: Prisma.StringFilter<"Product"> | string
+  size?: Prisma.StringNullableFilter<"Product"> | string | null
+  expiryDate?: Prisma.DateTimeNullableFilter<"Product"> | Date | string | null
   dimensions?: Prisma.JsonNullableFilter<"Product">
-  metaData?: Prisma.JsonNullableFilter<"Product">
-  isFeatured?: Prisma.BoolFilter<"Product"> | boolean
-  isBestSelling?: Prisma.BoolFilter<"Product"> | boolean
-  isNewCollection?: Prisma.BoolFilter<"Product"> | boolean
   isRelatedItem?: Prisma.BoolFilter<"Product"> | boolean
-  isActive?: Prisma.BoolFilter<"Product"> | boolean
-  masterCategoryId?: Prisma.StringFilter<"Product"> | string
-  lastCategoryId?: Prisma.StringNullableFilter<"Product"> | string | null
+  paymentType?: Prisma.StringNullableFilter<"Product"> | string | null
   sizeChartId?: Prisma.StringNullableFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   masterCategory?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
   lastCategory?: Prisma.XOR<Prisma.CategoryNullableScalarRelationFilter, Prisma.CategoryWhereInput> | null
+  variants?: Prisma.ProductVariantListRelationFilter
   sizeChart?: Prisma.XOR<Prisma.SizeChartNullableScalarRelationFilter, Prisma.SizeChartWhereInput> | null
   cart?: Prisma.CartListRelationFilter
   wishlist?: Prisma.WishlistListRelationFilter
   coupons?: Prisma.CouponProductListRelationFilter
+  orderItems?: Prisma.OrderItemListRelationFilter
 }
 
 export type ProductOrderByWithRelationInput = {
@@ -404,31 +422,35 @@ export type ProductOrderByWithRelationInput = {
   mainImage?: Prisma.SortOrder
   productImages?: Prisma.SortOrderInput | Prisma.SortOrder
   youtubeLink?: Prisma.SortOrderInput | Prisma.SortOrder
-  size?: Prisma.SortOrderInput | Prisma.SortOrder
-  expiryDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaData?: Prisma.SortOrderInput | Prisma.SortOrder
+  masterCategoryId?: Prisma.SortOrder
+  lastCategoryId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isFeatured?: Prisma.SortOrder
+  isBestSelling?: Prisma.SortOrder
+  isNewCollection?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
+  hasCashOnDelivery?: Prisma.SortOrder
+  hasVariants?: Prisma.SortOrder
   buyingPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   maximumRetailPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   sellingPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   quantity?: Prisma.SortOrder
-  paymentType?: Prisma.SortOrder
+  size?: Prisma.SortOrderInput | Prisma.SortOrder
+  expiryDate?: Prisma.SortOrderInput | Prisma.SortOrder
   dimensions?: Prisma.SortOrderInput | Prisma.SortOrder
-  metaData?: Prisma.SortOrderInput | Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
-  isBestSelling?: Prisma.SortOrder
-  isNewCollection?: Prisma.SortOrder
   isRelatedItem?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
-  masterCategoryId?: Prisma.SortOrder
-  lastCategoryId?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentType?: Prisma.SortOrderInput | Prisma.SortOrder
   sizeChartId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   masterCategory?: Prisma.CategoryOrderByWithRelationInput
   lastCategory?: Prisma.CategoryOrderByWithRelationInput
+  variants?: Prisma.ProductVariantOrderByRelationAggregateInput
   sizeChart?: Prisma.SizeChartOrderByWithRelationInput
   cart?: Prisma.CartOrderByRelationAggregateInput
   wishlist?: Prisma.WishlistOrderByRelationAggregateInput
   coupons?: Prisma.CouponProductOrderByRelationAggregateInput
+  orderItems?: Prisma.OrderItemOrderByRelationAggregateInput
   _relevance?: Prisma.ProductOrderByRelevanceInput
 }
 
@@ -443,31 +465,35 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   mainImage?: Prisma.StringFilter<"Product"> | string
   productImages?: Prisma.StringNullableFilter<"Product"> | string | null
   youtubeLink?: Prisma.StringNullableFilter<"Product"> | string | null
-  size?: Prisma.StringNullableFilter<"Product"> | string | null
-  expiryDate?: Prisma.DateTimeNullableFilter<"Product"> | Date | string | null
+  metaData?: Prisma.JsonNullableFilter<"Product">
+  masterCategoryId?: Prisma.StringFilter<"Product"> | string
+  lastCategoryId?: Prisma.StringNullableFilter<"Product"> | string | null
+  isFeatured?: Prisma.BoolFilter<"Product"> | boolean
+  isBestSelling?: Prisma.BoolFilter<"Product"> | boolean
+  isNewCollection?: Prisma.BoolFilter<"Product"> | boolean
+  isActive?: Prisma.BoolFilter<"Product"> | boolean
+  hasCashOnDelivery?: Prisma.BoolFilter<"Product"> | boolean
+  hasVariants?: Prisma.BoolFilter<"Product"> | boolean
   buyingPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
   maximumRetailPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
   sellingPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
   quantity?: Prisma.IntFilter<"Product"> | number
-  paymentType?: Prisma.StringFilter<"Product"> | string
+  size?: Prisma.StringNullableFilter<"Product"> | string | null
+  expiryDate?: Prisma.DateTimeNullableFilter<"Product"> | Date | string | null
   dimensions?: Prisma.JsonNullableFilter<"Product">
-  metaData?: Prisma.JsonNullableFilter<"Product">
-  isFeatured?: Prisma.BoolFilter<"Product"> | boolean
-  isBestSelling?: Prisma.BoolFilter<"Product"> | boolean
-  isNewCollection?: Prisma.BoolFilter<"Product"> | boolean
   isRelatedItem?: Prisma.BoolFilter<"Product"> | boolean
-  isActive?: Prisma.BoolFilter<"Product"> | boolean
-  masterCategoryId?: Prisma.StringFilter<"Product"> | string
-  lastCategoryId?: Prisma.StringNullableFilter<"Product"> | string | null
+  paymentType?: Prisma.StringNullableFilter<"Product"> | string | null
   sizeChartId?: Prisma.StringNullableFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   masterCategory?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
   lastCategory?: Prisma.XOR<Prisma.CategoryNullableScalarRelationFilter, Prisma.CategoryWhereInput> | null
+  variants?: Prisma.ProductVariantListRelationFilter
   sizeChart?: Prisma.XOR<Prisma.SizeChartNullableScalarRelationFilter, Prisma.SizeChartWhereInput> | null
   cart?: Prisma.CartListRelationFilter
   wishlist?: Prisma.WishlistListRelationFilter
   coupons?: Prisma.CouponProductListRelationFilter
+  orderItems?: Prisma.OrderItemListRelationFilter
 }, "id">
 
 export type ProductOrderByWithAggregationInput = {
@@ -478,22 +504,24 @@ export type ProductOrderByWithAggregationInput = {
   mainImage?: Prisma.SortOrder
   productImages?: Prisma.SortOrderInput | Prisma.SortOrder
   youtubeLink?: Prisma.SortOrderInput | Prisma.SortOrder
-  size?: Prisma.SortOrderInput | Prisma.SortOrder
-  expiryDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaData?: Prisma.SortOrderInput | Prisma.SortOrder
+  masterCategoryId?: Prisma.SortOrder
+  lastCategoryId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isFeatured?: Prisma.SortOrder
+  isBestSelling?: Prisma.SortOrder
+  isNewCollection?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
+  hasCashOnDelivery?: Prisma.SortOrder
+  hasVariants?: Prisma.SortOrder
   buyingPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   maximumRetailPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   sellingPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   quantity?: Prisma.SortOrder
-  paymentType?: Prisma.SortOrder
+  size?: Prisma.SortOrderInput | Prisma.SortOrder
+  expiryDate?: Prisma.SortOrderInput | Prisma.SortOrder
   dimensions?: Prisma.SortOrderInput | Prisma.SortOrder
-  metaData?: Prisma.SortOrderInput | Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
-  isBestSelling?: Prisma.SortOrder
-  isNewCollection?: Prisma.SortOrder
   isRelatedItem?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
-  masterCategoryId?: Prisma.SortOrder
-  lastCategoryId?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentType?: Prisma.SortOrderInput | Prisma.SortOrder
   sizeChartId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -515,22 +543,24 @@ export type ProductScalarWhereWithAggregatesInput = {
   mainImage?: Prisma.StringWithAggregatesFilter<"Product"> | string
   productImages?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
   youtubeLink?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
-  size?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
-  expiryDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Product"> | Date | string | null
+  metaData?: Prisma.JsonNullableWithAggregatesFilter<"Product">
+  masterCategoryId?: Prisma.StringWithAggregatesFilter<"Product"> | string
+  lastCategoryId?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
+  isFeatured?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
+  isBestSelling?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
+  isNewCollection?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
+  isActive?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
+  hasCashOnDelivery?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
+  hasVariants?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
   buyingPrice?: Prisma.FloatNullableWithAggregatesFilter<"Product"> | number | null
   maximumRetailPrice?: Prisma.FloatNullableWithAggregatesFilter<"Product"> | number | null
   sellingPrice?: Prisma.FloatNullableWithAggregatesFilter<"Product"> | number | null
   quantity?: Prisma.IntWithAggregatesFilter<"Product"> | number
-  paymentType?: Prisma.StringWithAggregatesFilter<"Product"> | string
+  size?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
+  expiryDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Product"> | Date | string | null
   dimensions?: Prisma.JsonNullableWithAggregatesFilter<"Product">
-  metaData?: Prisma.JsonNullableWithAggregatesFilter<"Product">
-  isFeatured?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
-  isBestSelling?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
-  isNewCollection?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
   isRelatedItem?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
-  isActive?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
-  masterCategoryId?: Prisma.StringWithAggregatesFilter<"Product"> | string
-  lastCategoryId?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
+  paymentType?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
   sizeChartId?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
@@ -544,28 +574,32 @@ export type ProductCreateInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   masterCategory: Prisma.CategoryCreateNestedOneWithoutMasterCategoryProductsInput
   lastCategory?: Prisma.CategoryCreateNestedOneWithoutLastCategoryProductsInput
+  variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
   sizeChart?: Prisma.SizeChartCreateNestedOneWithoutProductsInput
   cart?: Prisma.CartCreateNestedManyWithoutProductInput
   wishlist?: Prisma.WishlistCreateNestedManyWithoutProductInput
   coupons?: Prisma.CouponProductCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateInput = {
@@ -576,28 +610,32 @@ export type ProductUncheckedCreateInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId: string
+  lastCategoryId?: string | null
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
-  masterCategoryId: string
-  lastCategoryId?: string | null
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   sizeChartId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutProductInput
   wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProductInput
   coupons?: Prisma.CouponProductUncheckedCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductUpdateInput = {
@@ -608,28 +646,32 @@ export type ProductUpdateInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   masterCategory?: Prisma.CategoryUpdateOneRequiredWithoutMasterCategoryProductsNestedInput
   lastCategory?: Prisma.CategoryUpdateOneWithoutLastCategoryProductsNestedInput
+  variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
   sizeChart?: Prisma.SizeChartUpdateOneWithoutProductsNestedInput
   cart?: Prisma.CartUpdateManyWithoutProductNestedInput
   wishlist?: Prisma.WishlistUpdateManyWithoutProductNestedInput
   coupons?: Prisma.CouponProductUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateInput = {
@@ -640,28 +682,32 @@ export type ProductUncheckedUpdateInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sizeChartId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   cart?: Prisma.CartUncheckedUpdateManyWithoutProductNestedInput
   wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProductNestedInput
   coupons?: Prisma.CouponProductUncheckedUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateManyInput = {
@@ -672,22 +718,24 @@ export type ProductCreateManyInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId: string
+  lastCategoryId?: string | null
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
-  masterCategoryId: string
-  lastCategoryId?: string | null
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   sizeChartId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -701,20 +749,22 @@ export type ProductUpdateManyMutationInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -727,22 +777,24 @@ export type ProductUncheckedUpdateManyInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sizeChartId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -772,22 +824,24 @@ export type ProductCountOrderByAggregateInput = {
   mainImage?: Prisma.SortOrder
   productImages?: Prisma.SortOrder
   youtubeLink?: Prisma.SortOrder
-  size?: Prisma.SortOrder
-  expiryDate?: Prisma.SortOrder
+  metaData?: Prisma.SortOrder
+  masterCategoryId?: Prisma.SortOrder
+  lastCategoryId?: Prisma.SortOrder
+  isFeatured?: Prisma.SortOrder
+  isBestSelling?: Prisma.SortOrder
+  isNewCollection?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
+  hasCashOnDelivery?: Prisma.SortOrder
+  hasVariants?: Prisma.SortOrder
   buyingPrice?: Prisma.SortOrder
   maximumRetailPrice?: Prisma.SortOrder
   sellingPrice?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
-  paymentType?: Prisma.SortOrder
+  size?: Prisma.SortOrder
+  expiryDate?: Prisma.SortOrder
   dimensions?: Prisma.SortOrder
-  metaData?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
-  isBestSelling?: Prisma.SortOrder
-  isNewCollection?: Prisma.SortOrder
   isRelatedItem?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
-  masterCategoryId?: Prisma.SortOrder
-  lastCategoryId?: Prisma.SortOrder
+  paymentType?: Prisma.SortOrder
   sizeChartId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -808,20 +862,22 @@ export type ProductMaxOrderByAggregateInput = {
   mainImage?: Prisma.SortOrder
   productImages?: Prisma.SortOrder
   youtubeLink?: Prisma.SortOrder
-  size?: Prisma.SortOrder
-  expiryDate?: Prisma.SortOrder
+  masterCategoryId?: Prisma.SortOrder
+  lastCategoryId?: Prisma.SortOrder
+  isFeatured?: Prisma.SortOrder
+  isBestSelling?: Prisma.SortOrder
+  isNewCollection?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
+  hasCashOnDelivery?: Prisma.SortOrder
+  hasVariants?: Prisma.SortOrder
   buyingPrice?: Prisma.SortOrder
   maximumRetailPrice?: Prisma.SortOrder
   sellingPrice?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
-  paymentType?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
-  isBestSelling?: Prisma.SortOrder
-  isNewCollection?: Prisma.SortOrder
+  size?: Prisma.SortOrder
+  expiryDate?: Prisma.SortOrder
   isRelatedItem?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
-  masterCategoryId?: Prisma.SortOrder
-  lastCategoryId?: Prisma.SortOrder
+  paymentType?: Prisma.SortOrder
   sizeChartId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -835,20 +891,22 @@ export type ProductMinOrderByAggregateInput = {
   mainImage?: Prisma.SortOrder
   productImages?: Prisma.SortOrder
   youtubeLink?: Prisma.SortOrder
-  size?: Prisma.SortOrder
-  expiryDate?: Prisma.SortOrder
+  masterCategoryId?: Prisma.SortOrder
+  lastCategoryId?: Prisma.SortOrder
+  isFeatured?: Prisma.SortOrder
+  isBestSelling?: Prisma.SortOrder
+  isNewCollection?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
+  hasCashOnDelivery?: Prisma.SortOrder
+  hasVariants?: Prisma.SortOrder
   buyingPrice?: Prisma.SortOrder
   maximumRetailPrice?: Prisma.SortOrder
   sellingPrice?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
-  paymentType?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
-  isBestSelling?: Prisma.SortOrder
-  isNewCollection?: Prisma.SortOrder
+  size?: Prisma.SortOrder
+  expiryDate?: Prisma.SortOrder
   isRelatedItem?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
-  masterCategoryId?: Prisma.SortOrder
-  lastCategoryId?: Prisma.SortOrder
+  paymentType?: Prisma.SortOrder
   sizeChartId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -950,10 +1008,6 @@ export type ProductUncheckedUpdateManyWithoutLastCategoryNestedInput = {
   deleteMany?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type NullableFloatFieldUpdateOperationsInput = {
   set?: number | null
   increment?: number
@@ -968,6 +1022,24 @@ export type IntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type ProductCreateNestedOneWithoutVariantsInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutVariantsInput, Prisma.ProductUncheckedCreateWithoutVariantsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutVariantsInput
+  connect?: Prisma.ProductWhereUniqueInput
+}
+
+export type ProductUpdateOneRequiredWithoutVariantsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutVariantsInput, Prisma.ProductUncheckedCreateWithoutVariantsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutVariantsInput
+  upsert?: Prisma.ProductUpsertWithoutVariantsInput
+  connect?: Prisma.ProductWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutVariantsInput, Prisma.ProductUpdateWithoutVariantsInput>, Prisma.ProductUncheckedUpdateWithoutVariantsInput>
 }
 
 export type ProductCreateNestedOneWithoutCartInput = {
@@ -1054,6 +1126,20 @@ export type ProductUpdateOneRequiredWithoutCouponsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutCouponsInput, Prisma.ProductUpdateWithoutCouponsInput>, Prisma.ProductUncheckedUpdateWithoutCouponsInput>
 }
 
+export type ProductCreateNestedOneWithoutOrderItemsInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutOrderItemsInput, Prisma.ProductUncheckedCreateWithoutOrderItemsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutOrderItemsInput
+  connect?: Prisma.ProductWhereUniqueInput
+}
+
+export type ProductUpdateOneRequiredWithoutOrderItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutOrderItemsInput, Prisma.ProductUncheckedCreateWithoutOrderItemsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutOrderItemsInput
+  upsert?: Prisma.ProductUpsertWithoutOrderItemsInput
+  connect?: Prisma.ProductWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutOrderItemsInput, Prisma.ProductUpdateWithoutOrderItemsInput>, Prisma.ProductUncheckedUpdateWithoutOrderItemsInput>
+}
+
 export type ProductCreateWithoutMasterCategoryInput = {
   id?: string
   productName: string
@@ -1062,27 +1148,31 @@ export type ProductCreateWithoutMasterCategoryInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   lastCategory?: Prisma.CategoryCreateNestedOneWithoutLastCategoryProductsInput
+  variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
   sizeChart?: Prisma.SizeChartCreateNestedOneWithoutProductsInput
   cart?: Prisma.CartCreateNestedManyWithoutProductInput
   wishlist?: Prisma.WishlistCreateNestedManyWithoutProductInput
   coupons?: Prisma.CouponProductCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutMasterCategoryInput = {
@@ -1093,27 +1183,31 @@ export type ProductUncheckedCreateWithoutMasterCategoryInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  lastCategoryId?: string | null
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
-  lastCategoryId?: string | null
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   sizeChartId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutProductInput
   wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProductInput
   coupons?: Prisma.CouponProductUncheckedCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutMasterCategoryInput = {
@@ -1134,27 +1228,31 @@ export type ProductCreateWithoutLastCategoryInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   masterCategory: Prisma.CategoryCreateNestedOneWithoutMasterCategoryProductsInput
+  variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
   sizeChart?: Prisma.SizeChartCreateNestedOneWithoutProductsInput
   cart?: Prisma.CartCreateNestedManyWithoutProductInput
   wishlist?: Prisma.WishlistCreateNestedManyWithoutProductInput
   coupons?: Prisma.CouponProductCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutLastCategoryInput = {
@@ -1165,27 +1263,31 @@ export type ProductUncheckedCreateWithoutLastCategoryInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId: string
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
-  masterCategoryId: string
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   sizeChartId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutProductInput
   wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProductInput
   coupons?: Prisma.CouponProductUncheckedCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutLastCategoryInput = {
@@ -1225,22 +1327,24 @@ export type ProductScalarWhereInput = {
   mainImage?: Prisma.StringFilter<"Product"> | string
   productImages?: Prisma.StringNullableFilter<"Product"> | string | null
   youtubeLink?: Prisma.StringNullableFilter<"Product"> | string | null
-  size?: Prisma.StringNullableFilter<"Product"> | string | null
-  expiryDate?: Prisma.DateTimeNullableFilter<"Product"> | Date | string | null
+  metaData?: Prisma.JsonNullableFilter<"Product">
+  masterCategoryId?: Prisma.StringFilter<"Product"> | string
+  lastCategoryId?: Prisma.StringNullableFilter<"Product"> | string | null
+  isFeatured?: Prisma.BoolFilter<"Product"> | boolean
+  isBestSelling?: Prisma.BoolFilter<"Product"> | boolean
+  isNewCollection?: Prisma.BoolFilter<"Product"> | boolean
+  isActive?: Prisma.BoolFilter<"Product"> | boolean
+  hasCashOnDelivery?: Prisma.BoolFilter<"Product"> | boolean
+  hasVariants?: Prisma.BoolFilter<"Product"> | boolean
   buyingPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
   maximumRetailPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
   sellingPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
   quantity?: Prisma.IntFilter<"Product"> | number
-  paymentType?: Prisma.StringFilter<"Product"> | string
+  size?: Prisma.StringNullableFilter<"Product"> | string | null
+  expiryDate?: Prisma.DateTimeNullableFilter<"Product"> | Date | string | null
   dimensions?: Prisma.JsonNullableFilter<"Product">
-  metaData?: Prisma.JsonNullableFilter<"Product">
-  isFeatured?: Prisma.BoolFilter<"Product"> | boolean
-  isBestSelling?: Prisma.BoolFilter<"Product"> | boolean
-  isNewCollection?: Prisma.BoolFilter<"Product"> | boolean
   isRelatedItem?: Prisma.BoolFilter<"Product"> | boolean
-  isActive?: Prisma.BoolFilter<"Product"> | boolean
-  masterCategoryId?: Prisma.StringFilter<"Product"> | string
-  lastCategoryId?: Prisma.StringNullableFilter<"Product"> | string | null
+  paymentType?: Prisma.StringNullableFilter<"Product"> | string | null
   sizeChartId?: Prisma.StringNullableFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
@@ -1262,6 +1366,162 @@ export type ProductUpdateManyWithWhereWithoutLastCategoryInput = {
   data: Prisma.XOR<Prisma.ProductUpdateManyMutationInput, Prisma.ProductUncheckedUpdateManyWithoutLastCategoryInput>
 }
 
+export type ProductCreateWithoutVariantsInput = {
+  id?: string
+  productName: string
+  shortDesc?: string | null
+  longDesc?: string | null
+  mainImage: string
+  productImages?: string | null
+  youtubeLink?: string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isFeatured?: boolean
+  isBestSelling?: boolean
+  isNewCollection?: boolean
+  isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  masterCategory: Prisma.CategoryCreateNestedOneWithoutMasterCategoryProductsInput
+  lastCategory?: Prisma.CategoryCreateNestedOneWithoutLastCategoryProductsInput
+  sizeChart?: Prisma.SizeChartCreateNestedOneWithoutProductsInput
+  cart?: Prisma.CartCreateNestedManyWithoutProductInput
+  wishlist?: Prisma.WishlistCreateNestedManyWithoutProductInput
+  coupons?: Prisma.CouponProductCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutProductInput
+}
+
+export type ProductUncheckedCreateWithoutVariantsInput = {
+  id?: string
+  productName: string
+  shortDesc?: string | null
+  longDesc?: string | null
+  mainImage: string
+  productImages?: string | null
+  youtubeLink?: string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId: string
+  lastCategoryId?: string | null
+  isFeatured?: boolean
+  isBestSelling?: boolean
+  isNewCollection?: boolean
+  isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
+  sizeChartId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cart?: Prisma.CartUncheckedCreateNestedManyWithoutProductInput
+  wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProductInput
+  coupons?: Prisma.CouponProductUncheckedCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type ProductCreateOrConnectWithoutVariantsInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutVariantsInput, Prisma.ProductUncheckedCreateWithoutVariantsInput>
+}
+
+export type ProductUpsertWithoutVariantsInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutVariantsInput, Prisma.ProductUncheckedUpdateWithoutVariantsInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutVariantsInput, Prisma.ProductUncheckedCreateWithoutVariantsInput>
+  where?: Prisma.ProductWhereInput
+}
+
+export type ProductUpdateToOneWithWhereWithoutVariantsInput = {
+  where?: Prisma.ProductWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutVariantsInput, Prisma.ProductUncheckedUpdateWithoutVariantsInput>
+}
+
+export type ProductUpdateWithoutVariantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productName?: Prisma.StringFieldUpdateOperationsInput | string
+  shortDesc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  longDesc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mainImage?: Prisma.StringFieldUpdateOperationsInput | string
+  productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  masterCategory?: Prisma.CategoryUpdateOneRequiredWithoutMasterCategoryProductsNestedInput
+  lastCategory?: Prisma.CategoryUpdateOneWithoutLastCategoryProductsNestedInput
+  sizeChart?: Prisma.SizeChartUpdateOneWithoutProductsNestedInput
+  cart?: Prisma.CartUpdateManyWithoutProductNestedInput
+  wishlist?: Prisma.WishlistUpdateManyWithoutProductNestedInput
+  coupons?: Prisma.CouponProductUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutVariantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productName?: Prisma.StringFieldUpdateOperationsInput | string
+  shortDesc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  longDesc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mainImage?: Prisma.StringFieldUpdateOperationsInput | string
+  productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeChartId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cart?: Prisma.CartUncheckedUpdateManyWithoutProductNestedInput
+  wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProductNestedInput
+  coupons?: Prisma.CouponProductUncheckedUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutProductNestedInput
+}
+
 export type ProductCreateWithoutCartInput = {
   id?: string
   productName: string
@@ -1270,27 +1530,31 @@ export type ProductCreateWithoutCartInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   masterCategory: Prisma.CategoryCreateNestedOneWithoutMasterCategoryProductsInput
   lastCategory?: Prisma.CategoryCreateNestedOneWithoutLastCategoryProductsInput
+  variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
   sizeChart?: Prisma.SizeChartCreateNestedOneWithoutProductsInput
   wishlist?: Prisma.WishlistCreateNestedManyWithoutProductInput
   coupons?: Prisma.CouponProductCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutCartInput = {
@@ -1301,27 +1565,31 @@ export type ProductUncheckedCreateWithoutCartInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId: string
+  lastCategoryId?: string | null
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
-  masterCategoryId: string
-  lastCategoryId?: string | null
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   sizeChartId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
   wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProductInput
   coupons?: Prisma.CouponProductUncheckedCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutCartInput = {
@@ -1348,27 +1616,31 @@ export type ProductUpdateWithoutCartInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   masterCategory?: Prisma.CategoryUpdateOneRequiredWithoutMasterCategoryProductsNestedInput
   lastCategory?: Prisma.CategoryUpdateOneWithoutLastCategoryProductsNestedInput
+  variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
   sizeChart?: Prisma.SizeChartUpdateOneWithoutProductsNestedInput
   wishlist?: Prisma.WishlistUpdateManyWithoutProductNestedInput
   coupons?: Prisma.CouponProductUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutCartInput = {
@@ -1379,27 +1651,31 @@ export type ProductUncheckedUpdateWithoutCartInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sizeChartId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProductNestedInput
   coupons?: Prisma.CouponProductUncheckedUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateWithoutWishlistInput = {
@@ -1410,27 +1686,31 @@ export type ProductCreateWithoutWishlistInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   masterCategory: Prisma.CategoryCreateNestedOneWithoutMasterCategoryProductsInput
   lastCategory?: Prisma.CategoryCreateNestedOneWithoutLastCategoryProductsInput
+  variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
   sizeChart?: Prisma.SizeChartCreateNestedOneWithoutProductsInput
   cart?: Prisma.CartCreateNestedManyWithoutProductInput
   coupons?: Prisma.CouponProductCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutWishlistInput = {
@@ -1441,27 +1721,31 @@ export type ProductUncheckedCreateWithoutWishlistInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId: string
+  lastCategoryId?: string | null
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
-  masterCategoryId: string
-  lastCategoryId?: string | null
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   sizeChartId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutProductInput
   coupons?: Prisma.CouponProductUncheckedCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutWishlistInput = {
@@ -1488,27 +1772,31 @@ export type ProductUpdateWithoutWishlistInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   masterCategory?: Prisma.CategoryUpdateOneRequiredWithoutMasterCategoryProductsNestedInput
   lastCategory?: Prisma.CategoryUpdateOneWithoutLastCategoryProductsNestedInput
+  variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
   sizeChart?: Prisma.SizeChartUpdateOneWithoutProductsNestedInput
   cart?: Prisma.CartUpdateManyWithoutProductNestedInput
   coupons?: Prisma.CouponProductUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutWishlistInput = {
@@ -1519,27 +1807,31 @@ export type ProductUncheckedUpdateWithoutWishlistInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sizeChartId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   cart?: Prisma.CartUncheckedUpdateManyWithoutProductNestedInput
   coupons?: Prisma.CouponProductUncheckedUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateWithoutSizeChartInput = {
@@ -1550,27 +1842,31 @@ export type ProductCreateWithoutSizeChartInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   masterCategory: Prisma.CategoryCreateNestedOneWithoutMasterCategoryProductsInput
   lastCategory?: Prisma.CategoryCreateNestedOneWithoutLastCategoryProductsInput
+  variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
   cart?: Prisma.CartCreateNestedManyWithoutProductInput
   wishlist?: Prisma.WishlistCreateNestedManyWithoutProductInput
   coupons?: Prisma.CouponProductCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutSizeChartInput = {
@@ -1581,27 +1877,31 @@ export type ProductUncheckedCreateWithoutSizeChartInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId: string
+  lastCategoryId?: string | null
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
-  masterCategoryId: string
-  lastCategoryId?: string | null
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutProductInput
   wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProductInput
   coupons?: Prisma.CouponProductUncheckedCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutSizeChartInput = {
@@ -1638,27 +1938,31 @@ export type ProductCreateWithoutCouponsInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   masterCategory: Prisma.CategoryCreateNestedOneWithoutMasterCategoryProductsInput
   lastCategory?: Prisma.CategoryCreateNestedOneWithoutLastCategoryProductsInput
+  variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
   sizeChart?: Prisma.SizeChartCreateNestedOneWithoutProductsInput
   cart?: Prisma.CartCreateNestedManyWithoutProductInput
   wishlist?: Prisma.WishlistCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutCouponsInput = {
@@ -1669,27 +1973,31 @@ export type ProductUncheckedCreateWithoutCouponsInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId: string
+  lastCategoryId?: string | null
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
-  masterCategoryId: string
-  lastCategoryId?: string | null
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   sizeChartId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
   cart?: Prisma.CartUncheckedCreateNestedManyWithoutProductInput
   wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProductInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutCouponsInput = {
@@ -1716,27 +2024,31 @@ export type ProductUpdateWithoutCouponsInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   masterCategory?: Prisma.CategoryUpdateOneRequiredWithoutMasterCategoryProductsNestedInput
   lastCategory?: Prisma.CategoryUpdateOneWithoutLastCategoryProductsNestedInput
+  variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
   sizeChart?: Prisma.SizeChartUpdateOneWithoutProductsNestedInput
   cart?: Prisma.CartUpdateManyWithoutProductNestedInput
   wishlist?: Prisma.WishlistUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutCouponsInput = {
@@ -1747,27 +2059,187 @@ export type ProductUncheckedUpdateWithoutCouponsInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeChartId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
+  cart?: Prisma.CartUncheckedUpdateManyWithoutProductNestedInput
+  wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutProductNestedInput
+}
+
+export type ProductCreateWithoutOrderItemsInput = {
+  id?: string
+  productName: string
+  shortDesc?: string | null
+  longDesc?: string | null
+  mainImage: string
+  productImages?: string | null
+  youtubeLink?: string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isFeatured?: boolean
+  isBestSelling?: boolean
+  isNewCollection?: boolean
+  isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  masterCategory: Prisma.CategoryCreateNestedOneWithoutMasterCategoryProductsInput
+  lastCategory?: Prisma.CategoryCreateNestedOneWithoutLastCategoryProductsInput
+  variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
+  sizeChart?: Prisma.SizeChartCreateNestedOneWithoutProductsInput
+  cart?: Prisma.CartCreateNestedManyWithoutProductInput
+  wishlist?: Prisma.WishlistCreateNestedManyWithoutProductInput
+  coupons?: Prisma.CouponProductCreateNestedManyWithoutProductInput
+}
+
+export type ProductUncheckedCreateWithoutOrderItemsInput = {
+  id?: string
+  productName: string
+  shortDesc?: string | null
+  longDesc?: string | null
+  mainImage: string
+  productImages?: string | null
+  youtubeLink?: string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId: string
+  lastCategoryId?: string | null
+  isFeatured?: boolean
+  isBestSelling?: boolean
+  isNewCollection?: boolean
+  isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
+  sizeChartId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
+  cart?: Prisma.CartUncheckedCreateNestedManyWithoutProductInput
+  wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProductInput
+  coupons?: Prisma.CouponProductUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type ProductCreateOrConnectWithoutOrderItemsInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutOrderItemsInput, Prisma.ProductUncheckedCreateWithoutOrderItemsInput>
+}
+
+export type ProductUpsertWithoutOrderItemsInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutOrderItemsInput, Prisma.ProductUncheckedUpdateWithoutOrderItemsInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutOrderItemsInput, Prisma.ProductUncheckedCreateWithoutOrderItemsInput>
+  where?: Prisma.ProductWhereInput
+}
+
+export type ProductUpdateToOneWithWhereWithoutOrderItemsInput = {
+  where?: Prisma.ProductWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutOrderItemsInput, Prisma.ProductUncheckedUpdateWithoutOrderItemsInput>
+}
+
+export type ProductUpdateWithoutOrderItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productName?: Prisma.StringFieldUpdateOperationsInput | string
+  shortDesc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  longDesc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mainImage?: Prisma.StringFieldUpdateOperationsInput | string
+  productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  masterCategory?: Prisma.CategoryUpdateOneRequiredWithoutMasterCategoryProductsNestedInput
+  lastCategory?: Prisma.CategoryUpdateOneWithoutLastCategoryProductsNestedInput
+  variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
+  sizeChart?: Prisma.SizeChartUpdateOneWithoutProductsNestedInput
+  cart?: Prisma.CartUpdateManyWithoutProductNestedInput
+  wishlist?: Prisma.WishlistUpdateManyWithoutProductNestedInput
+  coupons?: Prisma.CouponProductUpdateManyWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutOrderItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productName?: Prisma.StringFieldUpdateOperationsInput | string
+  shortDesc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  longDesc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mainImage?: Prisma.StringFieldUpdateOperationsInput | string
+  productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
   lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sizeChartId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   cart?: Prisma.CartUncheckedUpdateManyWithoutProductNestedInput
   wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProductNestedInput
+  coupons?: Prisma.CouponProductUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateManyMasterCategoryInput = {
@@ -1778,21 +2250,23 @@ export type ProductCreateManyMasterCategoryInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  lastCategoryId?: string | null
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
-  lastCategoryId?: string | null
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   sizeChartId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1806,21 +2280,23 @@ export type ProductCreateManyLastCategoryInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId: string
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
-  masterCategoryId: string
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   sizeChartId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1834,27 +2310,31 @@ export type ProductUpdateWithoutMasterCategoryInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lastCategory?: Prisma.CategoryUpdateOneWithoutLastCategoryProductsNestedInput
+  variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
   sizeChart?: Prisma.SizeChartUpdateOneWithoutProductsNestedInput
   cart?: Prisma.CartUpdateManyWithoutProductNestedInput
   wishlist?: Prisma.WishlistUpdateManyWithoutProductNestedInput
   coupons?: Prisma.CouponProductUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutMasterCategoryInput = {
@@ -1865,27 +2345,31 @@ export type ProductUncheckedUpdateWithoutMasterCategoryInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sizeChartId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   cart?: Prisma.CartUncheckedUpdateManyWithoutProductNestedInput
   wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProductNestedInput
   coupons?: Prisma.CouponProductUncheckedUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateManyWithoutMasterCategoryInput = {
@@ -1896,21 +2380,23 @@ export type ProductUncheckedUpdateManyWithoutMasterCategoryInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sizeChartId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1924,27 +2410,31 @@ export type ProductUpdateWithoutLastCategoryInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   masterCategory?: Prisma.CategoryUpdateOneRequiredWithoutMasterCategoryProductsNestedInput
+  variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
   sizeChart?: Prisma.SizeChartUpdateOneWithoutProductsNestedInput
   cart?: Prisma.CartUpdateManyWithoutProductNestedInput
   wishlist?: Prisma.WishlistUpdateManyWithoutProductNestedInput
   coupons?: Prisma.CouponProductUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutLastCategoryInput = {
@@ -1955,27 +2445,31 @@ export type ProductUncheckedUpdateWithoutLastCategoryInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sizeChartId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   cart?: Prisma.CartUncheckedUpdateManyWithoutProductNestedInput
   wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProductNestedInput
   coupons?: Prisma.CouponProductUncheckedUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateManyWithoutLastCategoryInput = {
@@ -1986,21 +2480,23 @@ export type ProductUncheckedUpdateManyWithoutLastCategoryInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sizeChartId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2014,22 +2510,24 @@ export type ProductCreateManySizeChartInput = {
   mainImage: string
   productImages?: string | null
   youtubeLink?: string | null
-  size?: string | null
-  expiryDate?: Date | string | null
-  buyingPrice?: number | null
-  maximumRetailPrice?: number | null
-  sellingPrice?: number | null
-  quantity: number
-  paymentType: string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId: string
+  lastCategoryId?: string | null
   isFeatured?: boolean
   isBestSelling?: boolean
   isNewCollection?: boolean
-  isRelatedItem?: boolean
   isActive?: boolean
-  masterCategoryId: string
-  lastCategoryId?: string | null
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
+  buyingPrice?: number | null
+  maximumRetailPrice?: number | null
+  sellingPrice?: number | null
+  quantity?: number
+  size?: string | null
+  expiryDate?: Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: boolean
+  paymentType?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2042,27 +2540,31 @@ export type ProductUpdateWithoutSizeChartInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
-  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   masterCategory?: Prisma.CategoryUpdateOneRequiredWithoutMasterCategoryProductsNestedInput
   lastCategory?: Prisma.CategoryUpdateOneWithoutLastCategoryProductsNestedInput
+  variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
   cart?: Prisma.CartUpdateManyWithoutProductNestedInput
   wishlist?: Prisma.WishlistUpdateManyWithoutProductNestedInput
   coupons?: Prisma.CouponProductUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutSizeChartInput = {
@@ -2073,27 +2575,31 @@ export type ProductUncheckedUpdateWithoutSizeChartInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
   cart?: Prisma.CartUncheckedUpdateManyWithoutProductNestedInput
   wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProductNestedInput
   coupons?: Prisma.CouponProductUncheckedUpdateManyWithoutProductNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateManyWithoutSizeChartInput = {
@@ -2104,22 +2610,24 @@ export type ProductUncheckedUpdateManyWithoutSizeChartInput = {
   mainImage?: Prisma.StringFieldUpdateOperationsInput | string
   productImages?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   youtubeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   sellingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dimensions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  metaData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBestSelling?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  masterCategoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  lastCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2130,15 +2638,19 @@ export type ProductUncheckedUpdateManyWithoutSizeChartInput = {
  */
 
 export type ProductCountOutputType = {
+  variants: number
   cart: number
   wishlist: number
   coupons: number
+  orderItems: number
 }
 
 export type ProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  variants?: boolean | ProductCountOutputTypeCountVariantsArgs
   cart?: boolean | ProductCountOutputTypeCountCartArgs
   wishlist?: boolean | ProductCountOutputTypeCountWishlistArgs
   coupons?: boolean | ProductCountOutputTypeCountCouponsArgs
+  orderItems?: boolean | ProductCountOutputTypeCountOrderItemsArgs
 }
 
 /**
@@ -2149,6 +2661,13 @@ export type ProductCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
    * Select specific fields to fetch from the ProductCountOutputType
    */
   select?: Prisma.ProductCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountVariantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductVariantWhereInput
 }
 
 /**
@@ -2172,6 +2691,13 @@ export type ProductCountOutputTypeCountCouponsArgs<ExtArgs extends runtime.Types
   where?: Prisma.CouponProductWhereInput
 }
 
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountOrderItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderItemWhereInput
+}
+
 
 export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2181,31 +2707,35 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   mainImage?: boolean
   productImages?: boolean
   youtubeLink?: boolean
-  size?: boolean
-  expiryDate?: boolean
+  metaData?: boolean
+  masterCategoryId?: boolean
+  lastCategoryId?: boolean
+  isFeatured?: boolean
+  isBestSelling?: boolean
+  isNewCollection?: boolean
+  isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
   buyingPrice?: boolean
   maximumRetailPrice?: boolean
   sellingPrice?: boolean
   quantity?: boolean
-  paymentType?: boolean
+  size?: boolean
+  expiryDate?: boolean
   dimensions?: boolean
-  metaData?: boolean
-  isFeatured?: boolean
-  isBestSelling?: boolean
-  isNewCollection?: boolean
   isRelatedItem?: boolean
-  isActive?: boolean
-  masterCategoryId?: boolean
-  lastCategoryId?: boolean
+  paymentType?: boolean
   sizeChartId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   masterCategory?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   lastCategory?: boolean | Prisma.Product$lastCategoryArgs<ExtArgs>
+  variants?: boolean | Prisma.Product$variantsArgs<ExtArgs>
   sizeChart?: boolean | Prisma.Product$sizeChartArgs<ExtArgs>
   cart?: boolean | Prisma.Product$cartArgs<ExtArgs>
   wishlist?: boolean | Prisma.Product$wishlistArgs<ExtArgs>
   coupons?: boolean | Prisma.Product$couponsArgs<ExtArgs>
+  orderItems?: boolean | Prisma.Product$orderItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
@@ -2219,35 +2749,39 @@ export type ProductSelectScalar = {
   mainImage?: boolean
   productImages?: boolean
   youtubeLink?: boolean
-  size?: boolean
-  expiryDate?: boolean
+  metaData?: boolean
+  masterCategoryId?: boolean
+  lastCategoryId?: boolean
+  isFeatured?: boolean
+  isBestSelling?: boolean
+  isNewCollection?: boolean
+  isActive?: boolean
+  hasCashOnDelivery?: boolean
+  hasVariants?: boolean
   buyingPrice?: boolean
   maximumRetailPrice?: boolean
   sellingPrice?: boolean
   quantity?: boolean
-  paymentType?: boolean
+  size?: boolean
+  expiryDate?: boolean
   dimensions?: boolean
-  metaData?: boolean
-  isFeatured?: boolean
-  isBestSelling?: boolean
-  isNewCollection?: boolean
   isRelatedItem?: boolean
-  isActive?: boolean
-  masterCategoryId?: boolean
-  lastCategoryId?: boolean
+  paymentType?: boolean
   sizeChartId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productName" | "shortDesc" | "longDesc" | "mainImage" | "productImages" | "youtubeLink" | "size" | "expiryDate" | "buyingPrice" | "maximumRetailPrice" | "sellingPrice" | "quantity" | "paymentType" | "dimensions" | "metaData" | "isFeatured" | "isBestSelling" | "isNewCollection" | "isRelatedItem" | "isActive" | "masterCategoryId" | "lastCategoryId" | "sizeChartId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productName" | "shortDesc" | "longDesc" | "mainImage" | "productImages" | "youtubeLink" | "metaData" | "masterCategoryId" | "lastCategoryId" | "isFeatured" | "isBestSelling" | "isNewCollection" | "isActive" | "hasCashOnDelivery" | "hasVariants" | "buyingPrice" | "maximumRetailPrice" | "sellingPrice" | "quantity" | "size" | "expiryDate" | "dimensions" | "isRelatedItem" | "paymentType" | "sizeChartId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   masterCategory?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   lastCategory?: boolean | Prisma.Product$lastCategoryArgs<ExtArgs>
+  variants?: boolean | Prisma.Product$variantsArgs<ExtArgs>
   sizeChart?: boolean | Prisma.Product$sizeChartArgs<ExtArgs>
   cart?: boolean | Prisma.Product$cartArgs<ExtArgs>
   wishlist?: boolean | Prisma.Product$wishlistArgs<ExtArgs>
   coupons?: boolean | Prisma.Product$couponsArgs<ExtArgs>
+  orderItems?: boolean | Prisma.Product$orderItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -2256,10 +2790,12 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     masterCategory: Prisma.$CategoryPayload<ExtArgs>
     lastCategory: Prisma.$CategoryPayload<ExtArgs> | null
+    variants: Prisma.$ProductVariantPayload<ExtArgs>[]
     sizeChart: Prisma.$SizeChartPayload<ExtArgs> | null
     cart: Prisma.$CartPayload<ExtArgs>[]
     wishlist: Prisma.$WishlistPayload<ExtArgs>[]
     coupons: Prisma.$CouponProductPayload<ExtArgs>[]
+    orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2269,22 +2805,24 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     mainImage: string
     productImages: string | null
     youtubeLink: string | null
-    size: string | null
-    expiryDate: Date | null
+    metaData: runtime.JsonValue | null
+    masterCategoryId: string
+    lastCategoryId: string | null
+    isFeatured: boolean
+    isBestSelling: boolean
+    isNewCollection: boolean
+    isActive: boolean
+    hasCashOnDelivery: boolean
+    hasVariants: boolean
     buyingPrice: number | null
     maximumRetailPrice: number | null
     sellingPrice: number | null
     quantity: number
-    paymentType: string
+    size: string | null
+    expiryDate: Date | null
     dimensions: runtime.JsonValue | null
-    metaData: runtime.JsonValue | null
-    isFeatured: boolean
-    isBestSelling: boolean
-    isNewCollection: boolean
     isRelatedItem: boolean
-    isActive: boolean
-    masterCategoryId: string
-    lastCategoryId: string | null
+    paymentType: string | null
     sizeChartId: string | null
     createdAt: Date
     updatedAt: Date
@@ -2630,10 +3168,12 @@ export interface Prisma__ProductClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   masterCategory<T extends Prisma.CategoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CategoryDefaultArgs<ExtArgs>>): Prisma.Prisma__CategoryClient<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   lastCategory<T extends Prisma.Product$lastCategoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$lastCategoryArgs<ExtArgs>>): Prisma.Prisma__CategoryClient<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  variants<T extends Prisma.Product$variantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$variantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductVariantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sizeChart<T extends Prisma.Product$sizeChartArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$sizeChartArgs<ExtArgs>>): Prisma.Prisma__SizeChartClient<runtime.Types.Result.GetResult<Prisma.$SizeChartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   cart<T extends Prisma.Product$cartArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$cartArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   wishlist<T extends Prisma.Product$wishlistArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$wishlistArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WishlistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   coupons<T extends Prisma.Product$couponsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$couponsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CouponProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orderItems<T extends Prisma.Product$orderItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2670,22 +3210,24 @@ export interface ProductFieldRefs {
   readonly mainImage: Prisma.FieldRef<"Product", 'String'>
   readonly productImages: Prisma.FieldRef<"Product", 'String'>
   readonly youtubeLink: Prisma.FieldRef<"Product", 'String'>
-  readonly size: Prisma.FieldRef<"Product", 'String'>
-  readonly expiryDate: Prisma.FieldRef<"Product", 'DateTime'>
+  readonly metaData: Prisma.FieldRef<"Product", 'Json'>
+  readonly masterCategoryId: Prisma.FieldRef<"Product", 'String'>
+  readonly lastCategoryId: Prisma.FieldRef<"Product", 'String'>
+  readonly isFeatured: Prisma.FieldRef<"Product", 'Boolean'>
+  readonly isBestSelling: Prisma.FieldRef<"Product", 'Boolean'>
+  readonly isNewCollection: Prisma.FieldRef<"Product", 'Boolean'>
+  readonly isActive: Prisma.FieldRef<"Product", 'Boolean'>
+  readonly hasCashOnDelivery: Prisma.FieldRef<"Product", 'Boolean'>
+  readonly hasVariants: Prisma.FieldRef<"Product", 'Boolean'>
   readonly buyingPrice: Prisma.FieldRef<"Product", 'Float'>
   readonly maximumRetailPrice: Prisma.FieldRef<"Product", 'Float'>
   readonly sellingPrice: Prisma.FieldRef<"Product", 'Float'>
   readonly quantity: Prisma.FieldRef<"Product", 'Int'>
-  readonly paymentType: Prisma.FieldRef<"Product", 'String'>
+  readonly size: Prisma.FieldRef<"Product", 'String'>
+  readonly expiryDate: Prisma.FieldRef<"Product", 'DateTime'>
   readonly dimensions: Prisma.FieldRef<"Product", 'Json'>
-  readonly metaData: Prisma.FieldRef<"Product", 'Json'>
-  readonly isFeatured: Prisma.FieldRef<"Product", 'Boolean'>
-  readonly isBestSelling: Prisma.FieldRef<"Product", 'Boolean'>
-  readonly isNewCollection: Prisma.FieldRef<"Product", 'Boolean'>
   readonly isRelatedItem: Prisma.FieldRef<"Product", 'Boolean'>
-  readonly isActive: Prisma.FieldRef<"Product", 'Boolean'>
-  readonly masterCategoryId: Prisma.FieldRef<"Product", 'String'>
-  readonly lastCategoryId: Prisma.FieldRef<"Product", 'String'>
+  readonly paymentType: Prisma.FieldRef<"Product", 'String'>
   readonly sizeChartId: Prisma.FieldRef<"Product", 'String'>
   readonly createdAt: Prisma.FieldRef<"Product", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Product", 'DateTime'>
@@ -3051,6 +3593,30 @@ export type Product$lastCategoryArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
+ * Product.variants
+ */
+export type Product$variantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProductVariant
+   */
+  select?: Prisma.ProductVariantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProductVariant
+   */
+  omit?: Prisma.ProductVariantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductVariantInclude<ExtArgs> | null
+  where?: Prisma.ProductVariantWhereInput
+  orderBy?: Prisma.ProductVariantOrderByWithRelationInput | Prisma.ProductVariantOrderByWithRelationInput[]
+  cursor?: Prisma.ProductVariantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductVariantScalarFieldEnum | Prisma.ProductVariantScalarFieldEnum[]
+}
+
+/**
  * Product.sizeChart
  */
 export type Product$sizeChartArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3139,6 +3705,30 @@ export type Product$couponsArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.CouponProductScalarFieldEnum | Prisma.CouponProductScalarFieldEnum[]
+}
+
+/**
+ * Product.orderItems
+ */
+export type Product$orderItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrderItem
+   */
+  select?: Prisma.OrderItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OrderItem
+   */
+  omit?: Prisma.OrderItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderItemInclude<ExtArgs> | null
+  where?: Prisma.OrderItemWhereInput
+  orderBy?: Prisma.OrderItemOrderByWithRelationInput | Prisma.OrderItemOrderByWithRelationInput[]
+  cursor?: Prisma.OrderItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderItemScalarFieldEnum | Prisma.OrderItemScalarFieldEnum[]
 }
 
 /**

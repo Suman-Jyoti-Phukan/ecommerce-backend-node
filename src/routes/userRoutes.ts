@@ -34,6 +34,7 @@ router.put(
   authMiddleware as any,
   asyncHandler(updateBankDetailsController)
 );
+
 router.get(
   "/bank-details",
   authMiddleware as any,

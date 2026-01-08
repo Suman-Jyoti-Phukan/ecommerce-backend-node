@@ -58,6 +58,11 @@ export type Category = Prisma.CategoryModel
  */
 export type Product = Prisma.ProductModel
 /**
+ * Model ProductVariant
+ * 
+ */
+export type ProductVariant = Prisma.ProductVariantModel
+/**
  * Model Cart
  * 
  */
@@ -107,3 +112,18 @@ export type CouponCategory = Prisma.CouponCategoryModel
  * 
  */
 export type Blog = Prisma.BlogModel
+/**
+ * Model Order
+ * 
+ */
+export type Order = Prisma.OrderModel
+/**
+ * Model OrderItem
+ * 
+ */
+export type OrderItem = Prisma.OrderItemModel
+/**
+ * Model OrderHistory
+ * 
+ */
+export type OrderHistory = Prisma.OrderHistoryModel

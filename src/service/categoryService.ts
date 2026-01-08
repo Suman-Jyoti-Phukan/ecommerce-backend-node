@@ -8,6 +8,7 @@ export interface CreateCategoryData {
   description?: string;
   slug?: string;
   parentId?: string;
+  isFeatured?: boolean;
 }
 
 export interface UpdateCategoryData {
@@ -16,6 +17,7 @@ export interface UpdateCategoryData {
   description?: string;
   slug?: string;
   parentId?: string;
+  isFeatured?: boolean;
 }
 
 export const createCategory = async (data: CreateCategoryData) => {
@@ -43,6 +45,7 @@ export const createCategory = async (data: CreateCategoryData) => {
     data: {
       name: data.name,
       isActive: data.isActive ?? true,
+      isFeatured: data.isFeatured ?? false,
       description: data.description,
       slug: data.slug,
       parentId: data.parentId,
@@ -263,6 +266,7 @@ export const updateCategory = async (
     data: {
       name: data.name,
       isActive: data.isActive,
+      isFeatured: data.isFeatured,
       description: data.description,
       slug: data.slug,
       parentId: data.parentId,

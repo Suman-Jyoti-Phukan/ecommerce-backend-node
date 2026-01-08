@@ -29,6 +29,7 @@ model User {
   wishlist    Wishlist[]
   coupons     CouponUser[]
   addresses   Address[]
+  orders      Order[]
 }
 
 model BankDetails {
@@ -49,6 +50,7 @@ model Category {
   id          String   @id @default(uuid())
   name        String
   isActive    Boolean  @default(true)
+  isFeatured  Boolean? @default(false)
   description String?
   slug        String?  @unique
   parentId    String?
@@ -67,68 +69,135 @@ model Category {
 }
 
 model Product {
-  id                 String    @id @default(uuid())
-  productName        String
-  shortDesc          String?
-  longDesc           String?
-  mainImage          String
-  productImages      String?   @db.LongText
-  youtubeLink        String?
-  size               String?
-  expiryDate         DateTime?
-  buyingPrice        Float?
-  maximumRetailPrice Float?
-  sellingPrice       Float?
-  quantity           Int
-  paymentType        String
-  dimensions         Json?
-  metaData           Json?
+  id            String  @id @default(uuid())
+  productName   String
+  shortDesc     String?
+  longDesc      String?
+  mainImage     String
+  productImages String? @db.LongText
+  youtubeLink   String?
 
-  isFeatured      Boolean @default(false)
-  isBestSelling   Boolean @default(false)
-  isNewCollection Boolean @default(false)
-  isRelatedItem   Boolean @default(false)
-  isActive        Boolean @default(true)
+  metaData Json?
 
   masterCategoryId String
   lastCategoryId   String?
-  sizeChartId      String?
 
-  masterCategory Category   @relation("MasterCategory", fields: [masterCategoryId], references: [id], onDelete: Cascade)
-  lastCategory   Category?  @relation("LastCategory", fields: [lastCategoryId], references: [id], onDelete: SetNull)
-  sizeChart      SizeChart? @relation(fields: [sizeChartId], references: [id], onDelete: SetNull)
+  masterCategory Category  @relation("MasterCategory", fields: [masterCategoryId], references: [id], onDelete: Cascade)
+  lastCategory   Category? @relation("LastCategory", fields: [lastCategoryId], references: [id], onDelete: SetNull)
 
-  cart     Cart[]
-  wishlist Wishlist[]
-  coupons  CouponProduct[]
+  isFeatured        Boolean @default(false)
+  isBestSelling     Boolean @default(false)
+  isNewCollection   Boolean @default(false)
+  isActive          Boolean @default(true)
+  hasCashOnDelivery Boolean @default(true)
+
+  hasVariants Boolean          @default(false)
+  variants    ProductVariant[]
+
+  // Fields for Simple Products (without variants)
+  // If hasVariants is true, these might be ignored or used as defaults
+  buyingPrice        Float?
+  maximumRetailPrice Float?
+  sellingPrice       Float?
+  quantity           Int      @default(0)
+  size               String? // Legacy or simple product size
+  expiryDate         DateTime?
+  dimensions         Json?
+  
+  // Legacy / Other fields
+  isRelatedItem Boolean @default(false)
+  paymentType   String? // Made optional as it might be derived or fixed
+  sizeChartId   String?
+  sizeChart     SizeChart? @relation(fields: [sizeChartId], references: [id], onDelete: SetNull)
+
+  // Explicit relations
+  cart       Cart[]
+  wishlist   Wishlist[]
+  coupons    CouponProduct[]
+  orderItems OrderItem[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([masterCategoryId])
   @@index([lastCategoryId])
-  @@index([sizeChartId])
   @@index([isFeatured])
   @@index([isBestSelling])
   @@index([isActive])
   @@index([productName])
 }
 
+model ProductVariant {
+  id        String @id @default(uuid())
+  productId String
+
+  sku         String  @unique
+  variantName String?
+
+  // Variant attributes
+  color String?
+  size  String?
+
+  dimensions Json?
+  attributes Json?
+
+  variantImages      String? @db.LongText
+  variantDescription String?
+
+  // Pricing & Inventory
+  buyingPrice        Float?
+  maximumRetailPrice Float?
+  sellingPrice       Float?
+  quantity           Int
+  lowStockAlert      Int?   @default(5)
+
+  expiryDate        DateTime?
+  hasCashOnDelivery Boolean   @default(true)
+
+  sizeChartId String?
+  sizeChart   SizeChart? @relation(fields: [sizeChartId], references: [id], onDelete: SetNull)
+
+  isRelatedItem Boolean @default(false)
+  isActive      Boolean @default(true)
+  isDefault     Boolean @default(false)
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  cartItems     Cart[]
+  wishlistItems Wishlist[]
+  orderItems    OrderItem[]
+  couponProducts CouponProduct[] // Added relation for variant-specific coupons
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([productId, color, size])
+  @@index([productId])
+  @@index([sku])
+  @@index([sizeChartId])
+  @@index([isActive])
+  @@index([color])
+  @@index([size])
+}
+
 model Cart {
   id         String   @id @default(uuid())
   userId     String
   productId  String
+  variantId  String?
   quantity   Int      @default(1)
   couponCode String?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user    User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variant ProductVariant? @relation(fields: [variantId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, productId])
+  @@unique([userId, productId, variantId])
   @@index([userId])
   @@index([productId])
+  @@index([variantId])
 }
 
 model Address {
@@ -145,7 +214,8 @@ model Address {
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders Order[]
 
   @@index([userId])
 }
@@ -154,14 +224,17 @@ model Wishlist {
   id        String   @id @default(uuid())
   userId    String
   productId String
+  variantId String?
   createdAt DateTime @default(now())
 
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user    User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variant ProductVariant? @relation(fields: [variantId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, productId])
+  @@unique([userId, productId, variantId])
   @@index([userId])
   @@index([productId])
+  @@index([variantId])
 }
 
 model ColorScheme {
@@ -180,6 +253,7 @@ model SizeChart {
   updatedAt DateTime @updatedAt
 
   products Product[]
+  variants ProductVariant[]
 }
 
 enum CouponType {
@@ -206,6 +280,7 @@ model Coupon {
   users      CouponUser[]
   products   CouponProduct[]
   categories CouponCategory[]
+  orders     Order[]
 
   @@index([code])
   @@index([isActive])
@@ -231,14 +306,17 @@ model CouponProduct {
   id        String   @id @default(uuid())
   couponId  Int
   productId String
+  variantId String?
   createdAt DateTime @default(now())
 
-  coupon  Coupon  @relation(fields: [couponId], references: [id], onDelete: Cascade)
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  coupon  Coupon          @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  product Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variant ProductVariant? @relation(fields: [variantId], references: [id], onDelete: Cascade)
 
-  @@unique([couponId, productId])
+  @@unique([couponId, productId, variantId])
   @@index([productId])
   @@index([couponId])
+  @@index([variantId])
 }
 
 model CouponCategory {
@@ -256,14 +334,93 @@ model CouponCategory {
 }
 
 model Blog {
-  id          String   @id @default(uuid())
-  header      String
-  description String?
-  content     String   @db.LongText
-  thumbImage  String?
+  id            String   @id @default(uuid())
+  header        String
+  description   String?
+  content       String   @db.LongText
+  thumbImage    String?
   contentImages Json?
-  author      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  author        String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+model Order {
+  id          String @id @default(uuid())
+  orderNumber String @unique
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  addressId String
+  address   Address @relation(fields: [addressId], references: [id])
+
+  totalAmount    Float
+  discountAmount Float @default(0)
+  finalAmount    Float
+
+  status        OrderStatus   @default(PENDING)
+  paymentStatus PaymentStatus @default(PENDING)
+  paymentMethod String
+  paymentId     String?
+
+  couponId Int?
+  coupon   Coupon? @relation(fields: [couponId], references: [id])
+
+  orderItems OrderItem[]
+  history    OrderHistory[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}
+
+model OrderItem {
+  id      String @id @default(uuid())
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  variantId String?
+  variant   ProductVariant? @relation(fields: [variantId], references: [id])
+
+  quantity Int
+  price    Float
+
+  size  String?
+  color String?
+}
+
+model OrderHistory {
+  id      String @id @default(uuid())
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  status  OrderStatus
+  comment String?
+
+  createdAt DateTime @default(now())
+  createdBy String?
 }
 

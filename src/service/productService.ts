@@ -29,6 +29,12 @@ interface CreateProductInput {
 
 interface UpdateProductInput extends Partial<CreateProductInput> {}
 
+interface InventoryUpdate {
+  productId: string;
+  variantId?: string;
+  quantity: number;
+}
+
 export const productService = {
   async createProduct(input: CreateProductInput): Promise<Product> {
     return prisma.product.create({
@@ -242,5 +248,23 @@ export const productService = {
         sizeChart: true,
       },
     });
+  },
+
+  async updateInventory(updates: InventoryUpdate[]) {
+    return prisma.$transaction(
+      updates.map(({ productId, variantId, quantity }) => {
+        if (variantId) {
+          return prisma.productVariant.update({
+            where: { id: variantId },
+            data: { quantity },
+          });
+        } else {
+          return prisma.product.update({
+            where: { id: productId },
+            data: { quantity },
+          });
+        }
+      })
+    );
   },
 };

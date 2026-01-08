@@ -20,7 +20,7 @@ export const createProductValidation = [
     .isLength({ max: 5000 })
     .withMessage("Long description must not exceed 5000 characters"),
 
-  // mainImage is handled as file upload - no body validation needed
+
 
   body("youtubeLink").optional(),
 

@@ -1,52 +1,32 @@
-import { Router } from "express";
+import express from "express";
 
 import {
   createProduct,
   updateProduct,
   deleteProduct,
-  hardDeleteProduct,
+  updateInventory,
+  getProducts,
+  getProductById
 } from "../controller/productController";
 
 import { authMiddleware } from "../middleware/auth";
 
 import { adminAuthMiddleware } from "../middleware/authorization";
 
-import { productImageUpload } from "../config/multer";
+import { asyncHandler } from "../middleware/errorHandler";
 
-import { validate } from "../middleware/validation";
+const router = express.Router();
 
-import {
-  createProductValidation,
-  updateProductValidation,
-  productIdParamValidation,
-} from "../validators/productValidators";
+router.route("/")
+  .post(authMiddleware as any, adminAuthMiddleware as any, asyncHandler(createProduct))
+  .get(authMiddleware as any, adminAuthMiddleware as any, asyncHandler(getProducts));
 
-const router = Router();
+router.get("/:id", authMiddleware as any, adminAuthMiddleware as any, asyncHandler(getProductById));
 
-router.use(authMiddleware as any);
+router.put("/:id", authMiddleware as any, adminAuthMiddleware as any, asyncHandler(updateProduct));
 
-router.use(adminAuthMiddleware as any);
+router.delete("/:id", authMiddleware as any, adminAuthMiddleware as any, asyncHandler(deleteProduct));
 
-router.post(
-  "/",
-  productImageUpload,
-  validate(createProductValidation),
-  createProduct
-);
-
-router.put(
-  "/:productId",
-  productImageUpload,
-  validate(updateProductValidation),
-  updateProduct
-);
-
-router.delete("/:productId", validate(productIdParamValidation), deleteProduct);
-
-router.delete(
-  "/:productId/hard",
-  validate(productIdParamValidation),
-  hardDeleteProduct
-);
+router.patch("/inventory/update", authMiddleware as any, adminAuthMiddleware as any, asyncHandler(updateInventory));
 
 export default router;

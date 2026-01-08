@@ -97,11 +97,11 @@ export const deleteCoupon = asyncHandler(
 
     const { couponId } = req.params;
 
-    const result = await couponService.deleteCoupon(parseInt(couponId));
+    await couponService.deleteCoupon(parseInt(couponId));
 
     res.status(200).json({
       success: true,
-      message: result.message,
+      message: "Coupon deleted successfully.",
     });
   }
 );

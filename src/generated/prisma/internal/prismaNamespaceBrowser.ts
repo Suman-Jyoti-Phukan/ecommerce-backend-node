@@ -55,6 +55,7 @@ export const ModelName = {
   BankDetails: 'BankDetails',
   Category: 'Category',
   Product: 'Product',
+  ProductVariant: 'ProductVariant',
   Cart: 'Cart',
   Address: 'Address',
   Wishlist: 'Wishlist',
@@ -64,7 +65,10 @@ export const ModelName = {
   CouponUser: 'CouponUser',
   CouponProduct: 'CouponProduct',
   CouponCategory: 'CouponCategory',
-  Blog: 'Blog'
+  Blog: 'Blog',
+  Order: 'Order',
+  OrderItem: 'OrderItem',
+  OrderHistory: 'OrderHistory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -117,6 +121,7 @@ export const CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
   isActive: 'isActive',
+  isFeatured: 'isFeatured',
   description: 'description',
   slug: 'slug',
   parentId: 'parentId',
@@ -135,22 +140,24 @@ export const ProductScalarFieldEnum = {
   mainImage: 'mainImage',
   productImages: 'productImages',
   youtubeLink: 'youtubeLink',
-  size: 'size',
-  expiryDate: 'expiryDate',
+  metaData: 'metaData',
+  masterCategoryId: 'masterCategoryId',
+  lastCategoryId: 'lastCategoryId',
+  isFeatured: 'isFeatured',
+  isBestSelling: 'isBestSelling',
+  isNewCollection: 'isNewCollection',
+  isActive: 'isActive',
+  hasCashOnDelivery: 'hasCashOnDelivery',
+  hasVariants: 'hasVariants',
   buyingPrice: 'buyingPrice',
   maximumRetailPrice: 'maximumRetailPrice',
   sellingPrice: 'sellingPrice',
   quantity: 'quantity',
-  paymentType: 'paymentType',
+  size: 'size',
+  expiryDate: 'expiryDate',
   dimensions: 'dimensions',
-  metaData: 'metaData',
-  isFeatured: 'isFeatured',
-  isBestSelling: 'isBestSelling',
-  isNewCollection: 'isNewCollection',
   isRelatedItem: 'isRelatedItem',
-  isActive: 'isActive',
-  masterCategoryId: 'masterCategoryId',
-  lastCategoryId: 'lastCategoryId',
+  paymentType: 'paymentType',
   sizeChartId: 'sizeChartId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -159,10 +166,40 @@ export const ProductScalarFieldEnum = {
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
 
 
+export const ProductVariantScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  sku: 'sku',
+  variantName: 'variantName',
+  color: 'color',
+  size: 'size',
+  dimensions: 'dimensions',
+  attributes: 'attributes',
+  variantImages: 'variantImages',
+  variantDescription: 'variantDescription',
+  buyingPrice: 'buyingPrice',
+  maximumRetailPrice: 'maximumRetailPrice',
+  sellingPrice: 'sellingPrice',
+  quantity: 'quantity',
+  lowStockAlert: 'lowStockAlert',
+  expiryDate: 'expiryDate',
+  hasCashOnDelivery: 'hasCashOnDelivery',
+  sizeChartId: 'sizeChartId',
+  isRelatedItem: 'isRelatedItem',
+  isActive: 'isActive',
+  isDefault: 'isDefault',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProductVariantScalarFieldEnum = (typeof ProductVariantScalarFieldEnum)[keyof typeof ProductVariantScalarFieldEnum]
+
+
 export const CartScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   productId: 'productId',
+  variantId: 'variantId',
   quantity: 'quantity',
   couponCode: 'couponCode',
   createdAt: 'createdAt',
@@ -194,6 +231,7 @@ export const WishlistScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   productId: 'productId',
+  variantId: 'variantId',
   createdAt: 'createdAt'
 } as const
 
@@ -255,6 +293,7 @@ export const CouponProductScalarFieldEnum = {
   id: 'id',
   couponId: 'couponId',
   productId: 'productId',
+  variantId: 'variantId',
   createdAt: 'createdAt'
 } as const
 
@@ -284,6 +323,52 @@ export const BlogScalarFieldEnum = {
 } as const
 
 export type BlogScalarFieldEnum = (typeof BlogScalarFieldEnum)[keyof typeof BlogScalarFieldEnum]
+
+
+export const OrderScalarFieldEnum = {
+  id: 'id',
+  orderNumber: 'orderNumber',
+  userId: 'userId',
+  addressId: 'addressId',
+  totalAmount: 'totalAmount',
+  discountAmount: 'discountAmount',
+  finalAmount: 'finalAmount',
+  status: 'status',
+  paymentStatus: 'paymentStatus',
+  paymentMethod: 'paymentMethod',
+  paymentId: 'paymentId',
+  couponId: 'couponId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId',
+  variantId: 'variantId',
+  quantity: 'quantity',
+  price: 'price',
+  size: 'size',
+  color: 'color'
+} as const
+
+export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
+
+
+export const OrderHistoryScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  status: 'status',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  createdBy: 'createdBy'
+} as const
+
+export type OrderHistoryScalarFieldEnum = (typeof OrderHistoryScalarFieldEnum)[keyof typeof OrderHistoryScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -376,20 +461,36 @@ export const ProductOrderByRelevanceFieldEnum = {
   mainImage: 'mainImage',
   productImages: 'productImages',
   youtubeLink: 'youtubeLink',
-  size: 'size',
-  paymentType: 'paymentType',
   masterCategoryId: 'masterCategoryId',
   lastCategoryId: 'lastCategoryId',
+  size: 'size',
+  paymentType: 'paymentType',
   sizeChartId: 'sizeChartId'
 } as const
 
 export type ProductOrderByRelevanceFieldEnum = (typeof ProductOrderByRelevanceFieldEnum)[keyof typeof ProductOrderByRelevanceFieldEnum]
 
 
+export const ProductVariantOrderByRelevanceFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  sku: 'sku',
+  variantName: 'variantName',
+  color: 'color',
+  size: 'size',
+  variantImages: 'variantImages',
+  variantDescription: 'variantDescription',
+  sizeChartId: 'sizeChartId'
+} as const
+
+export type ProductVariantOrderByRelevanceFieldEnum = (typeof ProductVariantOrderByRelevanceFieldEnum)[keyof typeof ProductVariantOrderByRelevanceFieldEnum]
+
+
 export const CartOrderByRelevanceFieldEnum = {
   id: 'id',
   userId: 'userId',
   productId: 'productId',
+  variantId: 'variantId',
   couponCode: 'couponCode'
 } as const
 
@@ -414,7 +515,8 @@ export type AddressOrderByRelevanceFieldEnum = (typeof AddressOrderByRelevanceFi
 export const WishlistOrderByRelevanceFieldEnum = {
   id: 'id',
   userId: 'userId',
-  productId: 'productId'
+  productId: 'productId',
+  variantId: 'variantId'
 } as const
 
 export type WishlistOrderByRelevanceFieldEnum = (typeof WishlistOrderByRelevanceFieldEnum)[keyof typeof WishlistOrderByRelevanceFieldEnum]
@@ -454,7 +556,8 @@ export type CouponUserOrderByRelevanceFieldEnum = (typeof CouponUserOrderByRelev
 
 export const CouponProductOrderByRelevanceFieldEnum = {
   id: 'id',
-  productId: 'productId'
+  productId: 'productId',
+  variantId: 'variantId'
 } as const
 
 export type CouponProductOrderByRelevanceFieldEnum = (typeof CouponProductOrderByRelevanceFieldEnum)[keyof typeof CouponProductOrderByRelevanceFieldEnum]
@@ -478,4 +581,38 @@ export const BlogOrderByRelevanceFieldEnum = {
 } as const
 
 export type BlogOrderByRelevanceFieldEnum = (typeof BlogOrderByRelevanceFieldEnum)[keyof typeof BlogOrderByRelevanceFieldEnum]
+
+
+export const OrderOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderNumber: 'orderNumber',
+  userId: 'userId',
+  addressId: 'addressId',
+  paymentMethod: 'paymentMethod',
+  paymentId: 'paymentId'
+} as const
+
+export type OrderOrderByRelevanceFieldEnum = (typeof OrderOrderByRelevanceFieldEnum)[keyof typeof OrderOrderByRelevanceFieldEnum]
+
+
+export const OrderItemOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId',
+  variantId: 'variantId',
+  size: 'size',
+  color: 'color'
+} as const
+
+export type OrderItemOrderByRelevanceFieldEnum = (typeof OrderItemOrderByRelevanceFieldEnum)[keyof typeof OrderItemOrderByRelevanceFieldEnum]
+
+
+export const OrderHistoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  comment: 'comment',
+  createdBy: 'createdBy'
+} as const
+
+export type OrderHistoryOrderByRelevanceFieldEnum = (typeof OrderHistoryOrderByRelevanceFieldEnum)[keyof typeof OrderHistoryOrderByRelevanceFieldEnum]
 

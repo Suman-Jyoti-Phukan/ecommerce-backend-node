@@ -44,6 +44,10 @@ import userAddressRoutes from "./routes/userAddressRoutes";
 
 import adminAddressRoutes from "./routes/adminAddressRoutes";
 
+import userOrderRoutes from "./routes/userOrderRoutes";
+
+import adminOrderRoutes from "./routes/adminOrderRoutes";
+
 const app = express();
 
 app.use(
@@ -122,6 +126,10 @@ app.use("/api/v1/blogs", userBlogRoutes);
 app.use("/api/v1/address", userAddressRoutes);
 
 app.use("/api/v1/admin/address", adminAddressRoutes);
+
+app.use("/api/v1/orders", userOrderRoutes);
+
+app.use("/api/v1/admin/orders", adminOrderRoutes);
 
 app.get("/api/health", (_, res) => {
   res.json({ status: "___I'm yours to command.___" });

@@ -3,11 +3,12 @@ import { prisma } from "../db/prisma";
 interface AddToWishlistInput {
   userId: string;
   productId: string;
+  variantId?: string;
 }
 
 export class WishlistService {
   async addToWishlist(input: AddToWishlistInput) {
-    const { userId, productId } = input;
+    const { userId, productId, variantId } = input;
 
     const product = await prisma.product.findUnique({
       where: { id: productId },
@@ -16,22 +17,35 @@ export class WishlistService {
     if (!product) {
       throw new Error("Product not found");
     }
+    
+    if (variantId) {
+        const variant = await prisma.productVariant.findUnique({
+            where: { id: variantId }
+        });
+        if (!variant || variant.productId !== productId) throw new Error("Invalid variant");
+    }
 
-    const existingWishlist = await prisma.wishlist.findUnique({
-      where: { userId_productId: { userId, productId } },
+    const existingWishlist = await prisma.wishlist.findFirst({
+      where: { 
+          userId, 
+          productId, 
+          variantId: variantId || null 
+      },
     });
 
     if (existingWishlist) {
-      throw new Error("Product already in wishlist");
+      throw new Error("Product/Variant already in wishlist");
     }
 
     return await prisma.wishlist.create({
       data: {
         userId,
         productId,
+        variantId: variantId || null
       },
       include: {
         product: true,
+        variant: true
       },
     });
   }
@@ -41,14 +55,21 @@ export class WishlistService {
       where: { userId },
       include: {
         product: true,
+        variant: true
       },
       orderBy: { createdAt: "desc" },
     });
   }
 
-  async removeFromWishlist(userId: string, productId: string) {
+  async removeFromWishlist(userId: string, productId: string, variantId?: string) {
+    const item = await prisma.wishlist.findFirst({
+        where: { userId, productId, variantId: variantId || null }
+    });
+    
+    if (!item) return; 
+    
     return await prisma.wishlist.delete({
-      where: { userId_productId: { userId, productId } },
+      where: { id: item.id },
     });
   }
 
@@ -64,9 +85,9 @@ export class WishlistService {
     });
   }
 
-  async isProductInWishlist(userId: string, productId: string) {
-    const wishlist = await prisma.wishlist.findUnique({
-      where: { userId_productId: { userId, productId } },
+  async isProductInWishlist(userId: string, productId: string, variantId?: string) {
+    const wishlist = await prisma.wishlist.findFirst({
+      where: { userId, productId, variantId: variantId || null },
     });
 
     return !!wishlist;

@@ -3,18 +3,20 @@ import { prisma } from "../db/prisma";
 interface AddToCartInput {
   userId: string;
   productId: string;
+  variantId?: string;
   quantity?: number;
 }
 
 interface UpdateCartInput {
   userId: string;
   productId: string;
+  variantId?: string;
   quantity: number;
 }
 
 export class CartService {
   async addToCart(input: AddToCartInput) {
-    const { userId, productId, quantity = 1 } = input;
+    const { userId, productId, variantId, quantity = 1 } = input;
 
     const product = await prisma.product.findUnique({
       where: { id: productId },
@@ -23,17 +25,35 @@ export class CartService {
     if (!product) {
       throw new Error("Product not found");
     }
+    
+    if (variantId) {
+       const variant = await prisma.productVariant.findUnique({
+          where: { id: variantId }
+       });
+       if (!variant) throw new Error("Variant not found");
+       if (variant.productId !== productId) throw new Error("Variant does not belong to this product");
+    } else {
+       if (product.hasVariants) {
+          throw new Error("Please select a variant (size/color)");
+       }
+    }
 
-    const existingCart = await prisma.cart.findUnique({
-      where: { userId_productId: { userId, productId } },
+    // Check existing item using findFirst because variantId might be null and DB unique constraint handling varies
+    const existingItem = await prisma.cart.findFirst({
+        where: {
+            userId,
+            productId,
+            variantId: variantId || null
+        }
     });
 
-    if (existingCart) {
+    if (existingItem) {
       return await prisma.cart.update({
-        where: { userId_productId: { userId, productId } },
-        data: { quantity: existingCart.quantity + quantity },
+        where: { id: existingItem.id },
+        data: { quantity: existingItem.quantity + quantity },
         include: {
           product: true,
+          variant: true
         },
       });
     }
@@ -42,10 +62,12 @@ export class CartService {
       data: {
         userId,
         productId,
+        variantId: variantId || null,
         quantity,
       },
       include: {
         product: true,
+        variant: true
       },
     });
   }
@@ -55,30 +77,44 @@ export class CartService {
       where: { userId },
       include: {
         product: true,
+        variant: true 
       },
       orderBy: { createdAt: "desc" },
     });
   }
 
   async updateCartQuantity(input: UpdateCartInput) {
-    const { userId, productId, quantity } = input;
+    const { userId, productId, variantId, quantity } = input;
 
     if (quantity <= 0) {
       throw new Error("Quantity must be greater than 0");
     }
+    
+    const cartItem = await prisma.cart.findFirst({
+        where: { userId, productId, variantId: variantId || null }
+    });
+    
+    if (!cartItem) throw new Error("Item not found in cart");
 
     return await prisma.cart.update({
-      where: { userId_productId: { userId, productId } },
+      where: { id: cartItem.id },
       data: { quantity },
       include: {
         product: true,
+        variant: true
       },
     });
   }
 
-  async removeFromCart(userId: string, productId: string) {
+  async removeFromCart(userId: string, productId: string, variantId?: string) {
+     const cartItem = await prisma.cart.findFirst({
+        where: { userId, productId, variantId: variantId || null }
+    });
+    
+    if (!cartItem) throw new Error("Item not found");
+
     return await prisma.cart.delete({
-      where: { userId_productId: { userId, productId } },
+      where: { id: cartItem.id },
     });
   }
 
@@ -97,11 +133,15 @@ export class CartService {
   async getCartTotal(userId: string) {
     const cartItems = await prisma.cart.findMany({
       where: { userId },
-      include: { product: true },
+      include: { product: true, variant: true },
     });
 
     const total = cartItems.reduce((sum, item) => {
-      return sum + (item.product.sellingPrice || 0) * item.quantity;
+      let price = item.product.sellingPrice || 0;
+      if (item.variant && item.variant.sellingPrice) {
+          price = item.variant.sellingPrice;
+      }
+      return sum + price * item.quantity;
     }, 0);
 
     return {
