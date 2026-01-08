@@ -146,8 +146,7 @@ CREATE INDEX `Wishlist_variantId_idx` ON `Wishlist`(`variantId`);
 -- CreateIndex
 CREATE UNIQUE INDEX `Wishlist_userId_productId_variantId_key` ON `Wishlist`(`userId`, `productId`, `variantId`);
 
--- AddForeignKey
-ALTER TABLE `Product` ADD CONSTRAINT `Product_lastCategoryId_fkey` FOREIGN KEY (`lastCategoryId`) REFERENCES `Category`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
 
 -- AddForeignKey
 ALTER TABLE `ProductVariant` ADD CONSTRAINT `ProductVariant_sizeChartId_fkey` FOREIGN KEY (`sizeChartId`) REFERENCES `SizeChart`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
@@ -164,8 +163,7 @@ ALTER TABLE `Cart` ADD CONSTRAINT `Cart_variantId_fkey` FOREIGN KEY (`variantId`
 -- AddForeignKey
 ALTER TABLE `Wishlist` ADD CONSTRAINT `Wishlist_variantId_fkey` FOREIGN KEY (`variantId`) REFERENCES `ProductVariant`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
--- AddForeignKey
-ALTER TABLE `CouponUser` ADD CONSTRAINT `CouponUser_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 
 -- AddForeignKey
 ALTER TABLE `CouponProduct` ADD CONSTRAINT `CouponProduct_variantId_fkey` FOREIGN KEY (`variantId`) REFERENCES `ProductVariant`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
