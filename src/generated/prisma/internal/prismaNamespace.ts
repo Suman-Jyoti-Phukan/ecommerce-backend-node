@@ -401,7 +401,10 @@ export const ModelName = {
   Blog: 'Blog',
   Order: 'Order',
   OrderItem: 'OrderItem',
-  OrderHistory: 'OrderHistory'
+  OrderHistory: 'OrderHistory',
+  Pincode: 'Pincode',
+  PincodeGroup: 'PincodeGroup',
+  PincodeGroupPincode: 'PincodeGroupPincode'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -417,7 +420,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "bankDetails" | "category" | "product" | "productVariant" | "cart" | "address" | "wishlist" | "colorScheme" | "sizeChart" | "coupon" | "couponUser" | "couponProduct" | "couponCategory" | "blog" | "order" | "orderItem" | "orderHistory"
+    modelProps: "user" | "bankDetails" | "category" | "product" | "productVariant" | "cart" | "address" | "wishlist" | "colorScheme" | "sizeChart" | "coupon" | "couponUser" | "couponProduct" | "couponCategory" | "blog" | "order" | "orderItem" | "orderHistory" | "pincode" | "pincodeGroup" | "pincodeGroupPincode"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1609,6 +1612,204 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Pincode: {
+      payload: Prisma.$PincodePayload<ExtArgs>
+      fields: Prisma.PincodeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PincodeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PincodeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodePayload>
+        }
+        findFirst: {
+          args: Prisma.PincodeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PincodeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodePayload>
+        }
+        findMany: {
+          args: Prisma.PincodeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodePayload>[]
+        }
+        create: {
+          args: Prisma.PincodeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodePayload>
+        }
+        createMany: {
+          args: Prisma.PincodeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.PincodeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodePayload>
+        }
+        update: {
+          args: Prisma.PincodeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodePayload>
+        }
+        deleteMany: {
+          args: Prisma.PincodeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PincodeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.PincodeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodePayload>
+        }
+        aggregate: {
+          args: Prisma.PincodeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePincode>
+        }
+        groupBy: {
+          args: Prisma.PincodeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PincodeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PincodeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PincodeCountAggregateOutputType> | number
+        }
+      }
+    }
+    PincodeGroup: {
+      payload: Prisma.$PincodeGroupPayload<ExtArgs>
+      fields: Prisma.PincodeGroupFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PincodeGroupFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PincodeGroupFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPayload>
+        }
+        findFirst: {
+          args: Prisma.PincodeGroupFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PincodeGroupFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPayload>
+        }
+        findMany: {
+          args: Prisma.PincodeGroupFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPayload>[]
+        }
+        create: {
+          args: Prisma.PincodeGroupCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPayload>
+        }
+        createMany: {
+          args: Prisma.PincodeGroupCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.PincodeGroupDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPayload>
+        }
+        update: {
+          args: Prisma.PincodeGroupUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPayload>
+        }
+        deleteMany: {
+          args: Prisma.PincodeGroupDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PincodeGroupUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.PincodeGroupUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPayload>
+        }
+        aggregate: {
+          args: Prisma.PincodeGroupAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePincodeGroup>
+        }
+        groupBy: {
+          args: Prisma.PincodeGroupGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PincodeGroupGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PincodeGroupCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PincodeGroupCountAggregateOutputType> | number
+        }
+      }
+    }
+    PincodeGroupPincode: {
+      payload: Prisma.$PincodeGroupPincodePayload<ExtArgs>
+      fields: Prisma.PincodeGroupPincodeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PincodeGroupPincodeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPincodePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PincodeGroupPincodeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPincodePayload>
+        }
+        findFirst: {
+          args: Prisma.PincodeGroupPincodeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPincodePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PincodeGroupPincodeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPincodePayload>
+        }
+        findMany: {
+          args: Prisma.PincodeGroupPincodeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPincodePayload>[]
+        }
+        create: {
+          args: Prisma.PincodeGroupPincodeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPincodePayload>
+        }
+        createMany: {
+          args: Prisma.PincodeGroupPincodeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.PincodeGroupPincodeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPincodePayload>
+        }
+        update: {
+          args: Prisma.PincodeGroupPincodeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPincodePayload>
+        }
+        deleteMany: {
+          args: Prisma.PincodeGroupPincodeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PincodeGroupPincodeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.PincodeGroupPincodeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PincodeGroupPincodePayload>
+        }
+        aggregate: {
+          args: Prisma.PincodeGroupPincodeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePincodeGroupPincode>
+        }
+        groupBy: {
+          args: Prisma.PincodeGroupPincodeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PincodeGroupPincodeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PincodeGroupPincodeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PincodeGroupPincodeCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1932,6 +2133,40 @@ export const OrderHistoryScalarFieldEnum = {
 export type OrderHistoryScalarFieldEnum = (typeof OrderHistoryScalarFieldEnum)[keyof typeof OrderHistoryScalarFieldEnum]
 
 
+export const PincodeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  value: 'value',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PincodeScalarFieldEnum = (typeof PincodeScalarFieldEnum)[keyof typeof PincodeScalarFieldEnum]
+
+
+export const PincodeGroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PincodeGroupScalarFieldEnum = (typeof PincodeGroupScalarFieldEnum)[keyof typeof PincodeGroupScalarFieldEnum]
+
+
+export const PincodeGroupPincodeScalarFieldEnum = {
+  id: 'id',
+  pincodeGroupId: 'pincodeGroupId',
+  pincodeId: 'pincodeId',
+  createdAt: 'createdAt'
+} as const
+
+export type PincodeGroupPincodeScalarFieldEnum = (typeof PincodeGroupPincodeScalarFieldEnum)[keyof typeof PincodeGroupPincodeScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2178,6 +2413,33 @@ export const OrderHistoryOrderByRelevanceFieldEnum = {
 export type OrderHistoryOrderByRelevanceFieldEnum = (typeof OrderHistoryOrderByRelevanceFieldEnum)[keyof typeof OrderHistoryOrderByRelevanceFieldEnum]
 
 
+export const PincodeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  value: 'value'
+} as const
+
+export type PincodeOrderByRelevanceFieldEnum = (typeof PincodeOrderByRelevanceFieldEnum)[keyof typeof PincodeOrderByRelevanceFieldEnum]
+
+
+export const PincodeGroupOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type PincodeGroupOrderByRelevanceFieldEnum = (typeof PincodeGroupOrderByRelevanceFieldEnum)[keyof typeof PincodeGroupOrderByRelevanceFieldEnum]
+
+
+export const PincodeGroupPincodeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  pincodeGroupId: 'pincodeGroupId',
+  pincodeId: 'pincodeId'
+} as const
+
+export type PincodeGroupPincodeOrderByRelevanceFieldEnum = (typeof PincodeGroupPincodeOrderByRelevanceFieldEnum)[keyof typeof PincodeGroupPincodeOrderByRelevanceFieldEnum]
+
+
 
 /**
  * Field references
@@ -2366,6 +2628,9 @@ export type GlobalOmitConfig = {
   order?: Prisma.OrderOmit
   orderItem?: Prisma.OrderItemOmit
   orderHistory?: Prisma.OrderHistoryOmit
+  pincode?: Prisma.PincodeOmit
+  pincodeGroup?: Prisma.PincodeGroupOmit
+  pincodeGroupPincode?: Prisma.PincodeGroupPincodeOmit
 }
 
 /* Types for Logging */

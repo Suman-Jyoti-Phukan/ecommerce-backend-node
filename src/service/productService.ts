@@ -70,49 +70,45 @@ export const productService = {
       isDefault?: boolean;
     }>;
   }): Promise<Product> {
-     
     const { productVariantService } = await import("./productVariantService");
 
     return prisma.$transaction(async (tx) => {
-      
       const product = await tx.product.create({
         data: {
           ...input.product,
           hasVariants: true,
-          quantity: 0,  
+          quantity: 0,
           productImages: input.product.productImages
             ? JSON.stringify(input.product.productImages)
             : null,
         },
       });
 
-  
       const createdVariants = [];
 
       for (const variantInput of input.variants) {
-        
-        const sku = variantInput.sku || await productVariantService.generateSKU(
-          product.id,
-          variantInput.color,
-          variantInput.size
-        );
+        const sku =
+          variantInput.sku ||
+          (await productVariantService.generateSKU(
+            product.id,
+            variantInput.color,
+            variantInput.size
+          ));
 
-      
         const existingSKU = await tx.productVariant.findUnique({
-          where: { sku }
+          where: { sku },
         });
 
         if (existingSKU) {
           throw new Error(`SKU ${sku} already exists`);
         }
 
-      
         const variantData: any = {
           productId: product.id,
           ...variantInput,
           sku,
-          variantImages: variantInput.variantImages 
-            ? JSON.stringify(variantInput.variantImages) 
+          variantImages: variantInput.variantImages
+            ? JSON.stringify(variantInput.variantImages)
             : null,
         };
 
@@ -123,7 +119,6 @@ export const productService = {
         createdVariants.push(variant);
       }
 
-    
       return tx.product.findUnique({
         where: { id: product.id },
         include: {
@@ -137,8 +132,8 @@ export const productService = {
   },
 
   async getAllProducts(
-    page: number = 1,
-    limit: number = 10,
+    page?: number,
+    limit?: number,
     filters?: {
       categoryId?: string;
       isFeatured?: boolean;
@@ -147,8 +142,6 @@ export const productService = {
       isActive?: boolean;
     }
   ) {
-    const skip = (page - 1) * limit;
-
     const where: any = {};
 
     if (filters?.categoryId) {
@@ -168,27 +161,36 @@ export const productService = {
 
     if (filters?.isActive !== undefined) where.isActive = filters.isActive;
 
+    const queryOptions: any = {
+      where,
+      include: {
+        masterCategory: true,
+        lastCategory: true,
+        sizeChart: true,
+      },
+      orderBy: { createdAt: "desc" },
+    };
+
+    if (page !== undefined && limit !== undefined) {
+      const skip = (page - 1) * limit;
+      queryOptions.skip = skip;
+      queryOptions.take = limit;
+    }
+
     const [products, total] = await Promise.all([
-      prisma.product.findMany({
-        where,
-        skip,
-        take: limit,
-        include: {
-          masterCategory: true,
-          lastCategory: true,
-          sizeChart: true,
-        },
-        orderBy: { createdAt: "desc" },
-      }),
+      prisma.product.findMany(queryOptions),
       prisma.product.count({ where }),
     ]);
 
     return {
       products,
       total,
-      page,
-      limit,
-      totalPages: Math.ceil(total / limit),
+      page: page || 1,
+      limit: limit || total,
+      totalPages:
+        page !== undefined && limit !== undefined
+          ? Math.ceil(total / limit)
+          : 1,
     };
   },
 

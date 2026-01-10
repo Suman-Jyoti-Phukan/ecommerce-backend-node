@@ -6,8 +6,6 @@ import * as categoryService from "../service/categoryService";
 
 import { CustomError } from "../middleware/errorHandler";
 
-// 7d86fb7e-f2b4-4a9b-8095-1f29c5165d49 -> Cat Id
-
 export const createCategory = async (
   req: AuthRequest,
   res: Response
@@ -49,7 +47,9 @@ export const getAllCategories = async (
 ): Promise<void> => {
   try {
     const page = parseInt(req.query.page as string) || 1;
+
     const limit = parseInt(req.query.limit as string) || 10;
+
     const includeInactive = req.query.includeInactive === "true";
 
     if (page < 1 || limit < 1) {

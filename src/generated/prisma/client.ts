@@ -127,3 +127,18 @@ export type OrderItem = Prisma.OrderItemModel
  * 
  */
 export type OrderHistory = Prisma.OrderHistoryModel
+/**
+ * Model Pincode
+ * 
+ */
+export type Pincode = Prisma.PincodeModel
+/**
+ * Model PincodeGroup
+ * 
+ */
+export type PincodeGroup = Prisma.PincodeGroupModel
+/**
+ * Model PincodeGroupPincode
+ * 
+ */
+export type PincodeGroupPincode = Prisma.PincodeGroupPincodeModel

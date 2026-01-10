@@ -52,6 +52,14 @@ import adminProductVariantRoutes from "./routes/adminProductVariantRoutes";
 
 import userProductVariantRoutes from "./routes/userProductVariantRoutes";
 
+import adminPincodeRoutes from "./routes/adminPincodeRoutes";
+
+import adminPincodeGroupRoutes from "./routes/adminPincodeGroupRoutes";
+
+import userPincodeRoutes from "./routes/userPincodeRoutes";
+
+import userPincodeGroupRoutes from "./routes/userPincodeGroupRoutes";
+
 const app = express();
 
 app.use(
@@ -62,7 +70,7 @@ app.use(
   })
 );
 
-app.use(express.json({ limit: '50mb' }));
+app.use(express.json({ limit: "50mb" }));
 
 const logger = (
   req: express.Request,
@@ -73,8 +81,14 @@ const logger = (
   const method = req.method;
   const time = new Date().toISOString();
   console.log(`[${time}] ${method} ${url}`);
-  console.log(`Content-Type: ${req.headers['content-type']}`);
-  console.log(`Body keys: ${Object.keys(req.body || {}).length > 0 ? Object.keys(req.body).join(', ') : 'EMPTY'}`);
+  console.log(`Content-Type: ${req.headers["content-type"]}`);
+  console.log(
+    `Body keys: ${
+      Object.keys(req.body || {}).length > 0
+        ? Object.keys(req.body).join(", ")
+        : "EMPTY"
+    }`
+  );
   next();
 };
 
@@ -97,7 +111,7 @@ app.use(
   })
 );
 
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
@@ -140,6 +154,14 @@ app.use("/api/v1/admin/address", adminAddressRoutes);
 app.use("/api/v1/orders", userOrderRoutes);
 
 app.use("/api/v1/admin/orders", adminOrderRoutes);
+
+app.use("/api/v1/admin/pincodes", adminPincodeRoutes);
+
+app.use("/api/v1/admin/pincode-groups", adminPincodeGroupRoutes);
+
+app.use("/api/v1/pincodes", userPincodeRoutes);
+
+app.use("/api/v1/pincode-groups", userPincodeGroupRoutes);
 
 app.get("/api/health", (_, res) => {
   res.json({ status: "___I'm yours to command.___" });

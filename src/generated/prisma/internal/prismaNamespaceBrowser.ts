@@ -68,7 +68,10 @@ export const ModelName = {
   Blog: 'Blog',
   Order: 'Order',
   OrderItem: 'OrderItem',
-  OrderHistory: 'OrderHistory'
+  OrderHistory: 'OrderHistory',
+  Pincode: 'Pincode',
+  PincodeGroup: 'PincodeGroup',
+  PincodeGroupPincode: 'PincodeGroupPincode'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -371,6 +374,40 @@ export const OrderHistoryScalarFieldEnum = {
 export type OrderHistoryScalarFieldEnum = (typeof OrderHistoryScalarFieldEnum)[keyof typeof OrderHistoryScalarFieldEnum]
 
 
+export const PincodeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  value: 'value',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PincodeScalarFieldEnum = (typeof PincodeScalarFieldEnum)[keyof typeof PincodeScalarFieldEnum]
+
+
+export const PincodeGroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PincodeGroupScalarFieldEnum = (typeof PincodeGroupScalarFieldEnum)[keyof typeof PincodeGroupScalarFieldEnum]
+
+
+export const PincodeGroupPincodeScalarFieldEnum = {
+  id: 'id',
+  pincodeGroupId: 'pincodeGroupId',
+  pincodeId: 'pincodeId',
+  createdAt: 'createdAt'
+} as const
+
+export type PincodeGroupPincodeScalarFieldEnum = (typeof PincodeGroupPincodeScalarFieldEnum)[keyof typeof PincodeGroupPincodeScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -615,4 +652,31 @@ export const OrderHistoryOrderByRelevanceFieldEnum = {
 } as const
 
 export type OrderHistoryOrderByRelevanceFieldEnum = (typeof OrderHistoryOrderByRelevanceFieldEnum)[keyof typeof OrderHistoryOrderByRelevanceFieldEnum]
+
+
+export const PincodeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  value: 'value'
+} as const
+
+export type PincodeOrderByRelevanceFieldEnum = (typeof PincodeOrderByRelevanceFieldEnum)[keyof typeof PincodeOrderByRelevanceFieldEnum]
+
+
+export const PincodeGroupOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type PincodeGroupOrderByRelevanceFieldEnum = (typeof PincodeGroupOrderByRelevanceFieldEnum)[keyof typeof PincodeGroupOrderByRelevanceFieldEnum]
+
+
+export const PincodeGroupPincodeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  pincodeGroupId: 'pincodeGroupId',
+  pincodeId: 'pincodeId'
+} as const
+
+export type PincodeGroupPincodeOrderByRelevanceFieldEnum = (typeof PincodeGroupPincodeOrderByRelevanceFieldEnum)[keyof typeof PincodeGroupPincodeOrderByRelevanceFieldEnum]
 

@@ -99,13 +99,13 @@ model Product {
   buyingPrice        Float?
   maximumRetailPrice Float?
   sellingPrice       Float?
-  quantity           Int      @default(0)
+  quantity           Int       @default(0)
   size               String? // Legacy or simple product size
   expiryDate         DateTime?
   dimensions         Json?
-  
+
   // Legacy / Other fields
-  isRelatedItem Boolean @default(false)
+  isRelatedItem Boolean    @default(false)
   paymentType   String? // Made optional as it might be derived or fixed
   sizeChartId   String?
   sizeChart     SizeChart? @relation(fields: [sizeChartId], references: [id], onDelete: SetNull)
@@ -134,7 +134,6 @@ model ProductVariant {
   sku         String  @unique
   variantName String?
 
- 
   color String?
   size  String?
 
@@ -144,7 +143,6 @@ model ProductVariant {
   variantImages      String? @db.LongText
   variantDescription String?
 
-   
   buyingPrice        Float?
   maximumRetailPrice Float?
   sellingPrice       Float?
@@ -163,10 +161,10 @@ model ProductVariant {
 
   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
-  cartItems     Cart[]
-  wishlistItems Wishlist[]
-  orderItems    OrderItem[]
-  couponProducts CouponProduct[]  
+  cartItems      Cart[]
+  wishlistItems  Wishlist[]
+  orderItems     OrderItem[]
+  couponProducts CouponProduct[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -424,3 +422,45 @@ model OrderHistory {
   createdBy String?
 }
 
+model Pincode {
+  id        String   @id @default(uuid())
+  name      String
+  value     String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  groups PincodeGroupPincode[]
+
+  @@index([value])
+  @@index([name])
+  @@index([isActive])
+}
+
+model PincodeGroup {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  pincodes PincodeGroupPincode[]
+
+  @@index([name])
+  @@index([isActive])
+}
+
+model PincodeGroupPincode {
+  id             String   @id @default(uuid())
+  pincodeGroupId String
+  pincodeId      String
+  createdAt      DateTime @default(now())
+
+  pincodeGroup PincodeGroup @relation(fields: [pincodeGroupId], references: [id], onDelete: Cascade)
+  pincode      Pincode      @relation(fields: [pincodeId], references: [id], onDelete: Cascade)
+
+  @@unique([pincodeGroupId, pincodeId])
+  @@index([pincodeGroupId])
+  @@index([pincodeId])
+}

@@ -245,7 +245,6 @@ export const deleteUser = async (userId: string) => {
       throw new CustomError("User not found", 404);
     }
 
-    // Prevent deleting admin users (business logic)
     if (user.isAdmin) {
       throw new CustomError("Cannot delete admin user", 403);
     }
