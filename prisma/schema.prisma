@@ -30,6 +30,8 @@ model User {
   coupons     CouponUser[]
   addresses   Address[]
   orders      Order[]
+
+  @@map("user")
 }
 
 model BankDetails {
@@ -44,6 +46,8 @@ model BankDetails {
   updatedAt         DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("bankdetails")
 }
 
 model Category {
@@ -66,6 +70,7 @@ model Category {
   @@index([parentId])
   @@index([slug])
   @@index([isActive])
+  @@map("category")
 }
 
 model Product {
@@ -125,6 +130,7 @@ model Product {
   @@index([isBestSelling])
   @@index([isActive])
   @@index([productName])
+  @@map("product")
 }
 
 model ProductVariant {
@@ -176,6 +182,7 @@ model ProductVariant {
   @@index([isActive])
   @@index([color])
   @@index([size])
+  @@map("productvariant")
 }
 
 model Cart {
@@ -196,6 +203,7 @@ model Cart {
   @@index([userId])
   @@index([productId])
   @@index([variantId])
+  @@map("cart")
 }
 
 model Address {
@@ -216,6 +224,7 @@ model Address {
   orders Order[]
 
   @@index([userId])
+  @@map("address")
 }
 
 model Wishlist {
@@ -233,6 +242,7 @@ model Wishlist {
   @@index([userId])
   @@index([productId])
   @@index([variantId])
+  @@map("wishlist")
 }
 
 model ColorScheme {
@@ -240,6 +250,8 @@ model ColorScheme {
   name        String
   description String?
   createdAt   DateTime @default(now())
+
+  @@map("colorscheme")
 }
 
 model SizeChart {
@@ -252,6 +264,8 @@ model SizeChart {
 
   products Product[]
   variants ProductVariant[]
+
+  @@map("sizechart")
 }
 
 enum CouponType {
@@ -283,6 +297,7 @@ model Coupon {
   @@index([code])
   @@index([isActive])
   @@index([expiresAt])
+  @@map("coupon")
 }
 
 model CouponUser {
@@ -298,6 +313,7 @@ model CouponUser {
   @@unique([couponId, userId])
   @@index([userId])
   @@index([couponId])
+  @@map("couponuser")
 }
 
 model CouponProduct {
@@ -315,6 +331,7 @@ model CouponProduct {
   @@index([productId])
   @@index([couponId])
   @@index([variantId])
+  @@map("couponproduct")
 }
 
 model CouponCategory {
@@ -329,6 +346,7 @@ model CouponCategory {
   @@unique([couponId, categoryId])
   @@index([categoryId])
   @@index([couponId])
+  @@map("couponcategory")
 }
 
 model Blog {
@@ -341,6 +359,8 @@ model Blog {
   author        String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+
+  @@map("blog")
 }
 
 enum OrderStatus {
@@ -390,6 +410,7 @@ model Order {
 
   @@index([userId])
   @@index([status])
+  @@map("order")
 }
 
 model OrderItem {
@@ -408,6 +429,8 @@ model OrderItem {
 
   size  String?
   color String?
+
+  @@map("orderitem")
 }
 
 model OrderHistory {
@@ -420,6 +443,8 @@ model OrderHistory {
 
   createdAt DateTime @default(now())
   createdBy String?
+
+  @@map("orderhistory")
 }
 
 model Pincode {
@@ -435,6 +460,7 @@ model Pincode {
   @@index([value])
   @@index([name])
   @@index([isActive])
+  @@map("pincode")
 }
 
 model PincodeGroup {
@@ -449,6 +475,7 @@ model PincodeGroup {
 
   @@index([name])
   @@index([isActive])
+  @@map("pincodegroup")
 }
 
 model PincodeGroupPincode {
@@ -463,6 +490,7 @@ model PincodeGroupPincode {
   @@unique([pincodeGroupId, pincodeId])
   @@index([pincodeGroupId])
   @@index([pincodeId])
+  @@map("pincodegrouppincode")
 }
 
 model AboutPageContent {
@@ -473,6 +501,7 @@ model AboutPageContent {
   updatedAt DateTime @updatedAt
 
   @@index([title])
+  @@map("aboutpagecontent")
 }
 
 model ContactPageInformation {
@@ -485,6 +514,7 @@ model ContactPageInformation {
 
   @@index([type])
   @@index([label])
+  @@map("contactpageinformation")
 }
 
 model PolicyPageContent {
@@ -495,4 +525,5 @@ model PolicyPageContent {
   updatedAt DateTime @updatedAt
 
   @@index([title])
+  @@map("policypagecontent")
 }
