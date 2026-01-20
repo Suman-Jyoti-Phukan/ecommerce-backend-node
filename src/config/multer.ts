@@ -86,3 +86,12 @@ export const variantImageUpload = multer({
   { name: "variantImages", maxCount: 5 },
 ]);
 
+
+export const productWithVariantsUpload = multer({
+  storage: productStorage,
+  fileFilter,
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+}).any();
+

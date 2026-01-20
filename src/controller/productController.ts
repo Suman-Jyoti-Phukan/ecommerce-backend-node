@@ -93,25 +93,78 @@ export const createProductWithVariants = async (
   res: Response,
 ) => {
   try {
-    const { product, variants } = req.body;
 
-    if (!product) {
+    const filesArray = req.files as Express.Multer.File[];
+
+
+    let productData = null;
+    let variantsData = null;
+
+    try {
+      productData = req.body.product ? JSON.parse(req.body.product) : null;
+    } catch (e) {
+      throw new CustomError("Invalid product data format. Must be valid JSON.", 400);
+    }
+
+    try {
+      variantsData = req.body.variants ? JSON.parse(req.body.variants) : null;
+    } catch (e) {
+      throw new CustomError("Invalid variants data format. Must be valid JSON.", 400);
+    }
+
+    if (!productData) {
       throw new CustomError("Product data is required", 400);
     }
 
-    if (!variants || !Array.isArray(variants) || variants.length === 0) {
+    if (!variantsData || !Array.isArray(variantsData) || variantsData.length === 0) {
       throw new CustomError("At least one variant is required", 400);
     }
 
+
+    const filesByField: { [key: string]: Express.Multer.File[] } = {};
+    if (filesArray && Array.isArray(filesArray)) {
+      filesArray.forEach((file) => {
+        if (!filesByField[file.fieldname]) {
+          filesByField[file.fieldname] = [];
+        }
+        filesByField[file.fieldname].push(file);
+      });
+    }
+
+
+    const mainImagePath = filesByField.mainImage?.[0]?.path;
+    const productImagesPaths = filesByField.productImages?.map((file) => file.path) || [];
+
+    const product = {
+      ...productData,
+      mainImage: mainImagePath || productData.mainImage,
+      productImages: productImagesPaths.length > 0 ? productImagesPaths : productData.productImages || [],
+    };
+
+
+    const processedVariants = variantsData.map((variant: any, index: number) => {
+      const variantImageField = `variantImage_${index}`;
+      const variantImagesField = `variantImages_${index}`;
+
+      const variantImagePath = filesByField[variantImageField]?.[0]?.path;
+      const variantImagesPaths = filesByField[variantImagesField]?.map((file) => file.path) || [];
+
+      return {
+        ...variant,
+        ...(variantImagePath && { variantImages: [variantImagePath] }),
+        ...(variantImagesPaths.length > 0 && { variantImages: variantImagesPaths }),
+      };
+    });
+
     const createdProduct = await productService.createProductWithVariants({
       product,
-      variants,
+      variants: processedVariants,
     });
 
     res.status(201).json({
       success: true,
       data: createdProduct,
-      message: `Product created with ${variants.length} variant(s)`,
+      message: `Product created with ${variantsData.length} variant(s)`,
     });
   } catch (error) {
     throw error;

@@ -16,7 +16,7 @@ import { adminAuthMiddleware } from "../middleware/authorization";
 
 import { asyncHandler } from "../middleware/errorHandler";
 
-import { productImageUpload } from "../config/multer";
+import { productImageUpload, productWithVariantsUpload } from "../config/multer";
 
 const router = express.Router();
 
@@ -24,6 +24,7 @@ router.post(
   "/with-variants",
   authMiddleware as any,
   adminAuthMiddleware as any,
+  productWithVariantsUpload,
   asyncHandler(createProductWithVariants),
 );
 
