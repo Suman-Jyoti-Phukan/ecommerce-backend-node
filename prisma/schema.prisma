@@ -99,23 +99,19 @@ model Product {
   hasVariants Boolean          @default(false)
   variants    ProductVariant[]
 
-  // Fields for Simple Products (without variants)
-  // If hasVariants is true, these might be ignored or used as defaults
   buyingPrice        Float?
   maximumRetailPrice Float?
   sellingPrice       Float?
   quantity           Int       @default(0)
-  size               String? // Legacy or simple product size
+  size               String? 
   expiryDate         DateTime?
   dimensions         Json?
 
-  // Legacy / Other fields
   isRelatedItem Boolean    @default(false)
-  paymentType   String? // Made optional as it might be derived or fixed
+  paymentType   String? 
   sizeChartId   String?
   sizeChart     SizeChart? @relation(fields: [sizeChartId], references: [id], onDelete: SetNull)
-
-  // Explicit relations
+ 
   cart       Cart[]
   wishlist   Wishlist[]
   coupons    CouponProduct[]

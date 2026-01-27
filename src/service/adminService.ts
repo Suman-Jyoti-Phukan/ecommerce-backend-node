@@ -143,14 +143,28 @@ export const getUserById = async (userId: string) => {
         isActive: true,
         createdAt: true,
         updatedAt: true,
-        bankDetails: {
-          select: {
-            id: true,
-            bankName: true,
-            accountHolderName: true,
-            ifsc: true,
-            branchName: true,
-            accountNumber: true,
+        bankDetails: true,
+        addresses: true,
+        cart: {
+          include: {
+            product: true,
+            variant: true,
+          },
+        },
+        wishlist: {
+          include: {
+            product: true,
+            variant: true,
+          },
+        },
+        coupons: {
+          include: {
+            coupon: true,
+          },
+        },
+        orders: {
+          orderBy: {
+            createdAt: "desc",
           },
         },
       },

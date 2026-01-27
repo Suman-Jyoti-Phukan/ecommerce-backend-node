@@ -181,8 +181,8 @@ export const updateOrderStatus = async (
     throw new CustomError("Order not found", 404);
   }
 
-  const updatedOrder = await prisma.$transaction(async (tx) => {
-    const updated = await tx.order.update({
+  await prisma.$transaction(async (tx) => {
+    await tx.order.update({
       where: { id: orderId },
       data: {
         status,
@@ -197,11 +197,9 @@ export const updateOrderStatus = async (
         createdBy: userId,
       },
     });
-
-    return updated;
   });
 
-  return updatedOrder;
+  return getOrderById(orderId);
 };
 
 export const getOrderById = async (orderId: string) => {
@@ -283,6 +281,7 @@ export const getAllOrders = async (page = 1, limit = 10, status?: OrderStatus) =
           email: true
         }
       },
+      address: true,
       _count: {
         select: { orderItems: true }
       }
