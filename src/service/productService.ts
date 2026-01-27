@@ -489,4 +489,80 @@ export const productService = {
       },
     });
   },
+
+  /* ========================= INVENTORY ========================= */
+
+  async getInventoryList() {
+    // 1. Fetch simple products (no variants)
+    const simpleProducts = await prisma.product.findMany({
+      where: { hasVariants: false },
+      select: {
+        id: true,
+        productName: true,
+        quantity: true,
+        sellingPrice: true,
+        mainImage: true,
+        isActive: true,
+        updatedAt: true,
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    // 2. Fetch all variants
+    const variants = await prisma.productVariant.findMany({
+      select: {
+        id: true,
+        productId: true,
+        sku: true,
+        variantName: true,
+        quantity: true,
+        sellingPrice: true,
+        variantImages: true,
+        color: true,
+        size: true,
+        isActive: true,
+        updatedAt: true,
+        product: {
+          select: {
+            productName: true,
+            mainImage: true,
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    // 3. Normalize and combine
+    const inventoryList = [
+      ...simpleProducts.map((p) => ({
+        id: p.id,
+        type: "PRODUCT",
+        name: p.productName,
+        sku: null,
+        quantity: p.quantity,
+        price: p.sellingPrice,
+        image: p.mainImage,
+        isActive: p.isActive,
+        updatedAt: p.updatedAt,
+      })),
+      ...variants.map((v) => ({
+        id: v.id,
+        productId: v.productId,
+        type: "VARIANT",
+        name: `${v.product.productName} - ${v.variantName || v.sku}`,
+        sku: v.sku,
+        quantity: v.quantity,
+        price: v.sellingPrice,
+        image: v.variantImages
+          ? JSON.parse(v.variantImages)[0]
+          : v.product.mainImage,
+        color: v.color,
+        size: v.size,
+        isActive: v.isActive,
+        updatedAt: v.updatedAt,
+      })),
+    ];
+
+    return inventoryList;
+  },
 };

@@ -9,6 +9,7 @@ import {
   updateInventory,
   getProducts,
   getProductById,
+  getInventoryList,
 } from "../controller/productController";
 
 import { authMiddleware } from "../middleware/auth";
@@ -42,6 +43,13 @@ router
     adminAuthMiddleware as any,
     asyncHandler(getProducts),
   );
+
+router.get(
+  "/inventory",
+  authMiddleware as any,
+  adminAuthMiddleware as any,
+  asyncHandler(getInventoryList),
+);
 
 router.patch(
   "/inventory/update",
