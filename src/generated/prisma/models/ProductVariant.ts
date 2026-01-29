@@ -62,6 +62,7 @@ export type ProductVariantMinAggregateOutputType = {
   isRelatedItem: boolean | null
   isActive: boolean | null
   isDefault: boolean | null
+  isReturn: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -86,6 +87,7 @@ export type ProductVariantMaxAggregateOutputType = {
   isRelatedItem: boolean | null
   isActive: boolean | null
   isDefault: boolean | null
+  isReturn: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -112,6 +114,7 @@ export type ProductVariantCountAggregateOutputType = {
   isRelatedItem: number
   isActive: number
   isDefault: number
+  isReturn: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -154,6 +157,7 @@ export type ProductVariantMinAggregateInputType = {
   isRelatedItem?: true
   isActive?: true
   isDefault?: true
+  isReturn?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -178,6 +182,7 @@ export type ProductVariantMaxAggregateInputType = {
   isRelatedItem?: true
   isActive?: true
   isDefault?: true
+  isReturn?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -204,6 +209,7 @@ export type ProductVariantCountAggregateInputType = {
   isRelatedItem?: true
   isActive?: true
   isDefault?: true
+  isReturn?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -317,6 +323,7 @@ export type ProductVariantGroupByOutputType = {
   isRelatedItem: boolean
   isActive: boolean
   isDefault: boolean
+  isReturn: boolean
   createdAt: Date
   updatedAt: Date
   _count: ProductVariantCountAggregateOutputType | null
@@ -366,6 +373,7 @@ export type ProductVariantWhereInput = {
   isRelatedItem?: Prisma.BoolFilter<"ProductVariant"> | boolean
   isActive?: Prisma.BoolFilter<"ProductVariant"> | boolean
   isDefault?: Prisma.BoolFilter<"ProductVariant"> | boolean
+  isReturn?: Prisma.BoolFilter<"ProductVariant"> | boolean
   createdAt?: Prisma.DateTimeFilter<"ProductVariant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProductVariant"> | Date | string
   sizeChart?: Prisma.XOR<Prisma.SizeChartNullableScalarRelationFilter, Prisma.SizeChartWhereInput> | null
@@ -398,6 +406,7 @@ export type ProductVariantOrderByWithRelationInput = {
   isRelatedItem?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
+  isReturn?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   sizeChart?: Prisma.SizeChartOrderByWithRelationInput
@@ -435,6 +444,7 @@ export type ProductVariantWhereUniqueInput = Prisma.AtLeast<{
   isRelatedItem?: Prisma.BoolFilter<"ProductVariant"> | boolean
   isActive?: Prisma.BoolFilter<"ProductVariant"> | boolean
   isDefault?: Prisma.BoolFilter<"ProductVariant"> | boolean
+  isReturn?: Prisma.BoolFilter<"ProductVariant"> | boolean
   createdAt?: Prisma.DateTimeFilter<"ProductVariant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProductVariant"> | Date | string
   sizeChart?: Prisma.XOR<Prisma.SizeChartNullableScalarRelationFilter, Prisma.SizeChartWhereInput> | null
@@ -467,6 +477,7 @@ export type ProductVariantOrderByWithAggregationInput = {
   isRelatedItem?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
+  isReturn?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ProductVariantCountOrderByAggregateInput
@@ -501,6 +512,7 @@ export type ProductVariantScalarWhereWithAggregatesInput = {
   isRelatedItem?: Prisma.BoolWithAggregatesFilter<"ProductVariant"> | boolean
   isActive?: Prisma.BoolWithAggregatesFilter<"ProductVariant"> | boolean
   isDefault?: Prisma.BoolWithAggregatesFilter<"ProductVariant"> | boolean
+  isReturn?: Prisma.BoolWithAggregatesFilter<"ProductVariant"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ProductVariant"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ProductVariant"> | Date | string
 }
@@ -525,6 +537,7 @@ export type ProductVariantCreateInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   sizeChart?: Prisma.SizeChartCreateNestedOneWithoutVariantsInput
@@ -557,6 +570,7 @@ export type ProductVariantUncheckedCreateInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   cartItems?: Prisma.CartUncheckedCreateNestedManyWithoutVariantInput
@@ -585,6 +599,7 @@ export type ProductVariantUpdateInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sizeChart?: Prisma.SizeChartUpdateOneWithoutVariantsNestedInput
@@ -617,6 +632,7 @@ export type ProductVariantUncheckedUpdateInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cartItems?: Prisma.CartUncheckedUpdateManyWithoutVariantNestedInput
@@ -647,6 +663,7 @@ export type ProductVariantCreateManyInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -671,6 +688,7 @@ export type ProductVariantUpdateManyMutationInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -697,6 +715,7 @@ export type ProductVariantUncheckedUpdateManyInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -745,6 +764,7 @@ export type ProductVariantCountOrderByAggregateInput = {
   isRelatedItem?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
+  isReturn?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -777,6 +797,7 @@ export type ProductVariantMaxOrderByAggregateInput = {
   isRelatedItem?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
+  isReturn?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -801,6 +822,7 @@ export type ProductVariantMinOrderByAggregateInput = {
   isRelatedItem?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
+  isReturn?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -994,6 +1016,7 @@ export type ProductVariantCreateWithoutProductInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   sizeChart?: Prisma.SizeChartCreateNestedOneWithoutVariantsInput
@@ -1024,6 +1047,7 @@ export type ProductVariantUncheckedCreateWithoutProductInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   cartItems?: Prisma.CartUncheckedCreateNestedManyWithoutVariantInput
@@ -1083,6 +1107,7 @@ export type ProductVariantScalarWhereInput = {
   isRelatedItem?: Prisma.BoolFilter<"ProductVariant"> | boolean
   isActive?: Prisma.BoolFilter<"ProductVariant"> | boolean
   isDefault?: Prisma.BoolFilter<"ProductVariant"> | boolean
+  isReturn?: Prisma.BoolFilter<"ProductVariant"> | boolean
   createdAt?: Prisma.DateTimeFilter<"ProductVariant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProductVariant"> | Date | string
 }
@@ -1107,6 +1132,7 @@ export type ProductVariantCreateWithoutCartItemsInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   sizeChart?: Prisma.SizeChartCreateNestedOneWithoutVariantsInput
@@ -1138,6 +1164,7 @@ export type ProductVariantUncheckedCreateWithoutCartItemsInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   wishlistItems?: Prisma.WishlistUncheckedCreateNestedManyWithoutVariantInput
@@ -1181,6 +1208,7 @@ export type ProductVariantUpdateWithoutCartItemsInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sizeChart?: Prisma.SizeChartUpdateOneWithoutVariantsNestedInput
@@ -1212,6 +1240,7 @@ export type ProductVariantUncheckedUpdateWithoutCartItemsInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wishlistItems?: Prisma.WishlistUncheckedUpdateManyWithoutVariantNestedInput
@@ -1239,6 +1268,7 @@ export type ProductVariantCreateWithoutWishlistItemsInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   sizeChart?: Prisma.SizeChartCreateNestedOneWithoutVariantsInput
@@ -1270,6 +1300,7 @@ export type ProductVariantUncheckedCreateWithoutWishlistItemsInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   cartItems?: Prisma.CartUncheckedCreateNestedManyWithoutVariantInput
@@ -1313,6 +1344,7 @@ export type ProductVariantUpdateWithoutWishlistItemsInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sizeChart?: Prisma.SizeChartUpdateOneWithoutVariantsNestedInput
@@ -1344,6 +1376,7 @@ export type ProductVariantUncheckedUpdateWithoutWishlistItemsInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cartItems?: Prisma.CartUncheckedUpdateManyWithoutVariantNestedInput
@@ -1371,6 +1404,7 @@ export type ProductVariantCreateWithoutSizeChartInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
@@ -1401,6 +1435,7 @@ export type ProductVariantUncheckedCreateWithoutSizeChartInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   cartItems?: Prisma.CartUncheckedCreateNestedManyWithoutVariantInput
@@ -1455,6 +1490,7 @@ export type ProductVariantCreateWithoutCouponProductsInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   sizeChart?: Prisma.SizeChartCreateNestedOneWithoutVariantsInput
@@ -1486,6 +1522,7 @@ export type ProductVariantUncheckedCreateWithoutCouponProductsInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   cartItems?: Prisma.CartUncheckedCreateNestedManyWithoutVariantInput
@@ -1529,6 +1566,7 @@ export type ProductVariantUpdateWithoutCouponProductsInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sizeChart?: Prisma.SizeChartUpdateOneWithoutVariantsNestedInput
@@ -1560,6 +1598,7 @@ export type ProductVariantUncheckedUpdateWithoutCouponProductsInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cartItems?: Prisma.CartUncheckedUpdateManyWithoutVariantNestedInput
@@ -1587,6 +1626,7 @@ export type ProductVariantCreateWithoutOrderItemsInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   sizeChart?: Prisma.SizeChartCreateNestedOneWithoutVariantsInput
@@ -1618,6 +1658,7 @@ export type ProductVariantUncheckedCreateWithoutOrderItemsInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   cartItems?: Prisma.CartUncheckedCreateNestedManyWithoutVariantInput
@@ -1661,6 +1702,7 @@ export type ProductVariantUpdateWithoutOrderItemsInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sizeChart?: Prisma.SizeChartUpdateOneWithoutVariantsNestedInput
@@ -1692,6 +1734,7 @@ export type ProductVariantUncheckedUpdateWithoutOrderItemsInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cartItems?: Prisma.CartUncheckedUpdateManyWithoutVariantNestedInput
@@ -1720,6 +1763,7 @@ export type ProductVariantCreateManyProductInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1744,6 +1788,7 @@ export type ProductVariantUpdateWithoutProductInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sizeChart?: Prisma.SizeChartUpdateOneWithoutVariantsNestedInput
@@ -1774,6 +1819,7 @@ export type ProductVariantUncheckedUpdateWithoutProductInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cartItems?: Prisma.CartUncheckedUpdateManyWithoutVariantNestedInput
@@ -1803,6 +1849,7 @@ export type ProductVariantUncheckedUpdateManyWithoutProductInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1828,6 +1875,7 @@ export type ProductVariantCreateManySizeChartInput = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1852,6 +1900,7 @@ export type ProductVariantUpdateWithoutSizeChartInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
@@ -1882,6 +1931,7 @@ export type ProductVariantUncheckedUpdateWithoutSizeChartInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cartItems?: Prisma.CartUncheckedUpdateManyWithoutVariantNestedInput
@@ -1911,6 +1961,7 @@ export type ProductVariantUncheckedUpdateManyWithoutSizeChartInput = {
   isRelatedItem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1995,6 +2046,7 @@ export type ProductVariantSelect<ExtArgs extends runtime.Types.Extensions.Intern
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   sizeChart?: boolean | Prisma.ProductVariant$sizeChartArgs<ExtArgs>
@@ -2030,11 +2082,12 @@ export type ProductVariantSelectScalar = {
   isRelatedItem?: boolean
   isActive?: boolean
   isDefault?: boolean
+  isReturn?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProductVariantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productId" | "sku" | "variantName" | "color" | "size" | "dimensions" | "attributes" | "variantImages" | "variantDescription" | "buyingPrice" | "maximumRetailPrice" | "sellingPrice" | "quantity" | "lowStockAlert" | "expiryDate" | "hasCashOnDelivery" | "sizeChartId" | "isRelatedItem" | "isActive" | "isDefault" | "createdAt" | "updatedAt", ExtArgs["result"]["productVariant"]>
+export type ProductVariantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productId" | "sku" | "variantName" | "color" | "size" | "dimensions" | "attributes" | "variantImages" | "variantDescription" | "buyingPrice" | "maximumRetailPrice" | "sellingPrice" | "quantity" | "lowStockAlert" | "expiryDate" | "hasCashOnDelivery" | "sizeChartId" | "isRelatedItem" | "isActive" | "isDefault" | "isReturn" | "createdAt" | "updatedAt", ExtArgs["result"]["productVariant"]>
 export type ProductVariantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sizeChart?: boolean | Prisma.ProductVariant$sizeChartArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
@@ -2077,6 +2130,7 @@ export type $ProductVariantPayload<ExtArgs extends runtime.Types.Extensions.Inte
     isRelatedItem: boolean
     isActive: boolean
     isDefault: boolean
+    isReturn: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["productVariant"]>
@@ -2475,6 +2529,7 @@ export interface ProductVariantFieldRefs {
   readonly isRelatedItem: Prisma.FieldRef<"ProductVariant", 'Boolean'>
   readonly isActive: Prisma.FieldRef<"ProductVariant", 'Boolean'>
   readonly isDefault: Prisma.FieldRef<"ProductVariant", 'Boolean'>
+  readonly isReturn: Prisma.FieldRef<"ProductVariant", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"ProductVariant", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ProductVariant", 'DateTime'>
 }

@@ -22,6 +22,11 @@ export const createCategory = async (
       throw new CustomError("Category name is required", 400);
     }
 
+    let imageUrl: string | undefined;
+    if (req.file) {
+      imageUrl = `/uploads/categories/${req.file.filename}`;
+    }
+
     const category = await categoryService.createCategory({
       name: name.trim(),
       isActive,
@@ -29,6 +34,7 @@ export const createCategory = async (
       description,
       slug,
       parentId,
+      imageUrl,
     });
 
     res.status(201).json({
@@ -179,6 +185,11 @@ export const updateCategory = async (
       throw new CustomError("Category name cannot be empty", 400);
     }
 
+    let imageUrl: string | undefined;
+    if (req.file) {
+      imageUrl = `/uploads/categories/${req.file.filename}`;
+    }
+
     const category = await categoryService.updateCategory(categoryId, {
       name: name?.trim(),
       isActive,
@@ -186,6 +197,7 @@ export const updateCategory = async (
       description,
       slug,
       parentId,
+      imageUrl,
     });
 
     res.status(200).json({
@@ -218,6 +230,33 @@ export const deleteCategory = async (
     res.status(200).json({
       success: true,
       message: result.message,
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteCategoryImage = async (
+  req: AuthRequest,
+  res: Response,
+): Promise<void> => {
+  try {
+    if (!req.user) {
+      throw new CustomError("User not authenticated", 401);
+    }
+
+    const { categoryId } = req.params;
+
+    if (!categoryId) {
+      throw new CustomError("Category ID is required", 400);
+    }
+
+    const category = await categoryService.deleteCategoryImage(categoryId);
+
+    res.status(200).json({
+      success: true,
+      message: "Category image deleted successfully",
+      data: category,
     });
   } catch (error) {
     throw error;

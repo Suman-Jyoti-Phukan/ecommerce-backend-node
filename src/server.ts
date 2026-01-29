@@ -78,6 +78,32 @@ import userReviewRoutes from "./routes/userReviewRoutes";
 
 import adminReviewRoutes from "./routes/adminReviewRoutes";
 
+import searchRoutes from "./routes/searchRoutes";
+
+import returnRoutes from "./routes/returnRoutes";
+
+import adminReturnRoutes from "./routes/adminReturnRoutes";
+
+import privacyPolicyRoutes from "./routes/privacyPolicyRoutes";
+
+import adminPrivacyPolicyRoutes from "./routes/adminPrivacyPolicyRoutes";
+
+import serviceRoutes from "./routes/serviceRoutes";
+
+import adminServiceRoutes from "./routes/adminServiceRoutes";
+
+import disclaimerRoutes from "./routes/disclaimerRoutes";
+
+import adminDisclaimerRoutes from "./routes/adminDisclaimerRoutes";
+
+import shippingPolicyRoutes from "./routes/shippingPolicyRoutes";
+
+import adminShippingPolicyRoutes from "./routes/adminShippingPolicyRoutes";
+
+import storeBrandingRoutes from "./routes/storeBrandingRoutes";
+
+import adminStoreBrandingRoutes from "./routes/adminStoreBrandingRoutes";
+
 const app = express();
 
 app.use(
@@ -101,9 +127,10 @@ const logger = (
   console.log(`[${time}] ${method} ${url}`);
   console.log(`Content-Type: ${req.headers["content-type"]}`);
   console.log(
-    `Body keys: ${Object.keys(req.body || {}).length > 0
-      ? Object.keys(req.body).join(", ")
-      : "EMPTY"
+    `Body keys: ${
+      Object.keys(req.body || {}).length > 0
+        ? Object.keys(req.body).join(", ")
+        : "EMPTY"
     }`,
   );
   next();
@@ -196,8 +223,36 @@ app.use("/api/v1/admin/policy-page-content", adminPolicyPageContentRoutes);
 app.use("/api/v1/policy-page-content", userPolicyPageContentRoutes);
 
 app.use("/api/v1/admin/delivery-management", adminDeliveryManagementRoutes);
+
 app.use("/api/v1/reviews", userReviewRoutes);
+
 app.use("/api/v1/admin/reviews", adminReviewRoutes);
+
+app.use("/api/v1/returns", returnRoutes);
+
+app.use("/api/v1/admin/returns", adminReturnRoutes);
+
+app.use("/api/v1/privacy-policy", privacyPolicyRoutes);
+
+app.use("/api/v1/admin/privacy-policy", adminPrivacyPolicyRoutes);
+
+app.use("/api/v1/services", serviceRoutes);
+
+app.use("/api/v1/admin/services", adminServiceRoutes);
+
+app.use("/api/v1/disclaimers", disclaimerRoutes);
+
+app.use("/api/v1/admin/disclaimers", adminDisclaimerRoutes);
+
+app.use("/api/v1/shipping-policies", shippingPolicyRoutes);
+
+app.use("/api/v1/admin/shipping-policies", adminShippingPolicyRoutes);
+
+app.use("/api/v1/store-branding", storeBrandingRoutes);
+
+app.use("/api/v1/admin/store-branding", adminStoreBrandingRoutes);
+
+app.use("/api/v1/search", searchRoutes);
 
 app.get("/api/health", (_, res) => {
   res.json({ status: "___I'm yours to command.___" });

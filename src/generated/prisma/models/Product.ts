@@ -55,6 +55,7 @@ export type ProductMinAggregateOutputType = {
   isNewCollection: boolean | null
   isActive: boolean | null
   hasCashOnDelivery: boolean | null
+  isReturn: boolean | null
   hasVariants: boolean | null
   buyingPrice: number | null
   maximumRetailPrice: number | null
@@ -84,6 +85,7 @@ export type ProductMaxAggregateOutputType = {
   isNewCollection: boolean | null
   isActive: boolean | null
   hasCashOnDelivery: boolean | null
+  isReturn: boolean | null
   hasVariants: boolean | null
   buyingPrice: number | null
   maximumRetailPrice: number | null
@@ -114,6 +116,7 @@ export type ProductCountAggregateOutputType = {
   isNewCollection: number
   isActive: number
   hasCashOnDelivery: number
+  isReturn: number
   hasVariants: number
   buyingPrice: number
   maximumRetailPrice: number
@@ -160,6 +163,7 @@ export type ProductMinAggregateInputType = {
   isNewCollection?: true
   isActive?: true
   hasCashOnDelivery?: true
+  isReturn?: true
   hasVariants?: true
   buyingPrice?: true
   maximumRetailPrice?: true
@@ -189,6 +193,7 @@ export type ProductMaxAggregateInputType = {
   isNewCollection?: true
   isActive?: true
   hasCashOnDelivery?: true
+  isReturn?: true
   hasVariants?: true
   buyingPrice?: true
   maximumRetailPrice?: true
@@ -219,6 +224,7 @@ export type ProductCountAggregateInputType = {
   isNewCollection?: true
   isActive?: true
   hasCashOnDelivery?: true
+  isReturn?: true
   hasVariants?: true
   buyingPrice?: true
   maximumRetailPrice?: true
@@ -337,6 +343,7 @@ export type ProductGroupByOutputType = {
   isNewCollection: boolean
   isActive: boolean
   hasCashOnDelivery: boolean
+  isReturn: boolean
   hasVariants: boolean
   buyingPrice: number | null
   maximumRetailPrice: number | null
@@ -391,6 +398,7 @@ export type ProductWhereInput = {
   isNewCollection?: Prisma.BoolFilter<"Product"> | boolean
   isActive?: Prisma.BoolFilter<"Product"> | boolean
   hasCashOnDelivery?: Prisma.BoolFilter<"Product"> | boolean
+  isReturn?: Prisma.BoolFilter<"Product"> | boolean
   hasVariants?: Prisma.BoolFilter<"Product"> | boolean
   buyingPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
   maximumRetailPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
@@ -431,6 +439,7 @@ export type ProductOrderByWithRelationInput = {
   isNewCollection?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   hasCashOnDelivery?: Prisma.SortOrder
+  isReturn?: Prisma.SortOrder
   hasVariants?: Prisma.SortOrder
   buyingPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   maximumRetailPrice?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -475,6 +484,7 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   isNewCollection?: Prisma.BoolFilter<"Product"> | boolean
   isActive?: Prisma.BoolFilter<"Product"> | boolean
   hasCashOnDelivery?: Prisma.BoolFilter<"Product"> | boolean
+  isReturn?: Prisma.BoolFilter<"Product"> | boolean
   hasVariants?: Prisma.BoolFilter<"Product"> | boolean
   buyingPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
   maximumRetailPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
@@ -515,6 +525,7 @@ export type ProductOrderByWithAggregationInput = {
   isNewCollection?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   hasCashOnDelivery?: Prisma.SortOrder
+  isReturn?: Prisma.SortOrder
   hasVariants?: Prisma.SortOrder
   buyingPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   maximumRetailPrice?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -554,6 +565,7 @@ export type ProductScalarWhereWithAggregatesInput = {
   isNewCollection?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
   isActive?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
   hasCashOnDelivery?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
+  isReturn?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
   hasVariants?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
   buyingPrice?: Prisma.FloatNullableWithAggregatesFilter<"Product"> | number | null
   maximumRetailPrice?: Prisma.FloatNullableWithAggregatesFilter<"Product"> | number | null
@@ -583,6 +595,7 @@ export type ProductCreateInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -622,6 +635,7 @@ export type ProductUncheckedCreateInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -657,6 +671,7 @@ export type ProductUpdateInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -696,6 +711,7 @@ export type ProductUncheckedUpdateInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -733,6 +749,7 @@ export type ProductCreateManyInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -762,6 +779,7 @@ export type ProductUpdateManyMutationInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -792,6 +810,7 @@ export type ProductUncheckedUpdateManyInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -839,6 +858,7 @@ export type ProductCountOrderByAggregateInput = {
   isNewCollection?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   hasCashOnDelivery?: Prisma.SortOrder
+  isReturn?: Prisma.SortOrder
   hasVariants?: Prisma.SortOrder
   buyingPrice?: Prisma.SortOrder
   maximumRetailPrice?: Prisma.SortOrder
@@ -876,6 +896,7 @@ export type ProductMaxOrderByAggregateInput = {
   isNewCollection?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   hasCashOnDelivery?: Prisma.SortOrder
+  isReturn?: Prisma.SortOrder
   hasVariants?: Prisma.SortOrder
   buyingPrice?: Prisma.SortOrder
   maximumRetailPrice?: Prisma.SortOrder
@@ -905,6 +926,7 @@ export type ProductMinOrderByAggregateInput = {
   isNewCollection?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   hasCashOnDelivery?: Prisma.SortOrder
+  isReturn?: Prisma.SortOrder
   hasVariants?: Prisma.SortOrder
   buyingPrice?: Prisma.SortOrder
   maximumRetailPrice?: Prisma.SortOrder
@@ -1175,6 +1197,7 @@ export type ProductCreateWithoutMasterCategoryInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -1212,6 +1235,7 @@ export type ProductUncheckedCreateWithoutMasterCategoryInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -1257,6 +1281,7 @@ export type ProductCreateWithoutLastCategoryInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -1294,6 +1319,7 @@ export type ProductUncheckedCreateWithoutLastCategoryInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -1360,6 +1386,7 @@ export type ProductScalarWhereInput = {
   isNewCollection?: Prisma.BoolFilter<"Product"> | boolean
   isActive?: Prisma.BoolFilter<"Product"> | boolean
   hasCashOnDelivery?: Prisma.BoolFilter<"Product"> | boolean
+  isReturn?: Prisma.BoolFilter<"Product"> | boolean
   hasVariants?: Prisma.BoolFilter<"Product"> | boolean
   buyingPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
   maximumRetailPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
@@ -1405,6 +1432,7 @@ export type ProductCreateWithoutVariantsInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -1443,6 +1471,7 @@ export type ProductUncheckedCreateWithoutVariantsInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -1493,6 +1522,7 @@ export type ProductUpdateWithoutVariantsInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1531,6 +1561,7 @@ export type ProductUncheckedUpdateWithoutVariantsInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1565,6 +1596,7 @@ export type ProductCreateWithoutCartInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -1603,6 +1635,7 @@ export type ProductUncheckedCreateWithoutCartInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -1653,6 +1686,7 @@ export type ProductUpdateWithoutCartInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1691,6 +1725,7 @@ export type ProductUncheckedUpdateWithoutCartInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1725,6 +1760,7 @@ export type ProductCreateWithoutWishlistInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -1763,6 +1799,7 @@ export type ProductUncheckedCreateWithoutWishlistInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -1813,6 +1850,7 @@ export type ProductUpdateWithoutWishlistInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1851,6 +1889,7 @@ export type ProductUncheckedUpdateWithoutWishlistInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1885,6 +1924,7 @@ export type ProductCreateWithoutSizeChartInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -1923,6 +1963,7 @@ export type ProductUncheckedCreateWithoutSizeChartInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -1983,6 +2024,7 @@ export type ProductCreateWithoutCouponsInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -2021,6 +2063,7 @@ export type ProductUncheckedCreateWithoutCouponsInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -2071,6 +2114,7 @@ export type ProductUpdateWithoutCouponsInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2109,6 +2153,7 @@ export type ProductUncheckedUpdateWithoutCouponsInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2143,6 +2188,7 @@ export type ProductCreateWithoutOrderItemsInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -2181,6 +2227,7 @@ export type ProductUncheckedCreateWithoutOrderItemsInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -2231,6 +2278,7 @@ export type ProductUpdateWithoutOrderItemsInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2269,6 +2317,7 @@ export type ProductUncheckedUpdateWithoutOrderItemsInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2303,6 +2352,7 @@ export type ProductCreateWithoutReviewsInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -2341,6 +2391,7 @@ export type ProductUncheckedCreateWithoutReviewsInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -2391,6 +2442,7 @@ export type ProductUpdateWithoutReviewsInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2429,6 +2481,7 @@ export type ProductUncheckedUpdateWithoutReviewsInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2464,6 +2517,7 @@ export type ProductCreateManyMasterCategoryInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -2494,6 +2548,7 @@ export type ProductCreateManyLastCategoryInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -2523,6 +2578,7 @@ export type ProductUpdateWithoutMasterCategoryInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2560,6 +2616,7 @@ export type ProductUncheckedUpdateWithoutMasterCategoryInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2596,6 +2653,7 @@ export type ProductUncheckedUpdateManyWithoutMasterCategoryInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2625,6 +2683,7 @@ export type ProductUpdateWithoutLastCategoryInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2662,6 +2721,7 @@ export type ProductUncheckedUpdateWithoutLastCategoryInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2698,6 +2758,7 @@ export type ProductUncheckedUpdateManyWithoutLastCategoryInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2729,6 +2790,7 @@ export type ProductCreateManySizeChartInput = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: number | null
   maximumRetailPrice?: number | null
@@ -2757,6 +2819,7 @@ export type ProductUpdateWithoutSizeChartInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2795,6 +2858,7 @@ export type ProductUncheckedUpdateWithoutSizeChartInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2831,6 +2895,7 @@ export type ProductUncheckedUpdateManyWithoutSizeChartInput = {
   isNewCollection?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasCashOnDelivery?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReturn?: Prisma.BoolFieldUpdateOperationsInput | boolean
   hasVariants?: Prisma.BoolFieldUpdateOperationsInput | boolean
   buyingPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   maximumRetailPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -2937,6 +3002,7 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: boolean
   maximumRetailPrice?: boolean
@@ -2980,6 +3046,7 @@ export type ProductSelectScalar = {
   isNewCollection?: boolean
   isActive?: boolean
   hasCashOnDelivery?: boolean
+  isReturn?: boolean
   hasVariants?: boolean
   buyingPrice?: boolean
   maximumRetailPrice?: boolean
@@ -2995,7 +3062,7 @@ export type ProductSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productName" | "shortDesc" | "longDesc" | "mainImage" | "productImages" | "youtubeLink" | "metaData" | "masterCategoryId" | "lastCategoryId" | "isFeatured" | "isBestSelling" | "isNewCollection" | "isActive" | "hasCashOnDelivery" | "hasVariants" | "buyingPrice" | "maximumRetailPrice" | "sellingPrice" | "quantity" | "size" | "expiryDate" | "dimensions" | "isRelatedItem" | "paymentType" | "sizeChartId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productName" | "shortDesc" | "longDesc" | "mainImage" | "productImages" | "youtubeLink" | "metaData" | "masterCategoryId" | "lastCategoryId" | "isFeatured" | "isBestSelling" | "isNewCollection" | "isActive" | "hasCashOnDelivery" | "isReturn" | "hasVariants" | "buyingPrice" | "maximumRetailPrice" | "sellingPrice" | "quantity" | "size" | "expiryDate" | "dimensions" | "isRelatedItem" | "paymentType" | "sizeChartId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   masterCategory?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   lastCategory?: boolean | Prisma.Product$lastCategoryArgs<ExtArgs>
@@ -3038,6 +3105,7 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     isNewCollection: boolean
     isActive: boolean
     hasCashOnDelivery: boolean
+    isReturn: boolean
     hasVariants: boolean
     buyingPrice: number | null
     maximumRetailPrice: number | null
@@ -3444,6 +3512,7 @@ export interface ProductFieldRefs {
   readonly isNewCollection: Prisma.FieldRef<"Product", 'Boolean'>
   readonly isActive: Prisma.FieldRef<"Product", 'Boolean'>
   readonly hasCashOnDelivery: Prisma.FieldRef<"Product", 'Boolean'>
+  readonly isReturn: Prisma.FieldRef<"Product", 'Boolean'>
   readonly hasVariants: Prisma.FieldRef<"Product", 'Boolean'>
   readonly buyingPrice: Prisma.FieldRef<"Product", 'Float'>
   readonly maximumRetailPrice: Prisma.FieldRef<"Product", 'Float'>

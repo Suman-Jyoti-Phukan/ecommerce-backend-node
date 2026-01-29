@@ -31,6 +31,7 @@ model User {
   addresses   Address[]
   orders      Order[]
   reviews     Review[]
+  returns     Return[]
 
   @@map("user")
 }
@@ -59,6 +60,7 @@ model Category {
   description String?
   slug        String?  @unique
   parentId    String?
+  imageUrl    String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -96,6 +98,7 @@ model Product {
   isNewCollection   Boolean @default(false)
   isActive          Boolean @default(true)
   hasCashOnDelivery Boolean @default(true)
+  isReturn          Boolean @default(true)
 
   hasVariants Boolean          @default(false)
   variants    ProductVariant[]
@@ -104,15 +107,15 @@ model Product {
   maximumRetailPrice Float?
   sellingPrice       Float?
   quantity           Int       @default(0)
-  size               String? 
+  size               String?
   expiryDate         DateTime?
   dimensions         Json?
 
   isRelatedItem Boolean    @default(false)
-  paymentType   String? 
+  paymentType   String?
   sizeChartId   String?
   sizeChart     SizeChart? @relation(fields: [sizeChartId], references: [id], onDelete: SetNull)
- 
+
   cart       Cart[]
   wishlist   Wishlist[]
   coupons    CouponProduct[]
@@ -162,6 +165,7 @@ model ProductVariant {
   isRelatedItem Boolean @default(false)
   isActive      Boolean @default(true)
   isDefault     Boolean @default(false)
+  isReturn      Boolean @default(true)
 
   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
@@ -425,8 +429,11 @@ model OrderItem {
   quantity Int
   price    Float
 
-  size  String?
-  color String?
+  size        String?
+  color       String?
+  deliveredAt DateTime?
+
+  returns Return[]
 
   @@map("orderitem")
 }
@@ -469,7 +476,7 @@ model PincodeGroup {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  pincodes PincodeGroupPincode[]
+  pincodes           PincodeGroupPincode[]
   deliveryManagement DeliveryManagement?
 
   @@index([name])
@@ -566,4 +573,124 @@ model Review {
   @@index([productId])
   @@index([userId])
   @@map("review")
+}
+
+enum ReturnStatus {
+  INITIATED
+  APPROVED
+  REJECTED
+  PROCESSING
+  COMPLETED
+  CANCELLED
+}
+
+model Return {
+  id String @id @default(uuid())
+
+  orderItemId String
+  orderItem   OrderItem @relation(fields: [orderItemId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  reason    String
+  videoPath String?
+  status    ReturnStatus @default(INITIATED)
+
+  approvedRejectedAt DateTime?
+  adminComment       String?
+
+  returnableUntil    DateTime
+  isReturnableWindow Boolean  @default(true)
+
+  history ReturnHistory[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([orderItemId])
+  @@index([userId])
+  @@index([status])
+  @@index([returnableUntil])
+  @@map("return")
+}
+
+model ReturnHistory {
+  id       String @id @default(uuid())
+  returnId String
+  return   Return @relation(fields: [returnId], references: [id], onDelete: Cascade)
+
+  previousStatus ReturnStatus
+  newStatus      ReturnStatus
+  comment        String?
+  changedBy      String?
+
+  createdAt DateTime @default(now())
+
+  @@index([returnId])
+  @@map("returnhistory")
+}
+
+model PrivacyPolicy {
+  id        String   @id @default(uuid())
+  title     String
+  content   Json
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("privacypolicy")
+}
+
+model Service {
+  id        String   @id @default(uuid())
+  title     String   @unique
+  summary   String
+  content   Json
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([title])
+  @@index([isActive])
+  @@map("service")
+}
+
+model Disclaimer {
+  id           String   @id @default(uuid())
+  title        String
+  categoryType String
+  content      Json
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([categoryType])
+  @@index([isActive])
+  @@map("disclaimer")
+}
+
+model ShippingPolicy {
+  id        String   @id @default(uuid())
+  title     String   @unique
+  content   Json
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([title])
+  @@index([isActive])
+  @@map("shippingpolicy")
+}
+
+model StoreBranding {
+  id           String   @id @default(uuid())
+  displayName  String   @unique
+  logoPath     String?
+  bannerImages Json?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("storebranding")
 }

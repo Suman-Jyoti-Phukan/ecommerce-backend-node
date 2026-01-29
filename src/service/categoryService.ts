@@ -9,6 +9,7 @@ export interface CreateCategoryData {
   slug?: string;
   parentId?: string;
   isFeatured?: boolean;
+  imageUrl?: string;
 }
 
 export interface UpdateCategoryData {
@@ -18,6 +19,7 @@ export interface UpdateCategoryData {
   slug?: string;
   parentId?: string;
   isFeatured?: boolean;
+  imageUrl?: string;
 }
 
 export const createCategory = async (data: CreateCategoryData) => {
@@ -49,6 +51,7 @@ export const createCategory = async (data: CreateCategoryData) => {
       description: data.description,
       slug: data.slug,
       parentId: data.parentId,
+      imageUrl: data.imageUrl,
     },
     include: {
       parent: {
@@ -67,7 +70,7 @@ export const createCategory = async (data: CreateCategoryData) => {
 export const getAllCategories = async (
   page = 1,
   limit = 10,
-  includeInactive = false
+  includeInactive = false,
 ) => {
   const skip = (page - 1) * limit;
 
@@ -219,7 +222,7 @@ export const getCategoryChildren = async (categoryId: string) => {
 
 export const updateCategory = async (
   categoryId: string,
-  data: UpdateCategoryData
+  data: UpdateCategoryData,
 ) => {
   const category = await prisma.category.findUnique({
     where: { id: categoryId },
@@ -246,7 +249,7 @@ export const updateCategory = async (
     if (isDescendant) {
       throw new CustomError(
         "Cannot set parent: would create circular reference",
-        400
+        400,
       );
     }
   }
@@ -270,6 +273,7 @@ export const updateCategory = async (
       description: data.description,
       slug: data.slug,
       parentId: data.parentId,
+      imageUrl: data.imageUrl,
     },
     include: {
       parent: {
@@ -301,7 +305,7 @@ export const deleteCategory = async (categoryId: string) => {
   if (childrenCount > 0) {
     throw new CustomError(
       "Cannot delete category with children. Please delete or move children first.",
-      400
+      400,
     );
   }
 
@@ -314,7 +318,7 @@ export const deleteCategory = async (categoryId: string) => {
 
 const checkIfDescendant = async (
   ancestorId: string,
-  descendantId: string
+  descendantId: string,
 ): Promise<boolean> => {
   let currentId: string | null = descendantId;
   const visited = new Set<string>();
@@ -343,4 +347,63 @@ const checkIfDescendant = async (
   }
 
   return false;
+};
+
+export const uploadCategoryImage = async (
+  categoryId: string,
+  imageUrl: string,
+) => {
+  const category = await prisma.category.findUnique({
+    where: { id: categoryId },
+  });
+
+  if (!category) {
+    throw new CustomError("Category not found", 404);
+  }
+
+  const updatedCategory = await prisma.category.update({
+    where: { id: categoryId },
+    data: {
+      imageUrl,
+    },
+    include: {
+      parent: {
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+        },
+      },
+    },
+  });
+
+  return updatedCategory;
+};
+
+export const deleteCategoryImage = async (categoryId: string) => {
+  const category = await prisma.category.findUnique({
+    where: { id: categoryId },
+  });
+
+  if (!category) {
+    throw new CustomError("Category not found", 404);
+  }
+
+  const updatedCategory = await prisma.category.update({
+    where: { id: categoryId },
+    data: {
+      imageUrl: null,
+    },
+    include: {
+      parent: {
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+        },
+      },
+    },
+  });
+
+  return updatedCategory;
 };

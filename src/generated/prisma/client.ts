@@ -167,3 +167,38 @@ export type DeliveryManagement = Prisma.DeliveryManagementModel
  * 
  */
 export type Review = Prisma.ReviewModel
+/**
+ * Model Return
+ * 
+ */
+export type Return = Prisma.ReturnModel
+/**
+ * Model ReturnHistory
+ * 
+ */
+export type ReturnHistory = Prisma.ReturnHistoryModel
+/**
+ * Model PrivacyPolicy
+ * 
+ */
+export type PrivacyPolicy = Prisma.PrivacyPolicyModel
+/**
+ * Model Service
+ * 
+ */
+export type Service = Prisma.ServiceModel
+/**
+ * Model Disclaimer
+ * 
+ */
+export type Disclaimer = Prisma.DisclaimerModel
+/**
+ * Model ShippingPolicy
+ * 
+ */
+export type ShippingPolicy = Prisma.ShippingPolicyModel
+/**
+ * Model StoreBranding
+ * 
+ */
+export type StoreBranding = Prisma.StoreBrandingModel

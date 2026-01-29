@@ -76,7 +76,14 @@ export const ModelName = {
   ContactPageInformation: 'ContactPageInformation',
   PolicyPageContent: 'PolicyPageContent',
   DeliveryManagement: 'DeliveryManagement',
-  Review: 'Review'
+  Review: 'Review',
+  Return: 'Return',
+  ReturnHistory: 'ReturnHistory',
+  PrivacyPolicy: 'PrivacyPolicy',
+  Service: 'Service',
+  Disclaimer: 'Disclaimer',
+  ShippingPolicy: 'ShippingPolicy',
+  StoreBranding: 'StoreBranding'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -133,6 +140,7 @@ export const CategoryScalarFieldEnum = {
   description: 'description',
   slug: 'slug',
   parentId: 'parentId',
+  imageUrl: 'imageUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -156,6 +164,7 @@ export const ProductScalarFieldEnum = {
   isNewCollection: 'isNewCollection',
   isActive: 'isActive',
   hasCashOnDelivery: 'hasCashOnDelivery',
+  isReturn: 'isReturn',
   hasVariants: 'hasVariants',
   buyingPrice: 'buyingPrice',
   maximumRetailPrice: 'maximumRetailPrice',
@@ -196,6 +205,7 @@ export const ProductVariantScalarFieldEnum = {
   isRelatedItem: 'isRelatedItem',
   isActive: 'isActive',
   isDefault: 'isDefault',
+  isReturn: 'isReturn',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -361,7 +371,8 @@ export const OrderItemScalarFieldEnum = {
   quantity: 'quantity',
   price: 'price',
   size: 'size',
-  color: 'color'
+  color: 'color',
+  deliveredAt: 'deliveredAt'
 } as const
 
 export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
@@ -475,6 +486,100 @@ export const ReviewScalarFieldEnum = {
 export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
 
 
+export const ReturnScalarFieldEnum = {
+  id: 'id',
+  orderItemId: 'orderItemId',
+  userId: 'userId',
+  reason: 'reason',
+  videoPath: 'videoPath',
+  status: 'status',
+  approvedRejectedAt: 'approvedRejectedAt',
+  adminComment: 'adminComment',
+  returnableUntil: 'returnableUntil',
+  isReturnableWindow: 'isReturnableWindow',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReturnScalarFieldEnum = (typeof ReturnScalarFieldEnum)[keyof typeof ReturnScalarFieldEnum]
+
+
+export const ReturnHistoryScalarFieldEnum = {
+  id: 'id',
+  returnId: 'returnId',
+  previousStatus: 'previousStatus',
+  newStatus: 'newStatus',
+  comment: 'comment',
+  changedBy: 'changedBy',
+  createdAt: 'createdAt'
+} as const
+
+export type ReturnHistoryScalarFieldEnum = (typeof ReturnHistoryScalarFieldEnum)[keyof typeof ReturnHistoryScalarFieldEnum]
+
+
+export const PrivacyPolicyScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PrivacyPolicyScalarFieldEnum = (typeof PrivacyPolicyScalarFieldEnum)[keyof typeof PrivacyPolicyScalarFieldEnum]
+
+
+export const ServiceScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  summary: 'summary',
+  content: 'content',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
+
+
+export const DisclaimerScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  categoryType: 'categoryType',
+  content: 'content',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DisclaimerScalarFieldEnum = (typeof DisclaimerScalarFieldEnum)[keyof typeof DisclaimerScalarFieldEnum]
+
+
+export const ShippingPolicyScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ShippingPolicyScalarFieldEnum = (typeof ShippingPolicyScalarFieldEnum)[keyof typeof ShippingPolicyScalarFieldEnum]
+
+
+export const StoreBrandingScalarFieldEnum = {
+  id: 'id',
+  displayName: 'displayName',
+  logoPath: 'logoPath',
+  bannerImages: 'bannerImages',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StoreBrandingScalarFieldEnum = (typeof StoreBrandingScalarFieldEnum)[keyof typeof StoreBrandingScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -534,7 +639,8 @@ export const CategoryOrderByRelevanceFieldEnum = {
   name: 'name',
   description: 'description',
   slug: 'slug',
-  parentId: 'parentId'
+  parentId: 'parentId',
+  imageUrl: 'imageUrl'
 } as const
 
 export type CategoryOrderByRelevanceFieldEnum = (typeof CategoryOrderByRelevanceFieldEnum)[keyof typeof CategoryOrderByRelevanceFieldEnum]
@@ -791,4 +897,69 @@ export const ReviewOrderByRelevanceFieldEnum = {
 } as const
 
 export type ReviewOrderByRelevanceFieldEnum = (typeof ReviewOrderByRelevanceFieldEnum)[keyof typeof ReviewOrderByRelevanceFieldEnum]
+
+
+export const ReturnOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderItemId: 'orderItemId',
+  userId: 'userId',
+  reason: 'reason',
+  videoPath: 'videoPath',
+  adminComment: 'adminComment'
+} as const
+
+export type ReturnOrderByRelevanceFieldEnum = (typeof ReturnOrderByRelevanceFieldEnum)[keyof typeof ReturnOrderByRelevanceFieldEnum]
+
+
+export const ReturnHistoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  returnId: 'returnId',
+  comment: 'comment',
+  changedBy: 'changedBy'
+} as const
+
+export type ReturnHistoryOrderByRelevanceFieldEnum = (typeof ReturnHistoryOrderByRelevanceFieldEnum)[keyof typeof ReturnHistoryOrderByRelevanceFieldEnum]
+
+
+export const PrivacyPolicyOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title'
+} as const
+
+export type PrivacyPolicyOrderByRelevanceFieldEnum = (typeof PrivacyPolicyOrderByRelevanceFieldEnum)[keyof typeof PrivacyPolicyOrderByRelevanceFieldEnum]
+
+
+export const ServiceOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  summary: 'summary'
+} as const
+
+export type ServiceOrderByRelevanceFieldEnum = (typeof ServiceOrderByRelevanceFieldEnum)[keyof typeof ServiceOrderByRelevanceFieldEnum]
+
+
+export const DisclaimerOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  categoryType: 'categoryType'
+} as const
+
+export type DisclaimerOrderByRelevanceFieldEnum = (typeof DisclaimerOrderByRelevanceFieldEnum)[keyof typeof DisclaimerOrderByRelevanceFieldEnum]
+
+
+export const ShippingPolicyOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title'
+} as const
+
+export type ShippingPolicyOrderByRelevanceFieldEnum = (typeof ShippingPolicyOrderByRelevanceFieldEnum)[keyof typeof ShippingPolicyOrderByRelevanceFieldEnum]
+
+
+export const StoreBrandingOrderByRelevanceFieldEnum = {
+  id: 'id',
+  displayName: 'displayName',
+  logoPath: 'logoPath'
+} as const
+
+export type StoreBrandingOrderByRelevanceFieldEnum = (typeof StoreBrandingOrderByRelevanceFieldEnum)[keyof typeof StoreBrandingOrderByRelevanceFieldEnum]
 
