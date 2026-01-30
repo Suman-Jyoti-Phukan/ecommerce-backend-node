@@ -2,11 +2,11 @@ import { prisma } from "../db/prisma";
 
 import { CustomError } from "../middleware/errorHandler";
 
-import { ReviewStatus } from "../generated/prisma/enums";
+import { ReviewStatus, OrderStatus } from "../generated/prisma/enums";
 
 export interface CreateReviewData {
   userId: string;
-  productId: string;
+  productId: string; // This could be a productId or a variantId
   rating: number;
   comment?: string;
   image?: string;
@@ -17,31 +17,50 @@ export interface UpdateReviewStatusData {
 }
 
 export const createReview = async (data: CreateReviewData) => {
-  // 1. Verify that the user has purchased the product and it was delivered
+  let targetProductId = data.productId;
+
+
+  const variant = await prisma.productVariant.findUnique({
+    where: { id: data.productId },
+    select: { productId: true },
+  });
+
+  if (variant) {
+    targetProductId = variant.productId;
+  }
+
+  console.log("Review Creation Diagnostic:", { userId: data.userId, productId: data.productId, targetProductId });
+
   const orderWithProduct = await prisma.order.findFirst({
     where: {
       userId: data.userId,
-      status: "DELIVERED",
+      status: OrderStatus.DELIVERED,
       orderItems: {
         some: {
-          productId: data.productId,
+          productId: targetProductId,
         },
       },
     },
   });
 
   if (!orderWithProduct) {
+    const userOrders = await prisma.order.findMany({
+      where: { userId: data.userId },
+      include: { orderItems: true },
+      take: 5,
+    });
+    console.log("Diagnostic - User Orders found:", JSON.stringify(userOrders, null, 2));
+
     throw new CustomError(
       "You can only review products that have been delivered to you.",
       403,
     );
   }
 
-  // 2. Check if user already reviewed this product (optional, but good practice)
   const existingReview = await prisma.review.findFirst({
     where: {
       userId: data.userId,
-      productId: data.productId,
+      productId: targetProductId,
     },
   });
 
@@ -49,11 +68,10 @@ export const createReview = async (data: CreateReviewData) => {
     throw new CustomError("You have already reviewed this product.", 400);
   }
 
-  // 3. Create the review
   const review = await prisma.review.create({
     data: {
       userId: data.userId,
-      productId: data.productId,
+      productId: targetProductId,
       rating: data.rating,
       comment: data.comment,
       image: data.image,
