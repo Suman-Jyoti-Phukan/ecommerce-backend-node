@@ -81,14 +81,30 @@ export const getOrderById = async (req: AuthRequest, res: Response): Promise<voi
 
         // Security check: Only allow user to see their own order (or admin, handled by admin route usually)
         if (order.userId !== req.user.id) {
-             // We'll throw 404 to not leak existence, or 403. 403 is better for authz failures.
-             throw new CustomError("Access denied", 403);
+            // We'll throw 404 to not leak existence, or 403. 403 is better for authz failures.
+            throw new CustomError("Access denied", 403);
         }
+
+        const formattedOrderItems = order.orderItems.map((item) => {
+            const isVariant = !!item.variantId;
+            return {
+                ...item,
+                type: isVariant ? "VARIANT" : "SIMPLE_PRODUCT",
+                displayDetails: {
+                    name: isVariant ? `${item.product.productName} (${item.size || item.color})` : item.product.productName,
+                    image: isVariant ? (JSON.parse((item.variant as any)?.variantImages || "[]")[0] || item.product.mainImage) : item.product.mainImage,
+                    sku: isVariant ? (item.variant as any)?.sku : null,
+                }
+            };
+        });
 
         res.status(200).json({
             success: true,
             message: "Order retrieved successfully",
-            data: order
+            data: {
+                ...order,
+                orderItems: formattedOrderItems
+            }
         });
     } catch (error) {
         throw error;
@@ -119,7 +135,7 @@ export const getAdminOrderById = async (req: Request, res: Response): Promise<vo
     try {
         const { orderId } = req.params;
         const order = await orderService.getOrderById(orderId);
-        
+
         res.status(200).json({
             success: true,
             message: "Order retrieved successfully",

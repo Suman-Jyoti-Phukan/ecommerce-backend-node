@@ -45,10 +45,28 @@ export const getCartItems = asyncHandler(
 
     const cartItems = await cartService.getCartItems(userId);
 
+    const formattedCartItems = cartItems.map((item) => {
+      const isVariant = !!item.variantId;
+      const displayDetails = {
+        name: isVariant ? `${item.product.productName} (${item.variant?.variantName || item.variant?.size || item.variant?.color})` : item.product.productName,
+        price: isVariant ? (item.variant?.sellingPrice || item.variant?.maximumRetailPrice) : (item.product.sellingPrice || item.product.maximumRetailPrice),
+        image: isVariant ? (JSON.parse(item.variant?.variantImages || "[]")[0] || item.product.mainImage) : item.product.mainImage,
+        size: isVariant ? item.variant?.size : item.product.size,
+        color: isVariant ? item.variant?.color : null,
+        sku: isVariant ? item.variant?.sku : null,
+      };
+
+      return {
+        ...item,
+        type: isVariant ? "VARIANT" : "SIMPLE_PRODUCT",
+        displayDetails
+      };
+    });
+
     res.status(200).json({
       message: "Cart items retrieved successfully",
-      count: cartItems.length,
-      data: cartItems,
+      count: formattedCartItems.length,
+      data: formattedCartItems,
     });
   }
 );
