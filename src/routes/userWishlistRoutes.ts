@@ -21,9 +21,13 @@ router.get("/", getWishlistItems);
 
 router.get("/count", getWishlistCount);
 
-router.get("/:productId", checkProductInWishlist);
+router.get("/status/:productId", checkProductInWishlist);
+
+router.get("/status/:productId/:variantId", checkProductInWishlist);
 
 router.delete("/:productId", removeFromWishlist);
+
+router.delete("/:productId/:variantId", removeFromWishlist);
 
 router.delete("/", clearWishlist);
 

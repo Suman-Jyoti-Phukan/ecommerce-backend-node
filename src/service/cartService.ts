@@ -1,5 +1,7 @@
 import { prisma } from "../db/prisma";
 
+import { couponService } from "./couponService";
+
 interface AddToCartInput {
   userId: string;
   productId?: string;
@@ -155,7 +157,7 @@ export class CartService {
     });
   }
 
-  async getCartTotal(userId: string) {
+  async getCartTotal(userId: string, couponCode?: string) {
     const cartItems = await prisma.cart.findMany({
       where: { userId },
       include: { product: true, variant: true },
@@ -169,9 +171,48 @@ export class CartService {
       return sum + price * item.quantity;
     }, 0);
 
+    let discountAmount = 0;
+    let coupon = null;
+
+    if (couponCode) {
+      try {
+        const validatedCoupon = await couponService.validateCouponForCart(
+          couponCode,
+          total,
+          cartItems.map(item => ({
+            productId: item.productId,
+            variantId: item.variantId || undefined,
+            // categoryId would be needed if coupon is category based, 
+            // but validateCouponForCart in couponService currently only checks productIds/variantIds.
+          }))
+        );
+
+        coupon = validatedCoupon;
+
+        if (validatedCoupon.type === "FIXED") {
+          discountAmount = validatedCoupon.value;
+        } else if (validatedCoupon.type === "PERCENTAGE") {
+          discountAmount = (total * validatedCoupon.value) / 100;
+        }
+
+        if (validatedCoupon.maxDiscount && discountAmount > validatedCoupon.maxDiscount) {
+          discountAmount = validatedCoupon.maxDiscount;
+        }
+      } catch (error: any) {
+        // If coupon is invalid, we can either throw or just not apply it.
+        // Usually, in getCartTotal, if a code is explicitly passed, we should probably inform if it's invalid.
+        // But throwing might break the whole cart view. 
+        // Let's re-throw so the controller can handle it.
+        throw error;
+      }
+    }
+
     return {
       itemCount: cartItems.length,
       total,
+      discountAmount,
+      finalTotal: Math.max(0, total - discountAmount),
+      coupon,
       items: cartItems,
     };
   }

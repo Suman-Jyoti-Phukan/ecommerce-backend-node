@@ -17,7 +17,7 @@ import multer from "multer";
 
 import path from "path";
 
-const FILE_SIZE = 100 * 1024 * 1024;
+const FILE_SIZE = 5 * 1024 * 1024;
 
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => {

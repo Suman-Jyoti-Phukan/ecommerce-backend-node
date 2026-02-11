@@ -417,7 +417,8 @@ export const ModelName = {
   Service: 'Service',
   Disclaimer: 'Disclaimer',
   ShippingPolicy: 'ShippingPolicy',
-  StoreBranding: 'StoreBranding'
+  StoreBranding: 'StoreBranding',
+  ReturnReason: 'ReturnReason'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -433,7 +434,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "bankDetails" | "category" | "product" | "productVariant" | "cart" | "address" | "wishlist" | "colorScheme" | "sizeChart" | "coupon" | "couponUser" | "couponProduct" | "couponCategory" | "blog" | "order" | "orderItem" | "orderItemHistory" | "orderHistory" | "pincode" | "pincodeGroup" | "pincodeGroupPincode" | "aboutPageContent" | "contactPageInformation" | "policyPageContent" | "deliveryManagement" | "review" | "return" | "returnHistory" | "privacyPolicy" | "service" | "disclaimer" | "shippingPolicy" | "storeBranding"
+    modelProps: "user" | "bankDetails" | "category" | "product" | "productVariant" | "cart" | "address" | "wishlist" | "colorScheme" | "sizeChart" | "coupon" | "couponUser" | "couponProduct" | "couponCategory" | "blog" | "order" | "orderItem" | "orderItemHistory" | "orderHistory" | "pincode" | "pincodeGroup" | "pincodeGroupPincode" | "aboutPageContent" | "contactPageInformation" | "policyPageContent" | "deliveryManagement" | "review" | "return" | "returnHistory" | "privacyPolicy" | "service" | "disclaimer" | "shippingPolicy" | "storeBranding" | "returnReason"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2681,6 +2682,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ReturnReason: {
+      payload: Prisma.$ReturnReasonPayload<ExtArgs>
+      fields: Prisma.ReturnReasonFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReturnReasonFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReturnReasonPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReturnReasonFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReturnReasonPayload>
+        }
+        findFirst: {
+          args: Prisma.ReturnReasonFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReturnReasonPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReturnReasonFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReturnReasonPayload>
+        }
+        findMany: {
+          args: Prisma.ReturnReasonFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReturnReasonPayload>[]
+        }
+        create: {
+          args: Prisma.ReturnReasonCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReturnReasonPayload>
+        }
+        createMany: {
+          args: Prisma.ReturnReasonCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ReturnReasonDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReturnReasonPayload>
+        }
+        update: {
+          args: Prisma.ReturnReasonUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReturnReasonPayload>
+        }
+        deleteMany: {
+          args: Prisma.ReturnReasonDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReturnReasonUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ReturnReasonUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReturnReasonPayload>
+        }
+        aggregate: {
+          args: Prisma.ReturnReasonAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReturnReason>
+        }
+        groupBy: {
+          args: Prisma.ReturnReasonGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReturnReasonGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReturnReasonCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReturnReasonCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -3211,6 +3278,17 @@ export const StoreBrandingScalarFieldEnum = {
 export type StoreBrandingScalarFieldEnum = (typeof StoreBrandingScalarFieldEnum)[keyof typeof StoreBrandingScalarFieldEnum]
 
 
+export const ReturnReasonScalarFieldEnum = {
+  id: 'id',
+  reason: 'reason',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReturnReasonScalarFieldEnum = (typeof ReturnReasonScalarFieldEnum)[keyof typeof ReturnReasonScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3605,6 +3683,14 @@ export const StoreBrandingOrderByRelevanceFieldEnum = {
 export type StoreBrandingOrderByRelevanceFieldEnum = (typeof StoreBrandingOrderByRelevanceFieldEnum)[keyof typeof StoreBrandingOrderByRelevanceFieldEnum]
 
 
+export const ReturnReasonOrderByRelevanceFieldEnum = {
+  id: 'id',
+  reason: 'reason'
+} as const
+
+export type ReturnReasonOrderByRelevanceFieldEnum = (typeof ReturnReasonOrderByRelevanceFieldEnum)[keyof typeof ReturnReasonOrderByRelevanceFieldEnum]
+
+
 
 /**
  * Field references
@@ -3823,6 +3909,7 @@ export type GlobalOmitConfig = {
   disclaimer?: Prisma.DisclaimerOmit
   shippingPolicy?: Prisma.ShippingPolicyOmit
   storeBranding?: Prisma.StoreBrandingOmit
+  returnReason?: Prisma.ReturnReasonOmit
 }
 
 /* Types for Logging */

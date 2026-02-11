@@ -84,7 +84,8 @@ export const ModelName = {
   Service: 'Service',
   Disclaimer: 'Disclaimer',
   ShippingPolicy: 'ShippingPolicy',
-  StoreBranding: 'StoreBranding'
+  StoreBranding: 'StoreBranding',
+  ReturnReason: 'ReturnReason'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -594,6 +595,17 @@ export const StoreBrandingScalarFieldEnum = {
 export type StoreBrandingScalarFieldEnum = (typeof StoreBrandingScalarFieldEnum)[keyof typeof StoreBrandingScalarFieldEnum]
 
 
+export const ReturnReasonScalarFieldEnum = {
+  id: 'id',
+  reason: 'reason',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReturnReasonScalarFieldEnum = (typeof ReturnReasonScalarFieldEnum)[keyof typeof ReturnReasonScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -986,4 +998,12 @@ export const StoreBrandingOrderByRelevanceFieldEnum = {
 } as const
 
 export type StoreBrandingOrderByRelevanceFieldEnum = (typeof StoreBrandingOrderByRelevanceFieldEnum)[keyof typeof StoreBrandingOrderByRelevanceFieldEnum]
+
+
+export const ReturnReasonOrderByRelevanceFieldEnum = {
+  id: 'id',
+  reason: 'reason'
+} as const
+
+export type ReturnReasonOrderByRelevanceFieldEnum = (typeof ReturnReasonOrderByRelevanceFieldEnum)[keyof typeof ReturnReasonOrderByRelevanceFieldEnum]
 

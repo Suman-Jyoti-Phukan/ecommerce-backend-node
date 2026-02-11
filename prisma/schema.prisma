@@ -711,3 +711,13 @@ model StoreBranding {
 
   @@map("storebranding")
 }
+
+
+model ReturnReason {
+  id  String @id @default(uuid())
+  reason String
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("returnreason")
+}

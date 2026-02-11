@@ -187,3 +187,8 @@ export type ShippingPolicy = Prisma.ShippingPolicyModel
  * 
  */
 export type StoreBranding = Prisma.StoreBrandingModel
+/**
+ * Model ReturnReason
+ * 
+ */
+export type ReturnReason = Prisma.ReturnReasonModel

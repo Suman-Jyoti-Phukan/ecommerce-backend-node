@@ -158,13 +158,14 @@ export const getCartCount = asyncHandler(
 export const getCartTotal = asyncHandler(
   async (req: Request, res: Response) => {
     const userId = req.user?.id;
+    const { couponCode } = req.query;
 
     if (!userId) {
       res.status(401).json({ message: "User not authenticated" });
       return;
     }
 
-    const cartTotal = await cartService.getCartTotal(userId);
+    const cartTotal = await cartService.getCartTotal(userId, couponCode as string);
 
     res.status(200).json({
       message: "Cart total retrieved successfully",

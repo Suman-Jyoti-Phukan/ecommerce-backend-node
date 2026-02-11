@@ -4,7 +4,6 @@ import { asyncHandler } from "../lib/asyncHandler";
 
 import privacyPolicyService from "../service/privacyPolicyService";
 
-// User endpoints
 export const getActivePrivacyPolicy = asyncHandler(
   async (_req: Request, res: Response) => {
     const policy = await privacyPolicyService.getActivePolicy();
@@ -18,7 +17,7 @@ export const getActivePrivacyPolicy = asyncHandler(
   },
 );
 
-// Admin endpoints
+
 export const getAllPolicies = asyncHandler(
   async (_req: Request, res: Response) => {
     const policies = await privacyPolicyService.getAllPolicies();

@@ -135,8 +135,6 @@ const logger = (
 
 app.use(logger);
 
-
-
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
