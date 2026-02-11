@@ -120,14 +120,20 @@ const logger = (
   next: express.NextFunction,
 ) => {
   const url = req.url;
+
   const method = req.method;
+
   const time = new Date().toISOString();
+
   console.log(`[${time}] ${method} ${url}`);
+
   console.log(`Content-Type: ${req.headers["content-type"]}`);
+
   console.log(
-    `Body keys: ${Object.keys(req.body || {}).length > 0
-      ? Object.keys(req.body).join(", ")
-      : "EMPTY"
+    `Body keys: ${
+      Object.keys(req.body || {}).length > 0
+        ? Object.keys(req.body).join(", ")
+        : "EMPTY"
     }`,
   );
   next();
