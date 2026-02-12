@@ -4,7 +4,7 @@ import { asyncHandler } from "../lib/asyncHandler";
 
 import storeBrandingService from "../service/storeBrandingService";
 
-// User endpoints
+
 export const getActiveStoreBranding = asyncHandler(
   async (_req: Request, res: Response) => {
     const branding = await storeBrandingService.getActiveBranding();
@@ -20,7 +20,7 @@ export const getActiveStoreBranding = asyncHandler(
   },
 );
 
-// Admin endpoints
+
 export const getAllStoreBranding = asyncHandler(
   async (_req: Request, res: Response) => {
     const branding = await storeBrandingService.getAllBranding();

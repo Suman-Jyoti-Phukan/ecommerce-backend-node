@@ -1,53 +1,53 @@
 import { prisma } from "../db/prisma";
 
 class ShippingPolicyService {
-  // Get all shipping policies
+
   async getAllPolicies(page: number = 1, limit: number = 10) {
     const skip = (page - 1) * limit;
 
     const [policies, total] = await Promise.all([
-      (prisma as any).shippingpolicy.findMany({
+      (prisma as any).shippingPolicy.findMany({
         skip,
         take: limit,
         orderBy: { createdAt: "desc" },
       }),
-      (prisma as any).shippingpolicy.count(),
+      (prisma as any).shippingPolicy.count(),
     ]);
 
     return { policies, total, page, limit, pages: Math.ceil(total / limit) };
   }
 
-  // Get all active shipping policies
+
   async getActivePolicies(page: number = 1, limit: number = 10) {
     const skip = (page - 1) * limit;
 
     const [policies, total] = await Promise.all([
-      (prisma as any).shippingpolicy.findMany({
+      (prisma as any).shippingPolicy.findMany({
         where: { isActive: true },
         skip,
         take: limit,
         orderBy: { createdAt: "desc" },
       }),
-      (prisma as any).shippingpolicy.count({ where: { isActive: true } }),
+      (prisma as any).shippingPolicy.count({ where: { isActive: true } }),
     ]);
 
     return { policies, total, page, limit, pages: Math.ceil(total / limit) };
   }
 
-  // Get policy by ID
+
   async getPolicyById(id: string) {
-    return await (prisma as any).shippingpolicy.findUnique({
+    return await (prisma as any).shippingPolicy.findUnique({
       where: { id },
     });
   }
 
-  // Create new policy
+
   async createPolicy(data: {
     title: string;
     content: any;
     isActive?: boolean;
   }) {
-    return await (prisma as any).shippingpolicy.create({
+    return await (prisma as any).shippingPolicy.create({
       data: {
         title: data.title,
         content: data.content,
@@ -56,27 +56,27 @@ class ShippingPolicyService {
     });
   }
 
-  // Update policy
+
   async updatePolicy(
     id: string,
     data: { title?: string; content?: any; isActive?: boolean },
   ) {
-    return await (prisma as any).shippingpolicy.update({
+    return await (prisma as any).shippingPolicy.update({
       where: { id },
       data,
     });
   }
 
-  // Delete policy
+
   async deletePolicy(id: string) {
-    return await (prisma as any).shippingpolicy.delete({
+    return await (prisma as any).shippingPolicy.delete({
       where: { id },
     });
   }
 
-  // Toggle active status
+
   async toggleStatus(id: string) {
-    const policy = await (prisma as any).shippingpolicy.findUnique({
+    const policy = await (prisma as any).shippingPolicy.findUnique({
       where: { id },
     });
 
@@ -84,7 +84,7 @@ class ShippingPolicyService {
       throw new Error("Policy not found");
     }
 
-    return await (prisma as any).shippingpolicy.update({
+    return await (prisma as any).shippingPolicy.update({
       where: { id },
       data: { isActive: !policy.isActive },
     });

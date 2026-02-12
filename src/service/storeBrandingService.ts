@@ -5,28 +5,28 @@ import * as path from "path";
 class StoreBrandingService {
   // Get all branding configurations
   async getAllBranding() {
-    return await (prisma as any).storebranding.findMany({
+    return await (prisma as any).storeBranding.findMany({
       orderBy: { createdAt: "desc" },
     });
   }
 
   // Get active branding configuration
   async getActiveBranding() {
-    return await (prisma as any).storebranding.findFirst({
+    return await (prisma as any).storeBranding.findFirst({
       where: { isActive: true },
     });
   }
 
   // Get branding by ID
   async getBrandingById(id: string) {
-    return await (prisma as any).storebranding.findUnique({
+    return await (prisma as any).storeBranding.findUnique({
       where: { id },
     });
   }
 
   // Create new branding configuration
   async createBranding(data: { displayName: string; isActive?: boolean }) {
-    return await (prisma as any).storebranding.create({
+    return await (prisma as any).storeBranding.create({
       data: {
         displayName: data.displayName,
         isActive: data.isActive ?? true,
@@ -39,7 +39,7 @@ class StoreBrandingService {
     id: string,
     data: { displayName?: string; isActive?: boolean },
   ) {
-    return await (prisma as any).storebranding.update({
+    return await (prisma as any).storeBranding.update({
       where: { id },
       data,
     });
@@ -47,7 +47,7 @@ class StoreBrandingService {
 
   // Upload logo
   async uploadLogo(id: string, logoPath: string) {
-    const branding = await (prisma as any).storebranding.findUnique({
+    const branding = await (prisma as any).storeBranding.findUnique({
       where: { id },
     });
 
@@ -66,7 +66,7 @@ class StoreBrandingService {
       }
     }
 
-    return await (prisma as any).storebranding.update({
+    return await (prisma as any).storeBranding.update({
       where: { id },
       data: { logoPath },
     });
@@ -74,7 +74,7 @@ class StoreBrandingService {
 
   // Upload banners
   async uploadBanners(id: string, bannerPaths: string[]) {
-    const branding = await (prisma as any).storebranding.findUnique({
+    const branding = await (prisma as any).storeBranding.findUnique({
       where: { id },
     });
 
@@ -91,7 +91,7 @@ class StoreBrandingService {
     // Limit to 10 banners
     const finalBanners = allBanners.slice(0, 10);
 
-    return await (prisma as any).storebranding.update({
+    return await (prisma as any).storeBranding.update({
       where: { id },
       data: { bannerImages: finalBanners },
     });
@@ -99,7 +99,7 @@ class StoreBrandingService {
 
   // Delete specific banner by index
   async deleteBanner(id: string, index: number) {
-    const branding = await (prisma as any).storebranding.findUnique({
+    const branding = await (prisma as any).storeBranding.findUnique({
       where: { id },
     });
 
@@ -128,7 +128,7 @@ class StoreBrandingService {
     // Remove from array
     banners.splice(index, 1);
 
-    return await (prisma as any).storebranding.update({
+    return await (prisma as any).storeBranding.update({
       where: { id },
       data: { bannerImages: banners },
     });
@@ -136,7 +136,7 @@ class StoreBrandingService {
 
   // Delete branding configuration
   async deleteBranding(id: string) {
-    const branding = await (prisma as any).storebranding.findUnique({
+    const branding = await (prisma as any).storeBranding.findUnique({
       where: { id },
     });
 
@@ -166,14 +166,14 @@ class StoreBrandingService {
       });
     }
 
-    return await (prisma as any).storebranding.delete({
+    return await (prisma as any).storeBranding.delete({
       where: { id },
     });
   }
 
-  // Toggle active status
+
   async toggleStatus(id: string) {
-    const branding = await (prisma as any).storebranding.findUnique({
+    const branding = await (prisma as any).storeBranding.findUnique({
       where: { id },
     });
 
@@ -181,7 +181,7 @@ class StoreBrandingService {
       throw new Error("Branding configuration not found");
     }
 
-    return await (prisma as any).storebranding.update({
+    return await (prisma as any).storeBranding.update({
       where: { id },
       data: { isActive: !branding.isActive },
     });
