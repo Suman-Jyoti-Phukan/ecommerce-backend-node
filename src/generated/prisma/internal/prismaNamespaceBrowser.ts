@@ -85,7 +85,8 @@ export const ModelName = {
   Disclaimer: 'Disclaimer',
   ShippingPolicy: 'ShippingPolicy',
   StoreBranding: 'StoreBranding',
-  ReturnReason: 'ReturnReason'
+  ReturnReason: 'ReturnReason',
+  ShipRocketOrder: 'ShipRocketOrder'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -606,6 +607,27 @@ export const ReturnReasonScalarFieldEnum = {
 export type ReturnReasonScalarFieldEnum = (typeof ReturnReasonScalarFieldEnum)[keyof typeof ReturnReasonScalarFieldEnum]
 
 
+export const ShipRocketOrderScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  orderNumber: 'orderNumber',
+  srOrderId: 'srOrderId',
+  channelOrderId: 'channelOrderId',
+  shipmentId: 'shipmentId',
+  status: 'status',
+  statusCode: 'statusCode',
+  awbCode: 'awbCode',
+  courierCompanyId: 'courierCompanyId',
+  courierName: 'courierName',
+  requestPayload: 'requestPayload',
+  responsePayload: 'responsePayload',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ShipRocketOrderScalarFieldEnum = (typeof ShipRocketOrderScalarFieldEnum)[keyof typeof ShipRocketOrderScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1006,4 +1028,18 @@ export const ReturnReasonOrderByRelevanceFieldEnum = {
 } as const
 
 export type ReturnReasonOrderByRelevanceFieldEnum = (typeof ReturnReasonOrderByRelevanceFieldEnum)[keyof typeof ReturnReasonOrderByRelevanceFieldEnum]
+
+
+export const ShipRocketOrderOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  orderNumber: 'orderNumber',
+  channelOrderId: 'channelOrderId',
+  status: 'status',
+  awbCode: 'awbCode',
+  courierCompanyId: 'courierCompanyId',
+  courierName: 'courierName'
+} as const
+
+export type ShipRocketOrderOrderByRelevanceFieldEnum = (typeof ShipRocketOrderOrderByRelevanceFieldEnum)[keyof typeof ShipRocketOrderOrderByRelevanceFieldEnum]
 

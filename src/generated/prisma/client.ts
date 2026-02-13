@@ -212,3 +212,8 @@ export type StoreBranding = Prisma.StoreBrandingModel
  * 
  */
 export type ReturnReason = Prisma.ReturnReasonModel
+/**
+ * Model ShipRocketOrder
+ * 
+ */
+export type ShipRocketOrder = Prisma.ShipRocketOrderModel

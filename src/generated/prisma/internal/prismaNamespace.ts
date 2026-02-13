@@ -418,7 +418,8 @@ export const ModelName = {
   Disclaimer: 'Disclaimer',
   ShippingPolicy: 'ShippingPolicy',
   StoreBranding: 'StoreBranding',
-  ReturnReason: 'ReturnReason'
+  ReturnReason: 'ReturnReason',
+  ShipRocketOrder: 'ShipRocketOrder'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -434,7 +435,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "bankDetails" | "category" | "product" | "productVariant" | "cart" | "address" | "wishlist" | "colorScheme" | "sizeChart" | "coupon" | "couponUser" | "couponProduct" | "couponCategory" | "blog" | "order" | "orderItem" | "orderItemHistory" | "orderHistory" | "pincode" | "pincodeGroup" | "pincodeGroupPincode" | "aboutPageContent" | "contactPageInformation" | "policyPageContent" | "deliveryManagement" | "review" | "return" | "returnHistory" | "privacyPolicy" | "service" | "disclaimer" | "shippingPolicy" | "storeBranding" | "returnReason"
+    modelProps: "user" | "bankDetails" | "category" | "product" | "productVariant" | "cart" | "address" | "wishlist" | "colorScheme" | "sizeChart" | "coupon" | "couponUser" | "couponProduct" | "couponCategory" | "blog" | "order" | "orderItem" | "orderItemHistory" | "orderHistory" | "pincode" | "pincodeGroup" | "pincodeGroupPincode" | "aboutPageContent" | "contactPageInformation" | "policyPageContent" | "deliveryManagement" | "review" | "return" | "returnHistory" | "privacyPolicy" | "service" | "disclaimer" | "shippingPolicy" | "storeBranding" | "returnReason" | "shipRocketOrder"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2748,6 +2749,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ShipRocketOrder: {
+      payload: Prisma.$ShipRocketOrderPayload<ExtArgs>
+      fields: Prisma.ShipRocketOrderFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ShipRocketOrderFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShipRocketOrderPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ShipRocketOrderFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShipRocketOrderPayload>
+        }
+        findFirst: {
+          args: Prisma.ShipRocketOrderFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShipRocketOrderPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ShipRocketOrderFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShipRocketOrderPayload>
+        }
+        findMany: {
+          args: Prisma.ShipRocketOrderFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShipRocketOrderPayload>[]
+        }
+        create: {
+          args: Prisma.ShipRocketOrderCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShipRocketOrderPayload>
+        }
+        createMany: {
+          args: Prisma.ShipRocketOrderCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ShipRocketOrderDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShipRocketOrderPayload>
+        }
+        update: {
+          args: Prisma.ShipRocketOrderUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShipRocketOrderPayload>
+        }
+        deleteMany: {
+          args: Prisma.ShipRocketOrderDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ShipRocketOrderUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ShipRocketOrderUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShipRocketOrderPayload>
+        }
+        aggregate: {
+          args: Prisma.ShipRocketOrderAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateShipRocketOrder>
+        }
+        groupBy: {
+          args: Prisma.ShipRocketOrderGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ShipRocketOrderGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ShipRocketOrderCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ShipRocketOrderCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -3289,6 +3356,27 @@ export const ReturnReasonScalarFieldEnum = {
 export type ReturnReasonScalarFieldEnum = (typeof ReturnReasonScalarFieldEnum)[keyof typeof ReturnReasonScalarFieldEnum]
 
 
+export const ShipRocketOrderScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  orderNumber: 'orderNumber',
+  srOrderId: 'srOrderId',
+  channelOrderId: 'channelOrderId',
+  shipmentId: 'shipmentId',
+  status: 'status',
+  statusCode: 'statusCode',
+  awbCode: 'awbCode',
+  courierCompanyId: 'courierCompanyId',
+  courierName: 'courierName',
+  requestPayload: 'requestPayload',
+  responsePayload: 'responsePayload',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ShipRocketOrderScalarFieldEnum = (typeof ShipRocketOrderScalarFieldEnum)[keyof typeof ShipRocketOrderScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3691,6 +3779,20 @@ export const ReturnReasonOrderByRelevanceFieldEnum = {
 export type ReturnReasonOrderByRelevanceFieldEnum = (typeof ReturnReasonOrderByRelevanceFieldEnum)[keyof typeof ReturnReasonOrderByRelevanceFieldEnum]
 
 
+export const ShipRocketOrderOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  orderNumber: 'orderNumber',
+  channelOrderId: 'channelOrderId',
+  status: 'status',
+  awbCode: 'awbCode',
+  courierCompanyId: 'courierCompanyId',
+  courierName: 'courierName'
+} as const
+
+export type ShipRocketOrderOrderByRelevanceFieldEnum = (typeof ShipRocketOrderOrderByRelevanceFieldEnum)[keyof typeof ShipRocketOrderOrderByRelevanceFieldEnum]
+
+
 
 /**
  * Field references
@@ -3910,6 +4012,7 @@ export type GlobalOmitConfig = {
   shippingPolicy?: Prisma.ShippingPolicyOmit
   storeBranding?: Prisma.StoreBrandingOmit
   returnReason?: Prisma.ReturnReasonOmit
+  shipRocketOrder?: Prisma.ShipRocketOrderOmit
 }
 
 /* Types for Logging */

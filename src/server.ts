@@ -106,6 +106,8 @@ import adminReturnReasonRoutes from "./routes/adminReturnReasonRoutes";
 
 import userReturnReasonRoutes from "./routes/userReturnReasonRoutes";
 
+import adminShipRocketRoutes from "./routes/adminShipRocketRoutes";
+
 const app = express();
 
 app.use(
@@ -246,6 +248,8 @@ app.use("/api/v1/store-branding", storeBrandingRoutes);
 app.use("/api/v1/admin/store-branding", adminStoreBrandingRoutes);
 
 app.use("/api/v1/admin/order-items", orderItemRoutes);
+
+app.use("/api/v1/admin/shiprocket", adminShipRocketRoutes);
 
 app.use("/api/v1/search", searchRoutes);
 

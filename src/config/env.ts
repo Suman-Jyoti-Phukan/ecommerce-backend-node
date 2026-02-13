@@ -13,6 +13,8 @@ const env = {
   DATABASE_PASSWORD: process.env.DATABASE_PASSWORD,
   DATABASE_NAME: process.env.DATABASE_NAME,
   DATABASE_PORT: process.env.DATABASE_PORT || "3306",
+  SHIPROCKET_EMAIL: process.env.SHIPROCKET_EMAIL || "",
+  SHIPROCKET_PASSWORD: process.env.SHIPROCKET_PASSWORD || "",
 };
 
 export default env;
