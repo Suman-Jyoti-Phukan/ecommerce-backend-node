@@ -241,6 +241,7 @@ export const AddressScalarFieldEnum = {
   state: 'state',
   city: 'city',
   district: 'district',
+  country: 'country',
   isDefault: 'isDefault',
   userId: 'userId',
   createdAt: 'createdAt',
@@ -769,6 +770,7 @@ export const AddressOrderByRelevanceFieldEnum = {
   state: 'state',
   city: 'city',
   district: 'district',
+  country: 'country',
   userId: 'userId'
 } as const
 

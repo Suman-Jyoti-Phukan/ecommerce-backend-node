@@ -1,6 +1,6 @@
 import { prisma } from "../db/prisma";
-
 import { couponService } from "./couponService";
+import { formatCartItems } from "../lib/formatter";
 
 interface AddToCartInput {
   userId: string;
@@ -213,7 +213,7 @@ export class CartService {
       discountAmount,
       finalTotal: Math.max(0, total - discountAmount),
       coupon,
-      items: cartItems,
+      items: formatCartItems(cartItems),
     };
   }
 }

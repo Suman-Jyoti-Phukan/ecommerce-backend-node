@@ -8,6 +8,8 @@ import { CustomError } from "../middleware/errorHandler";
 
 import { OrderStatus } from "../generated/prisma/enums";
 
+import { formatOrder, formatOrderList } from "../lib/formatter";
+
 
 export const createOrder = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
@@ -41,7 +43,7 @@ export const createOrder = async (req: AuthRequest, res: Response): Promise<void
         res.status(201).json({
             success: true,
             message: "Order created successfully",
-            data: order
+            data: formatOrder(order)
         });
     } catch (error) {
         throw error;
@@ -62,7 +64,10 @@ export const getMyOrders = async (req: AuthRequest, res: Response): Promise<void
         res.status(200).json({
             success: true,
             message: "Orders retrieved successfully",
-            data: result
+            data: {
+                ...result,
+                orders: formatOrderList(result.orders)
+            }
         });
     } catch (error) {
         throw error;
@@ -85,26 +90,10 @@ export const getOrderById = async (req: AuthRequest, res: Response): Promise<voi
             throw new CustomError("Access denied", 403);
         }
 
-        const formattedOrderItems = order.orderItems.map((item) => {
-            const isVariant = !!item.variantId;
-            return {
-                ...item,
-                type: isVariant ? "VARIANT" : "SIMPLE_PRODUCT",
-                displayDetails: {
-                    name: isVariant ? `${item.product.productName} (${item.size || item.color})` : item.product.productName,
-                    image: isVariant ? (JSON.parse((item.variant as any)?.variantImages || "[]")[0] || item.product.mainImage) : item.product.mainImage,
-                    sku: isVariant ? (item.variant as any)?.sku : null,
-                }
-            };
-        });
-
         res.status(200).json({
             success: true,
             message: "Order retrieved successfully",
-            data: {
-                ...order,
-                orderItems: formattedOrderItems
-            }
+            data: formatOrder(order)
         });
     } catch (error) {
         throw error;
@@ -124,7 +113,10 @@ export const getAllOrders = async (req: Request, res: Response): Promise<void> =
         res.status(200).json({
             success: true,
             message: "Orders retrieved successfully",
-            data: result
+            data: {
+                ...result,
+                orders: formatOrderList(result.orders)
+            }
         });
     } catch (error) {
         throw error;
@@ -139,7 +131,7 @@ export const getAdminOrderById = async (req: Request, res: Response): Promise<vo
         res.status(200).json({
             success: true,
             message: "Order retrieved successfully",
-            data: order
+            data: formatOrder(order)
         });
     } catch (error) {
         throw error;

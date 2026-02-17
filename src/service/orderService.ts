@@ -1,5 +1,5 @@
-
 import { prisma } from "../db/prisma";
+
 import { OrderStatus, PaymentStatus } from "../generated/prisma/enums";
 
 import { CustomError } from "../middleware/errorHandler";
@@ -43,7 +43,7 @@ export const createOrder = async (data: CreateOrderData) => {
     color: string | undefined;
   }[] = [];
 
-  // 1. Validation and Stock Check Phase
+
   for (const item of items) {
     let finalProductId = item.productId;
     let finalSize = item.size;
@@ -167,7 +167,15 @@ export const createOrder = async (data: CreateOrderData) => {
         },
       },
       include: {
-        orderItems: true,
+        orderItems: {
+          include: {
+            product: true,
+            variant: true,
+            orderItemHistories: {
+              orderBy: { createdAt: 'desc' }
+            }
+          }
+        },
         history: true,
       },
     });
@@ -224,7 +232,27 @@ export const updateOrderStatus = async (
       },
     });
 
-    // SUMAN -> If order is being REFUNDED, look for COMPLETED returns to restore inventory
+
+    if (status === OrderStatus.CANCELLED) {
+      const orderItems = await tx.orderItem.findMany({
+        where: { orderId },
+      });
+
+      for (const item of orderItems) {
+        if (item.variantId) {
+          await tx.productVariant.update({
+            where: { id: item.variantId },
+            data: { quantity: { increment: item.quantity } },
+          });
+        } else {
+          await tx.product.update({
+            where: { id: item.productId },
+            data: { quantity: { increment: item.quantity } },
+          });
+        }
+      }
+    }
+
     if (status === OrderStatus.REFUNDED) {
       const orderItemsWithReturns = await tx.orderItem.findMany({
         where: { orderId },
@@ -297,16 +325,17 @@ export const updateOrderItemStatus = async (
       },
     });
 
-    // Check if all items in the order have the same status
+
     const allItems = await tx.orderItem.findMany({
       where: { orderId: orderItem.orderId },
     });
 
     const statuses = allItems.map((item) => item.status);
+
     const uniqueStatuses = [...new Set(statuses)];
 
     if (uniqueStatuses.length === 1 && uniqueStatuses[0] === status) {
-      // If all items have the same status, update the main order status too
+
       await tx.order.update({
         where: { id: orderItem.orderId },
         data: { status },
@@ -321,8 +350,7 @@ export const updateOrderItemStatus = async (
         },
       });
     } else if (status === OrderStatus.PROCESSING || status === OrderStatus.SHIPPED || status === OrderStatus.DELIVERED) {
-      // If main order is still PENDING but an item moved forward, sync main order to PROCESSING or better
-      // This is a simple heuristic. For now, let's keep it simple.
+
     }
   });
 
@@ -336,7 +364,7 @@ export const getOrderById = async (orderId: string) => {
       orderItems: {
         include: {
           product: true,
-          variant: true, // Include variant details
+          variant: true,
           orderItemHistories: {
             orderBy: { createdAt: 'desc' }
           }
@@ -373,8 +401,13 @@ export const getUserOrders = async (userId: string, page = 1, limit = 10) => {
     orderBy: { createdAt: 'desc' },
     include: {
       orderItems: {
-        take: 1,
-        include: { product: true, variant: true }
+        include: {
+          product: true,
+          variant: true,
+          orderItemHistories: {
+            orderBy: { createdAt: 'desc' }
+          }
+        }
       },
       _count: {
         select: { orderItems: true }
@@ -402,6 +435,18 @@ export const getAllOrders = async (page?: number, limit?: number, status?: Order
     where,
     orderBy: { createdAt: 'desc' },
     include: {
+      orderItems: {
+        include: {
+          product: true,
+          variant: true,
+          orderItemHistories: {
+            orderBy: { createdAt: 'desc' }
+          }
+        }
+      },
+      history: {
+        orderBy: { createdAt: 'desc' }
+      },
       user: {
         select: {
           fullName: true,

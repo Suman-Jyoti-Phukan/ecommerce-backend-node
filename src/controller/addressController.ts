@@ -23,6 +23,7 @@ export const createAddress = async (
       state,
       city,
       district,
+      country,
       isDefault,
     } = req.body;
 
@@ -30,16 +31,16 @@ export const createAddress = async (
       throw new CustomError("Main address and pincode are required", 400);
     }
 
-  
+
     const addressCount = await prisma.address.count({
       where: { userId: req.user.id },
     });
 
-    
+
     const shouldBeDefault = addressCount === 0 ? true : isDefault || false;
 
     if (shouldBeDefault) {
-      
+
       await prisma.address.updateMany({
         where: { userId: req.user.id, isDefault: true },
         data: { isDefault: false },
@@ -56,6 +57,7 @@ export const createAddress = async (
         state,
         city,
         district,
+        country,
         isDefault: shouldBeDefault,
       },
     });
@@ -109,7 +111,7 @@ export const updateAddress = async (
     }
 
     const { id } = req.params;
-    
+
     const {
       mainAddress,
       secondaryAddress,
@@ -118,6 +120,7 @@ export const updateAddress = async (
       state,
       city,
       district,
+      country,
       isDefault,
     } = req.body;
 
@@ -134,7 +137,7 @@ export const updateAddress = async (
     }
 
     if (isDefault) {
-      
+
       await prisma.address.updateMany({
         where: { userId: req.user.id, isDefault: true },
         data: { isDefault: false },
@@ -151,7 +154,8 @@ export const updateAddress = async (
         state,
         city,
         district,
-        ...(isDefault !== undefined && { isDefault }),  
+        country,
+        ...(isDefault !== undefined && { isDefault }),
       },
     });
 

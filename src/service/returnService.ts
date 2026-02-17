@@ -357,19 +357,17 @@ export class ReturnService {
       },
     });
 
-    // SUMAN -> Restore inventory if status is COMPLETED and order is REFUNDED
+    // Restore inventory when return is COMPLETED
     if (newStatus === "COMPLETED" && !updated.inventoryRestored) {
-      const returnWithOrder = await (prisma as any).return.findUnique({
+      const returnWithItems = await (prisma as any).return.findUnique({
         where: { id: returnId },
         include: {
-          orderItem: {
-            include: { order: true }
-          }
+          orderItem: true
         }
       });
 
-      if (returnWithOrder?.orderItem?.order?.status === OrderStatus.REFUNDED) {
-        const orderItem = returnWithOrder.orderItem;
+      if (returnWithItems?.orderItem) {
+        const orderItem = returnWithItems.orderItem;
         await (prisma as any).$transaction(async (tx: any) => {
           if (orderItem.variantId) {
             await tx.productVariant.update({
@@ -385,6 +383,16 @@ export class ReturnService {
           await tx.return.update({
             where: { id: returnId },
             data: { inventoryRestored: true }
+          });
+
+          await tx.returnHistory.create({
+            data: {
+              returnId: returnId,
+              previousStatus: "COMPLETED",
+              newStatus: "COMPLETED",
+              comment: "Inventory restored automatically upon return completion",
+              changedBy: "SYSTEM",
+            },
           });
         });
       }
