@@ -6,7 +6,8 @@ import { ReviewStatus, OrderStatus } from "../generated/prisma/enums";
 
 export interface CreateReviewData {
   userId: string;
-  productId: string;
+  productId?: string;
+  variantId?: string;
   rating: number;
   comment?: string;
   image?: string;
@@ -17,18 +18,28 @@ export interface UpdateReviewStatusData {
 }
 
 export const createReview = async (data: CreateReviewData) => {
+  if (!data.productId && !data.variantId) {
+    throw new CustomError("Either productId or variantId must be provided", 400);
+  }
+
+  const orderItemCondition: any = {
+    order: { userId: data.userId },
+    status: OrderStatus.DELIVERED,
+  };
+
+  if (data.productId) {
+    orderItemCondition.productId = data.productId;
+  }
+
+  if (data.variantId) {
+    orderItemCondition.variantId = data.variantId;
+  }
 
   const orderItem = await prisma.orderItem.findFirst({
-    where: {
-      order: { userId: data.userId },
-      status: OrderStatus.DELIVERED,
-      OR: [
-        { productId: data.productId },
-        { variantId: data.productId },
-      ],
-    },
+    where: orderItemCondition,
     select: {
       productId: true,
+      variantId: true,
     },
   });
 
@@ -50,13 +61,26 @@ export const createReview = async (data: CreateReviewData) => {
   }
 
   const targetProductId = orderItem.productId;
+  const targetVariantId = orderItem.variantId;
 
+  const existingReviewCondition: any = {
+    userId: data.userId,
+  };
+
+  if (targetProductId) {
+    existingReviewCondition.productId = targetProductId;
+  } else {
+    existingReviewCondition.productId = null;
+  }
+
+  if (targetVariantId) {
+    existingReviewCondition.variantId = targetVariantId;
+  } else {
+    existingReviewCondition.variantId = null;
+  }
 
   const existingReview = await prisma.review.findFirst({
-    where: {
-      userId: data.userId,
-      productId: targetProductId,
-    },
+    where: existingReviewCondition,
   });
 
   if (existingReview) {
@@ -67,6 +91,7 @@ export const createReview = async (data: CreateReviewData) => {
     data: {
       userId: data.userId,
       productId: targetProductId,
+      variantId: targetVariantId,
       rating: data.rating,
       comment: data.comment,
       image: data.image,
@@ -149,6 +174,13 @@ export const getAllReviewsForAdmin = async (page = 1, limit = 10) => {
             productName: true,
           },
         },
+        variant: {
+          select: {
+            variantName: true,
+            color: true,
+            size: true,
+          }
+        }
       },
       orderBy: {
         createdAt: "desc",

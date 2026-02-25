@@ -147,6 +147,8 @@ export const getUserById = async (userId: string) => {
         updatedAt: true,
         bankDetails: true,
         addresses: true,
+        phone: true,
+        altPhone: true,
         cart: {
           include: {
             product: true,

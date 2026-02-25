@@ -3319,6 +3319,7 @@ export const ReviewScalarFieldEnum = {
   isHighlighted: 'isHighlighted',
   userId: 'userId',
   productId: 'productId',
+  variantId: 'variantId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -3792,7 +3793,8 @@ export const ReviewOrderByRelevanceFieldEnum = {
   comment: 'comment',
   image: 'image',
   userId: 'userId',
-  productId: 'productId'
+  productId: 'productId',
+  variantId: 'variantId'
 } as const
 
 export type ReviewOrderByRelevanceFieldEnum = (typeof ReviewOrderByRelevanceFieldEnum)[keyof typeof ReviewOrderByRelevanceFieldEnum]

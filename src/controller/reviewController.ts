@@ -11,17 +11,22 @@ import { ReviewStatus } from "../generated/prisma/enums";
 export const createReview = async (req: AuthRequest, res: Response) => {
   const userId = req.user?.id;
 
-  const { productId, rating, comment } = req.body;
+  const { productId, variantId, rating, comment } = req.body;
 
   const image = req.file?.path;
 
-  if (!productId || !rating || !userId) {
-    throw new CustomError("Product ID and rating are required", 400);
+  if (!rating || !userId) {
+    throw new CustomError("User ID and rating are required", 400);
+  }
+
+  if (!productId && !variantId) {
+    throw new CustomError("Either Product ID or Variant ID is required", 400);
   }
 
   const review = await reviewService.createReview({
     userId,
     productId,
+    variantId,
     rating: parseInt(rating),
     comment,
     image,
