@@ -81,8 +81,8 @@ model Category {
 model Product {
   id            String  @id @default(uuid())
   productName   String
-  shortDesc     String?
-  longDesc      String?
+  shortDesc     String? @db.LongText
+  longDesc      String? @db.LongText
   mainImage     String
   sku           String? @unique
   productImages String? @db.LongText
