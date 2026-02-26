@@ -7,14 +7,15 @@ class DisclaimerService {
     limit: number = 10,
     categoryType?: string,
   ) {
-    const skip = (page - 1) * limit;
+    const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
     const whereClause = categoryType ? { categoryType } : {};
 
     const [disclaimers, total] = await Promise.all([
       (prisma as any).disclaimer.findMany({
         where: whereClause,
         skip,
-        take: limit,
+        take,
         orderBy: { createdAt: "desc" },
       }),
       (prisma as any).disclaimer.count({ where: whereClause }),
@@ -35,7 +36,8 @@ class DisclaimerService {
     limit: number = 10,
     categoryType?: string,
   ) {
-    const skip = (page - 1) * limit;
+    const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
     const whereClause = categoryType
       ? { isActive: true, categoryType }
       : { isActive: true };
@@ -44,7 +46,7 @@ class DisclaimerService {
       (prisma as any).disclaimer.findMany({
         where: whereClause,
         skip,
-        take: limit,
+        take,
         orderBy: { createdAt: "desc" },
       }),
       (prisma as any).disclaimer.count({ where: whereClause }),

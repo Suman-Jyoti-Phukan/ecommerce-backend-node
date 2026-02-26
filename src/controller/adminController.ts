@@ -36,8 +36,8 @@ export const getAllUsers = async (
   req: AuthRequest,
   res: Response
 ): Promise<void> => {
-  const page = parseInt(req.query.page as string) || 1;
-  const limit = parseInt(req.query.limit as string) || 10;
+  const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+  const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
 
   const result = await adminService.getAllUsers(page, limit);
 
@@ -127,8 +127,8 @@ export const getAllUserBankDetails = async (
   req: AuthRequest,
   res: Response
 ): Promise<void> => {
-  const page = parseInt(req.query.page as string) || 1;
-  const limit = parseInt(req.query.limit as string) || 10;
+  const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+  const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
 
   const result = await adminService.getAllUserBankDetails(page, limit);
 

@@ -111,10 +111,10 @@ export const createReview = async (data: CreateReviewData) => {
 
 export const getProductReviews = async (
   productId: string,
-  page = 1,
-  limit = 10,
+  page?: number, limit?: number,
 ) => {
-  const skip = (page - 1) * limit;
+  const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
   const [reviews, total] = await Promise.all([
     prisma.review.findMany({
@@ -123,7 +123,7 @@ export const getProductReviews = async (
         status: ReviewStatus.APPROVED,
       },
       skip,
-      take: limit,
+      take,
       include: {
         user: {
           select: {
@@ -149,20 +149,21 @@ export const getProductReviews = async (
       total,
       page,
       limit,
-      totalPages: Math.ceil(total / limit),
+      totalPages: limit ? Math.ceil(total / limit) : 1,
     },
   };
 };
 
 // Admin Services
 
-export const getAllReviewsForAdmin = async (page = 1, limit = 10) => {
-  const skip = (page - 1) * limit;
+export const getAllReviewsForAdmin = async (page?: number, limit?: number) => {
+  const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
   const [reviews, total] = await Promise.all([
     prisma.review.findMany({
       skip,
-      take: limit,
+      take,
       include: {
         user: {
           select: {
@@ -195,7 +196,7 @@ export const getAllReviewsForAdmin = async (page = 1, limit = 10) => {
       total,
       page,
       limit,
-      totalPages: Math.ceil(total / limit),
+      totalPages: limit ? Math.ceil(total / limit) : 1,
     },
   };
 };

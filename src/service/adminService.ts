@@ -92,13 +92,14 @@ export const loginAdmin = async (data: LoginData) => {
   };
 };
 
-export const getAllUsers = async (page = 1, limit = 10) => {
-  const skip = (page - 1) * limit;
+export const getAllUsers = async (page?: number, limit?: number) => {
+  const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
   try {
     const users = await prisma.user.findMany({
       skip,
-      take: limit,
+      take,
       select: {
         id: true,
         fullName: true,
@@ -124,7 +125,7 @@ export const getAllUsers = async (page = 1, limit = 10) => {
         total,
         page,
         limit,
-        totalPages: Math.ceil(total / limit),
+        totalPages: limit ? Math.ceil(total / limit) : 1,
       },
     };
   } catch (error: any) {
@@ -318,13 +319,14 @@ export const getUserBankDetails = async (userId: string) => {
   }
 };
 
-export const getAllUserBankDetails = async (page = 1, limit = 10) => {
-  const skip = (page - 1) * limit;
+export const getAllUserBankDetails = async (page?: number, limit?: number) => {
+  const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
   try {
     const bankDetails = await prisma.bankDetails.findMany({
       skip,
-      take: limit,
+      take,
       select: {
         id: true,
         bankName: true,
@@ -349,7 +351,7 @@ export const getAllUserBankDetails = async (page = 1, limit = 10) => {
         total,
         page,
         limit,
-        totalPages: Math.ceil(total / limit),
+        totalPages: limit ? Math.ceil(total / limit) : 1,
       },
     };
   } catch (error: any) {

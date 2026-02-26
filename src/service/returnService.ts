@@ -143,8 +143,9 @@ export class ReturnService {
     return returnRecord;
   }
 
-  async getUserReturns(userId: string, page = 1, limit = 10) {
-    const skip = (page - 1) * limit;
+  async getUserReturns(userId: string, page?: number, limit?: number) {
+    const skip = (page && limit) ? (page - 1) * limit : undefined;
+    const take = limit || undefined;
 
     const [returns, total] = await Promise.all([
       (prisma as any).return.findMany({
@@ -162,7 +163,7 @@ export class ReturnService {
           },
         },
         skip,
-        take: limit,
+        take,
         orderBy: { createdAt: "desc" },
       }),
       (prisma as any).return.count({ where: { userId } }),
@@ -174,7 +175,7 @@ export class ReturnService {
         page,
         limit,
         total,
-        pages: Math.ceil(total / limit),
+        pages: limit ? Math.ceil(total / limit) : 1,
       },
     };
   }
@@ -451,8 +452,7 @@ export class ReturnService {
   }
 
   async getAllReturns(
-    page = 1,
-    limit = 10,
+    page?: number, limit?: number,
     filters?: {
       status?: string;
       userId?: string;
@@ -460,7 +460,8 @@ export class ReturnService {
       endDate?: Date;
     },
   ) {
-    const skip = (page - 1) * limit;
+    const skip = (page && limit) ? (page - 1) * limit : undefined;
+    const take = limit || undefined;
 
     const where: any = {};
 
@@ -514,7 +515,7 @@ export class ReturnService {
           },
         },
         skip,
-        take: limit,
+        take,
         orderBy: { createdAt: "desc" },
       }),
       (prisma as any).return.count({ where }),
@@ -526,7 +527,7 @@ export class ReturnService {
         page,
         limit,
         total,
-        pages: Math.ceil(total / limit),
+        pages: limit ? Math.ceil(total / limit) : 1,
       },
     };
   }

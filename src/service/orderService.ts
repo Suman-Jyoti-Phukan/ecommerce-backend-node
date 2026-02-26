@@ -431,13 +431,14 @@ export const getOrderById = async (orderId: string) => {
   return order;
 }
 
-export const getUserOrders = async (userId: string, page = 1, limit = 10) => {
-  const skip = (page - 1) * limit;
+export const getUserOrders = async (userId: string, page?: number, limit?: number) => {
+  const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
   const orders = await prisma.order.findMany({
     where: { userId },
     skip,
-    take: limit,
+    take,
     orderBy: { createdAt: 'desc' },
     include: {
       orderItems: {
@@ -463,7 +464,7 @@ export const getUserOrders = async (userId: string, page = 1, limit = 10) => {
       total,
       page,
       limit,
-      totalPages: Math.ceil(total / limit)
+      totalPages: limit ? Math.ceil(total / limit) : 1
     }
   };
 }
@@ -504,7 +505,7 @@ export const getAllOrders = async (page?: number, limit?: number, status?: Order
   };
 
   if (page && limit) {
-    queryOptions.skip = (page - 1) * limit;
+    queryOptions.skip = (page && limit) ? (page - 1) * limit : undefined;
     queryOptions.take = limit;
   }
 

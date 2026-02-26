@@ -134,8 +134,8 @@ export const getAllCoupons = asyncHandler(
       return;
     }
 
-    const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+    const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
     const isActive = req.query.isActive
       ? req.query.isActive === "true"
       : undefined;

@@ -41,8 +41,8 @@ export const createReview = async (req: AuthRequest, res: Response) => {
 
 export const getProductReviews = async (req: Request, res: Response) => {
   const { productId } = req.params;
-  const page = parseInt(req.query.page as string) || 1;
-  const limit = parseInt(req.query.limit as string) || 10;
+  const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+  const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
 
   const result = await reviewService.getProductReviews(productId, page, limit);
 
@@ -57,8 +57,8 @@ export const getAllReviewsForAdmin = async (
   req: AuthRequest,
   res: Response,
 ) => {
-  const page = parseInt(req.query.page as string) || 1;
-  const limit = parseInt(req.query.limit as string) || 10;
+  const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+  const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
 
   const result = await reviewService.getAllReviewsForAdmin(page, limit);
 

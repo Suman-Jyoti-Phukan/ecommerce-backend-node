@@ -1,0 +1,28 @@
+﻿src/controller/colorController.ts(39,16): error TS2352: Conversion of type 'number | undefined' to type 'string' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type 'number' is not comparable to type 'string'.
+src/controller/colorController.ts(40,16): error TS2352: Conversion of type 'number | undefined' to type 'string' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type 'number' is not comparable to type 'string'.
+src/controller/searchController.ts(19,42): error TS2352: Conversion of type 'number | undefined' to type 'string' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type 'number' is not comparable to type 'string'.
+src/controller/searchController.ts(22,30): error TS2352: Conversion of type 'number | undefined' to type 'string' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type 'number' is not comparable to type 'string'.
+src/controller/sizeChartController.ts(41,16): error TS2352: Conversion of type 'number | undefined' to type 'string' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type 'number' is not comparable to type 'string'.
+src/controller/sizeChartController.ts(42,16): error TS2352: Conversion of type 'number | undefined' to type 'string' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type 'number' is not comparable to type 'string'.
+src/controller/userCouponController.ts(134,14): error TS18048: 'page' is possibly 'undefined'.
+src/controller/userCouponController.ts(134,26): error TS18048: 'limit' is possibly 'undefined'.
+src/controller/userCouponController.ts(155,34): error TS18048: 'limit' is possibly 'undefined'.
+src/service/productService.ts(531,39): error TS6133: 'limit' is declared but its value is never read.
+src/service/productService.ts(542,7): error TS18004: No value exists in scope for the shorthand property 'take'. Either declare one or provide an initializer.
+src/service/productService.ts(623,9): error TS6133: 'take' is declared but its value is never read.
+src/service/productService.ts(624,51): error TS18048: 'skip' is possibly 'undefined'.
+src/service/productService.ts(719,9): error TS6133: 'take' is declared but its value is never read.
+src/service/productService.ts(720,51): error TS18048: 'skip' is possibly 'undefined'.
+src/service/returnService.ts(178,34): error TS18048: 'limit' is possibly 'undefined'.
+src/service/returnService.ts(530,34): error TS18048: 'limit' is possibly 'undefined'.
+src/service/searchService.ts(126,7): error TS2322: Type 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/service/searchService.ts(127,7): error TS2322: Type 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/service/searchService.ts(129,45): error TS18048: 'limit' is possibly 'undefined'.

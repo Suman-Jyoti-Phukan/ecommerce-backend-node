@@ -26,17 +26,16 @@ export interface SearchResult {
 
 export const searchCategoriesAndProducts = async (
   searchTerm: string,
-  page = 1,
-  limit = 10,
+  page?: number, limit?: number,
 ): Promise<SearchResult> => {
   if (!searchTerm || searchTerm.trim() === "") {
     throw new CustomError("Search term is required", 400);
   }
 
   const cleanSearchTerm = searchTerm.trim().toLowerCase();
-  const skip = (page - 1) * limit;
+  const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
-  // Search categories
   const categories = await prisma.category.findMany({
     where: {
       isActive: true,
@@ -63,7 +62,6 @@ export const searchCategoriesAndProducts = async (
     take: 10,
   });
 
-  // Search products
   const products = await prisma.product.findMany({
     where: {
       isActive: true,
@@ -92,10 +90,10 @@ export const searchCategoriesAndProducts = async (
       mainImage: true,
     },
     skip,
-    take: limit,
+    take,
   });
 
-  // Get total count for pagination
+
   const totalProducts = await prisma.product.count({
     where: {
       isActive: true,
@@ -123,10 +121,10 @@ export const searchCategoriesAndProducts = async (
     categories,
     products,
     pagination: {
-      page,
-      limit,
+      page: page || 1,
+      limit: limit || totalProducts,
       total: totalProducts,
-      totalPages: Math.ceil(totalProducts / limit),
+      totalPages: limit ? Math.ceil(totalProducts / limit) : 1,
     },
   };
 };

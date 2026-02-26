@@ -402,7 +402,8 @@ export const productVariantService = {
   }): Promise<{ variants: ProductVariant[]; total: number; page: number; totalPages: number }> {
     const page = filters?.page || 1;
     const limit = filters?.limit || 50;
-    const skip = (page - 1) * limit;
+    const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
     const where: any = {};
 
@@ -445,7 +446,7 @@ export const productVariantService = {
         },
         orderBy: [{ createdAt: "desc" }],
         skip,
-        take: limit,
+        take,
       }),
       prisma.productVariant.count({ where }),
     ]);
@@ -454,7 +455,7 @@ export const productVariantService = {
       variants,
       total,
       page,
-      totalPages: Math.ceil(total / limit),
+      totalPages: limit ? Math.ceil(total / limit) : 1,
     };
   },
 };

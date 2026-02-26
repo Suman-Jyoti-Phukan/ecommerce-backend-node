@@ -57,8 +57,8 @@ export const getMyOrders = async (req: AuthRequest, res: Response): Promise<void
             throw new CustomError("User not authenticated", 401);
         }
 
-        const page = parseInt(req.query.page as string) || 1;
-        const limit = parseInt(req.query.limit as string) || 10;
+        const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+        const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
 
         const result = await orderService.getUserOrders(req.user.id, page, limit);
 

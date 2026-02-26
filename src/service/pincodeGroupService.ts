@@ -63,18 +63,18 @@ export const createPincodeGroup = async (data: CreatePincodeGroupData) => {
 };
 
 export const getAllPincodeGroups = async (
-  page = 1,
-  limit = 10,
+  page?: number, limit?: number,
   includeInactive = false
 ) => {
-  const skip = (page - 1) * limit;
+  const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
   const where = includeInactive ? {} : { isActive: true };
 
   const pincodeGroups = await prisma.pincodeGroup.findMany({
     where,
     skip,
-    take: limit,
+    take,
     include: {
       pincodes: {
         include: {
@@ -107,7 +107,7 @@ export const getAllPincodeGroups = async (
       total,
       page,
       limit,
-      totalPages: Math.ceil(total / limit),
+      totalPages: limit ? Math.ceil(total / limit) : 1,
     },
   };
 };

@@ -73,14 +73,15 @@ export const popupService = {
         }
     },
 
-    getAllPopups: async (page = 1, limit = 10) => {
+    getAllPopups: async (page?: number, limit?: number) => {
         try {
-            const skip = (page - 1) * limit;
+            const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
             const [popups, total] = await Promise.all([
                 prisma.popup.findMany({
                     skip,
-                    take: limit,
+                    take,
                     orderBy: { createdAt: "desc" },
                 }),
                 prisma.popup.count(),
@@ -92,7 +93,7 @@ export const popupService = {
                     total,
                     page,
                     limit,
-                    totalPages: Math.ceil(total / limit),
+                    totalPages: limit ? Math.ceil(total / limit) : 1,
                 },
             };
         } catch (error) {

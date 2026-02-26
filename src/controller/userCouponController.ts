@@ -11,7 +11,7 @@ import { asyncHandler } from "../lib/asyncHandler";
 import { prisma } from "../db/prisma";
 
 import { CustomError } from "../middleware/errorHandler";
- 
+
 export const validateCoupon = asyncHandler(
   async (req: AuthRequest, res: Response) => {
     const errors = validationResult(req);
@@ -112,8 +112,8 @@ export const getAvailableCoupons = asyncHandler(
       return;
     }
 
-    const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+    const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
 
     const now = new Date();
 
@@ -131,8 +131,8 @@ export const getAvailableCoupons = asyncHandler(
           select: { category: { select: { id: true, name: true } } },
         },
       },
-      skip: (page - 1) * limit,
-      take: limit,
+      skip: (page && limit) ? (page - 1) * limit : undefined,
+      take: limit || undefined,
       orderBy: { expiresAt: "asc" },
     });
 
@@ -152,7 +152,7 @@ export const getAvailableCoupons = asyncHandler(
         page,
         limit,
         total,
-        pages: Math.ceil(total / limit),
+        pages: limit ? Math.ceil(total / limit) : 1,
       },
     });
   }

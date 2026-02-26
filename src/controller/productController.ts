@@ -263,6 +263,19 @@ export const getProductById = async (req: Request, res: Response) => {
   }
 };
 
+export const getRelatedProducts = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const limit = req.query.limit ? Number(req.query.limit) : undefined;
+
+    const relatedProducts = await productService.getRelatedProducts(id, limit);
+
+    res.status(200).json({ success: true, data: relatedProducts });
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getProductsByCategory = async (req: Request, res: Response) => {
   try {
     const { categoryId } = req.params;

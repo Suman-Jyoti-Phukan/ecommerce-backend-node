@@ -20,11 +20,12 @@ export const sizeChartService = {
   },
 
   async getAllSizeCharts(page: number = 1, limit: number = 10) {
-    const skip = (page - 1) * limit;
+    const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
     return prisma.sizeChart.findMany({
       skip,
-      take: limit,
+      take,
     });
   },
 

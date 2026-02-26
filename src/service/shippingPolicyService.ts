@@ -3,12 +3,13 @@ import { prisma } from "../db/prisma";
 class ShippingPolicyService {
 
   async getAllPolicies(page: number = 1, limit: number = 10) {
-    const skip = (page - 1) * limit;
+    const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
     const [policies, total] = await Promise.all([
       (prisma as any).shippingPolicy.findMany({
         skip,
-        take: limit,
+        take,
         orderBy: { createdAt: "desc" },
       }),
       (prisma as any).shippingPolicy.count(),
@@ -19,13 +20,14 @@ class ShippingPolicyService {
 
 
   async getActivePolicies(page: number = 1, limit: number = 10) {
-    const skip = (page - 1) * limit;
+    const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
     const [policies, total] = await Promise.all([
       (prisma as any).shippingPolicy.findMany({
         where: { isActive: true },
         skip,
-        take: limit,
+        take,
         orderBy: { createdAt: "desc" },
       }),
       (prisma as any).shippingPolicy.count({ where: { isActive: true } }),

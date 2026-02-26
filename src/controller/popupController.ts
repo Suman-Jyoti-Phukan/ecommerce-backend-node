@@ -61,7 +61,7 @@ export const deletePopup = async (req: Request, res: Response) => {
 export const getAllPopups = async (req: Request, res: Response) => {
     try {
         const page = req.query.page ? parseInt(req.query.page as string) : 1;
-        const limit = req.query.limit ? parseInt(req.query.limit as string) : 10;
+        const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
 
         const result = await popupService.getAllPopups(page, limit);
         res.status(200).json({ success: true, ...result });

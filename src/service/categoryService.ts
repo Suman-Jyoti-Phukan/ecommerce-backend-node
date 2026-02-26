@@ -96,7 +96,7 @@ export const getAllCategories = async (
   };
 
   if (page && limit) {
-    queryOptions.skip = (page - 1) * limit;
+    queryOptions.skip = (page && limit) ? (page - 1) * limit : undefined;
     queryOptions.take = limit;
   }
 

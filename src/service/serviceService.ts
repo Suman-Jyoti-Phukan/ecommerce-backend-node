@@ -3,12 +3,13 @@ import { prisma } from "../db/prisma";
 class ServiceService {
   // Get all services
   async getAllServices(page: number = 1, limit: number = 10) {
-    const skip = (page - 1) * limit;
+    const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
     const [services, total] = await Promise.all([
       (prisma as any).service.findMany({
         skip,
-        take: limit,
+        take,
         orderBy: { createdAt: "desc" },
       }),
       (prisma as any).service.count(),
@@ -19,13 +20,14 @@ class ServiceService {
 
   // Get all active services
   async getActiveServices(page: number = 1, limit: number = 10) {
-    const skip = (page - 1) * limit;
+    const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
 
     const [services, total] = await Promise.all([
       (prisma as any).service.findMany({
         where: { isActive: true },
         skip,
-        take: limit,
+        take,
         orderBy: { createdAt: "desc" },
       }),
       (prisma as any).service.count({ where: { isActive: true } }),

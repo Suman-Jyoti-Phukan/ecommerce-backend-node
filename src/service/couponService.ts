@@ -189,7 +189,8 @@ export const couponService = {
     limit: number = 10,
     filters?: { isActive?: boolean; code?: string }
   ) {
-    const skip = (page - 1) * limit;
+    const skip = (page && limit) ? (page - 1) * limit : undefined;
+  const take = limit || undefined;
     const where: any = {};
 
     if (filters?.isActive !== undefined) where.isActive = filters.isActive;
@@ -199,7 +200,7 @@ export const couponService = {
       prisma.coupon.findMany({
         where,
         skip,
-        take: limit,
+        take,
         include: {
           _count: { select: { products: true, categories: true, users: true } }
         },

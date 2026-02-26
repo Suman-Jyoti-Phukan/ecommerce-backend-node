@@ -7,8 +7,8 @@ import disclaimerService from "../service/disclaimerService";
 // User endpoints
 export const getActiveDisclaimers = asyncHandler(
   async (req: Request, res: Response) => {
-    const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+    const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
     const categoryType = req.query.categoryType as string | undefined;
 
     const result = await disclaimerService.getActiveDisclaimers(
@@ -44,8 +44,8 @@ export const getDisclaimerById = asyncHandler(
 // Admin endpoints
 export const getAllDisclaimers = asyncHandler(
   async (req: Request, res: Response) => {
-    const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+    const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
     const categoryType = req.query.categoryType as string | undefined;
 
     const result = await disclaimerService.getAllDisclaimers(

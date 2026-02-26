@@ -7,8 +7,8 @@ import serviceService from "../service/serviceService";
 // User endpoints
 export const getActiveServices = asyncHandler(
   async (req: Request, res: Response) => {
-    const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+    const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
 
     const result = await serviceService.getActiveServices(page, limit);
 
@@ -39,8 +39,8 @@ export const getServiceById = asyncHandler(
 // Admin endpoints
 export const getAllServices = asyncHandler(
   async (req: Request, res: Response) => {
-    const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+    const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
 
     const result = await serviceService.getAllServices(page, limit);
 

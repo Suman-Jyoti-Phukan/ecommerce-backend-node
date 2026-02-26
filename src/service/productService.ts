@@ -179,7 +179,7 @@ export const productService = {
     };
 
     if (page && limit) {
-      queryOptions.skip = (page - 1) * limit;
+      queryOptions.skip = (page && limit) ? (page - 1) * limit : undefined;
       queryOptions.take = limit;
     }
 
@@ -202,43 +202,58 @@ export const productService = {
     };
   },
 
-  async getFeaturedProducts(limit = 10) {
-    return prisma.product.findMany({
+  async getFeaturedProducts(limit?: number) {
+    const queryOptions: any = {
       where: { isFeatured: true, isActive: true },
-      take: limit,
       orderBy: { createdAt: "desc" },
       include: {
         masterCategory: true,
         lastCategory: true,
         sizeChart: true,
       },
-    });
+    };
+
+    if (limit) {
+      queryOptions.take = limit;
+    }
+
+    return prisma.product.findMany(queryOptions);
   },
 
-  async getBestSellingProducts(limit = 10) {
-    return prisma.product.findMany({
+  async getBestSellingProducts(limit?: number) {
+    const queryOptions: any = {
       where: { isBestSelling: true, isActive: true },
-      take: limit,
       orderBy: { createdAt: "desc" },
       include: {
         masterCategory: true,
         lastCategory: true,
         sizeChart: true,
       },
-    });
+    };
+
+    if (limit) {
+      queryOptions.take = limit;
+    }
+
+    return prisma.product.findMany(queryOptions);
   },
 
-  async getNewCollectionProducts(limit = 10) {
-    return prisma.product.findMany({
+  async getNewCollectionProducts(limit?: number) {
+    const queryOptions: any = {
       where: { isNewCollection: true, isActive: true },
-      take: limit,
       orderBy: { createdAt: "desc" },
       include: {
         masterCategory: true,
         lastCategory: true,
         sizeChart: true,
       },
-    });
+    };
+
+    if (limit) {
+      queryOptions.take = limit;
+    }
+
+    return prisma.product.findMany(queryOptions);
   },
 
   async getProductById(productId: string): Promise<Product | null> {
@@ -253,36 +268,78 @@ export const productService = {
     });
   },
 
-  async getProductsByCategory(categoryId: string, page = 1, limit = 10) {
-    const skip = (page - 1) * limit;
-
+  async getProductsByCategory(categoryId: string, page?: number, limit?: number) {
     const where = {
       isActive: true,
       OR: [{ masterCategoryId: categoryId }, { lastCategoryId: categoryId }],
     };
 
+    const queryOptions: any = {
+      where,
+      orderBy: { createdAt: "desc" },
+      include: {
+        masterCategory: true,
+        lastCategory: true,
+        sizeChart: true,
+      },
+    };
+
+    if (page && limit) {
+      queryOptions.skip = (page && limit) ? (page - 1) * limit : undefined;
+      queryOptions.take = limit;
+    }
+
     const [products, total] = await Promise.all([
-      prisma.product.findMany({
-        where,
-        skip,
-        take: limit,
-        orderBy: { createdAt: "desc" },
-        include: {
-          masterCategory: true,
-          lastCategory: true,
-          sizeChart: true,
-        },
-      }),
+      prisma.product.findMany(queryOptions),
       prisma.product.count({ where }),
     ]);
 
     return {
       products,
       total,
-      page,
-      limit,
-      totalPages: Math.ceil(total / limit),
+      page: page || 1,
+      limit: limit || total,
+      totalPages: limit ? Math.ceil(total / limit) : 1,
     };
+  },
+
+  async getRelatedProducts(productId: string, limit?: number) {
+    const product = await prisma.product.findUnique({
+      where: { id: productId },
+      select: { masterCategoryId: true, lastCategoryId: true },
+    });
+
+    if (!product) {
+      return [];
+    }
+
+    const where: any = {
+      isActive: true,
+      id: { not: productId }, // Exclude the current product
+      OR: [],
+    };
+
+    if (product.lastCategoryId) {
+      where.OR.push({ lastCategoryId: product.lastCategoryId });
+    }
+    where.OR.push({ masterCategoryId: product.masterCategoryId });
+
+    const queryOptions: any = {
+      where,
+      orderBy: { createdAt: "desc" },
+      include: {
+        masterCategory: true,
+        lastCategory: true,
+        sizeChart: true,
+        variants: true,
+      },
+    };
+
+    if (limit) {
+      queryOptions.take = limit;
+    }
+
+    return prisma.product.findMany(queryOptions);
   },
 
   async updateProduct(
@@ -471,7 +528,7 @@ export const productService = {
     });
   },
 
-  async searchProducts(query: string, limit = 10) {
+  async searchProducts(query: string, limit?: number) {
     return prisma.product.findMany({
       where: {
         isActive: true,
@@ -482,7 +539,7 @@ export const productService = {
           { sku: { contains: query } },
         ],
       },
-      take: limit,
+      take: limit || undefined,
       include: {
         masterCategory: true,
         lastCategory: true,
@@ -570,7 +627,7 @@ export const productService = {
           total,
           page,
           limit,
-          totalPages: Math.ceil(total / limit),
+          totalPages: limit ? Math.ceil(total / limit) : 1,
         },
       };
     }
@@ -665,7 +722,7 @@ export const productService = {
           total,
           page,
           limit,
-          totalPages: Math.ceil(total / limit),
+          totalPages: limit ? Math.ceil(total / limit) : 1,
         },
       };
     }

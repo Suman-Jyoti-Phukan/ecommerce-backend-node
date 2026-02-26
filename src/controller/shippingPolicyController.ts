@@ -7,8 +7,8 @@ import shippingPolicyService from "../service/shippingPolicyService";
 // User endpoints
 export const getActiveShippingPolicies = asyncHandler(
   async (req: Request, res: Response) => {
-    const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+    const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
 
     const result = await shippingPolicyService.getActivePolicies(page, limit);
 
@@ -39,8 +39,8 @@ export const getShippingPolicyById = asyncHandler(
 // Admin endpoints
 export const getAllShippingPolicies = asyncHandler(
   async (req: Request, res: Response) => {
-    const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    const page = req.query.page ? parseInt(req.query.page as string) : undefined;
+    const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
 
     const result = await shippingPolicyService.getAllPolicies(page, limit);
 
