@@ -137,6 +137,7 @@ export const createOrder = async (data: CreateOrderData) => {
     const existingUsage = await prisma.couponUser.findUnique({
       where: { couponId_userId: { couponId: coupon.id, userId } },
     });
+
     if (existingUsage) {
       throw new CustomError("You have already used this coupon", 400);
     }

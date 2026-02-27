@@ -775,3 +775,14 @@ model Popup {
 
   @@map("popup")
 }
+
+model RefundPolicy {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  content   Json
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("refund_policy")
+}

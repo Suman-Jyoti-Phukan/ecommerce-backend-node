@@ -114,6 +114,10 @@ import adminPopupRoutes from "./routes/adminPopupRoutes";
 
 import userPopupRoutes from "./routes/userPopupRoutes";
 
+import refundPolicyRoutes from "./routes/refundPolicyRoutes";
+
+import adminRefundPolicyRoutes from "./routes/adminRefundPolicyRoutes";
+
 const app = express();
 
 app.use(
@@ -262,6 +266,10 @@ app.use("/api/v1/shiprocket", userShipRocketRoutes);
 app.use("/api/v1/admin/popups", adminPopupRoutes);
 
 app.use("/api/v1/popups", userPopupRoutes);
+
+app.use("/api/v1/refund-policies", refundPolicyRoutes);
+
+app.use("/api/v1/admin/refund-policies", adminRefundPolicyRoutes);
 
 app.use("/api/v1/search", searchRoutes);
 
