@@ -1,3 +1,29 @@
+-- Rename tables to lowercase for Linux compatibility
+RENAME TABLE `AboutPageContent` TO `aboutpagecontent`;
+RENAME TABLE `Address` TO `address`;
+RENAME TABLE `BankDetails` TO `bankdetails`;
+RENAME TABLE `Blog` TO `blog`;
+RENAME TABLE `Cart` TO `cart`;
+RENAME TABLE `Category` TO `category`;
+RENAME TABLE `ColorScheme` TO `colorscheme`;
+RENAME TABLE `ContactPageInformation` TO `contactpageinformation`;
+RENAME TABLE `Coupon` TO `coupon`;
+RENAME TABLE `CouponCategory` TO `couponcategory`;
+RENAME TABLE `CouponProduct` TO `couponproduct`;
+RENAME TABLE `CouponUser` TO `couponuser`;
+RENAME TABLE `Order` TO `order`;
+RENAME TABLE `OrderHistory` TO `orderhistory`;
+RENAME TABLE `OrderItem` TO `orderitem`;
+RENAME TABLE `Pincode` TO `pincode`;
+RENAME TABLE `PincodeGroup` TO `pincodegroup`;
+RENAME TABLE `PincodeGroupPincode` TO `pincodegrouppincode`;
+RENAME TABLE `PolicyPageContent` TO `policypagecontent`;
+RENAME TABLE `Product` TO `product`;
+RENAME TABLE `ProductVariant` TO `productvariant`;
+RENAME TABLE `SizeChart` TO `sizechart`;
+RENAME TABLE `User` TO `user`;
+RENAME TABLE `Wishlist` TO `wishlist`;
+
 -- DropForeignKey
 ALTER TABLE `address` DROP FOREIGN KEY `Address_userId_fkey`;
 
