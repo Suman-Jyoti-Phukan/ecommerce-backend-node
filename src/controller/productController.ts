@@ -189,7 +189,96 @@ export const createProductWithVariants = async (
 export const updateProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const product = await productService.updateProduct(id, req.body);
+    const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+
+    const mainImagePath = files?.mainImage?.[0]?.path;
+    const productImagesPaths =
+      files?.productImages?.map((file) => file.path) || [];
+
+    // Helper to get single value if field is sent multiple times in form-data
+    const getSingle = (val: any) => (Array.isArray(val) ? val[0] : val);
+
+    const productData: any = {
+      productName: getSingle(req.body.productName),
+      shortDesc: getSingle(req.body.shortDesc),
+      longDesc: getSingle(req.body.longDesc),
+
+      mainImage: mainImagePath || getSingle(req.body.mainImage),
+
+      productImages:
+        productImagesPaths.length > 0
+          ? productImagesPaths
+          : req.body.productImages
+            ? JSON.parse(getSingle(req.body.productImages))
+            : undefined,
+
+      youtubeLink: getSingle(req.body.youtubeLink),
+      sku: getSingle(req.body.sku),
+      size: getSingle(req.body.size),
+
+      expiryDate: req.body.expiryDate
+        ? new Date(getSingle(req.body.expiryDate))
+        : undefined,
+
+      buyingPrice: req.body.buyingPrice
+        ? parseFloat(getSingle(req.body.buyingPrice))
+        : undefined,
+
+      maximumRetailPrice: req.body.maximumRetailPrice
+        ? parseFloat(getSingle(req.body.maximumRetailPrice))
+        : undefined,
+
+      sellingPrice: req.body.sellingPrice
+        ? parseFloat(getSingle(req.body.sellingPrice))
+        : undefined,
+
+      quantity:
+        req.body.quantity !== undefined
+          ? parseInt(getSingle(req.body.quantity))
+          : undefined,
+
+      paymentType: getSingle(req.body.paymentType),
+
+      dimensions: req.body.dimensions
+        ? JSON.parse(getSingle(req.body.dimensions))
+        : undefined,
+
+      metaData: req.body.metaData
+        ? JSON.parse(getSingle(req.body.metaData))
+        : undefined,
+
+      masterCategoryId: getSingle(req.body.masterCategoryId),
+      lastCategoryId: getSingle(req.body.lastCategoryId),
+      sizeChartId: getSingle(req.body.sizeChartId),
+
+      isFeatured:
+        req.body.isFeatured !== undefined
+          ? getSingle(req.body.isFeatured) === "true"
+          : undefined,
+      isBestSelling:
+        req.body.isBestSelling !== undefined
+          ? getSingle(req.body.isBestSelling) === "true"
+          : undefined,
+      isNewCollection:
+        req.body.isNewCollection !== undefined
+          ? getSingle(req.body.isNewCollection) === "true"
+          : undefined,
+      isRelatedItem:
+        req.body.isRelatedItem !== undefined
+          ? getSingle(req.body.isRelatedItem) === "true"
+          : undefined,
+      hasVariants:
+        req.body.hasVariants !== undefined
+          ? getSingle(req.body.hasVariants) === "true"
+          : undefined,
+    };
+
+    // Remove undefined properties to avoid Prisma errors or accidental overwrites
+    Object.keys(productData).forEach(
+      (key) => productData[key] === undefined && delete productData[key],
+    );
+
+    const product = await productService.updateProduct(id, productData);
     res.status(200).json({ success: true, data: product });
   } catch (error) {
     throw error;

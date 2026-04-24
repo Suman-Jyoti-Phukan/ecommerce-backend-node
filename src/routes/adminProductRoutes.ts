@@ -77,6 +77,7 @@ router.put(
   "/:id",
   authMiddleware as any,
   adminAuthMiddleware as any,
+  productImageUpload,
   asyncHandler(updateProduct),
 );
 
