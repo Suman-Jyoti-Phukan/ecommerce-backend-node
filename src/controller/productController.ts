@@ -207,10 +207,14 @@ export const updateProduct = async (req: Request, res: Response) => {
 
       productImages:
         productImagesPaths.length > 0
-          ? productImagesPaths
+          ? [
+              ...(req.body.productImages ? JSON.parse(getSingle(req.body.productImages)) : []),
+              ...productImagesPaths,
+            ]
           : req.body.productImages
             ? JSON.parse(getSingle(req.body.productImages))
             : undefined,
+
 
       youtubeLink: getSingle(req.body.youtubeLink),
       sku: getSingle(req.body.sku),
@@ -479,7 +483,10 @@ export const updateProductWithVariants = async (
       }
 
       if (productImagesPaths.length > 0) {
-        productData.productImages = productImagesPaths;
+        productData.productImages = [
+          ...(Array.isArray(productData.productImages) ? productData.productImages : []),
+          ...productImagesPaths,
+        ];
       }
     }
 
@@ -493,11 +500,22 @@ export const updateProductWithVariants = async (
         const variantImagesPaths =
           filesByField[variantImagesField]?.map((file) => file.path) || [];
 
+        let finalVariantImages = Array.isArray(variant.variantImages)
+          ? [...variant.variantImages]
+          : [];
+        
+        if (variantImagePath) {
+          finalVariantImages.push(variantImagePath);
+        }
+        
+        if (variantImagesPaths.length > 0) {
+          finalVariantImages.push(...variantImagesPaths);
+        }
+
         return {
           ...variant,
-          ...(variantImagePath && { variantImages: [variantImagePath] }),
-          ...(variantImagesPaths.length > 0 && {
-            variantImages: variantImagesPaths,
+          ...(finalVariantImages.length > 0 && {
+            variantImages: finalVariantImages,
           }),
         };
       },
