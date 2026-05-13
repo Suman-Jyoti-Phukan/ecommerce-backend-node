@@ -15,6 +15,8 @@ const env = {
   DATABASE_PORT: process.env.DATABASE_PORT || "3306",
   SHIPROCKET_EMAIL: process.env.SHIPROCKET_EMAIL || "",
   SHIPROCKET_PASSWORD: process.env.SHIPROCKET_PASSWORD || "",
+  RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID || "",
+  RAZORPAY_KEY_SECRET: process.env.RAZORPAY_KEY_SECRET || "",
 };
 
 export default env;

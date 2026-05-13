@@ -1,4 +1,7 @@
+import crypto from "crypto";
 import { prisma } from "../db/prisma";
+import { razorpay } from "../lib/razorpay";
+import env from "../config/env";
 
 import { OrderStatus, PaymentStatus } from "../generated/prisma/enums";
 
@@ -22,10 +25,25 @@ export interface CreateOrderData {
   paymentId?: string;
   couponCode?: string;
   deliveryCharge?: number;
+  razorpayOrderId?: string;
 }
 
-export const createOrder = async (data: CreateOrderData) => {
-  const { userId, addressId, items, paymentMethod, paymentId, couponCode, deliveryCharge = 0 } = data;
+export interface OrderAmountCalculation {
+  totalAmount: number;
+  discountAmount: number;
+  finalAmount: number;
+  orderItemsData: any[];
+  resolvedCouponId?: number;
+}
+
+export const calculateOrderAmount = async (data: {
+  userId: string;
+  addressId: string;
+  items: CreateOrderItemData[];
+  couponCode?: string;
+  deliveryCharge?: number;
+}): Promise<OrderAmountCalculation> => {
+  const { userId, addressId, items, couponCode, deliveryCharge = 0 } = data;
 
   const address = await prisma.address.findUnique({
     where: { id: addressId },
@@ -156,6 +174,26 @@ export const createOrder = async (data: CreateOrderData) => {
 
   const finalAmount = Math.max(0, totalAmount - discountAmount + (deliveryCharge || 0));
 
+  return {
+    totalAmount,
+    discountAmount,
+    finalAmount,
+    orderItemsData,
+    resolvedCouponId
+  };
+};
+
+export const createOrder = async (data: CreateOrderData) => {
+  const { userId, addressId, items, paymentMethod, paymentId, couponCode, deliveryCharge = 0 } = data;
+
+  const {
+    totalAmount,
+    discountAmount,
+    finalAmount,
+    orderItemsData,
+    resolvedCouponId
+  } = await calculateOrderAmount({ userId, addressId, items, couponCode, deliveryCharge });
+
   const orderNumber = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
 
@@ -238,6 +276,49 @@ export const createOrder = async (data: CreateOrderData) => {
   });
 
   return order;
+};
+
+export const createRazorpayOrder = async (data: {
+  userId: string;
+  addressId: string;
+  items: CreateOrderItemData[];
+  couponCode?: string;
+  deliveryCharge?: number;
+}) => {
+  const { finalAmount } = await calculateOrderAmount(data);
+
+  if (finalAmount <= 0) {
+    throw new CustomError("Order amount must be greater than zero", 400);
+  }
+
+  const options = {
+    amount: Math.round(finalAmount * 100), // Razorpay expects amount in paise
+    currency: "INR",
+    receipt: `rcpt_${Date.now()}`,
+  };
+
+  try {
+    const order = await razorpay.orders.create(options);
+    return order;
+  } catch (error: any) {
+    throw new CustomError(`Razorpay Order Creation Failed: ${error.message}`, 500);
+  }
+};
+
+export const verifyRazorpayPayment = async (
+  razorpay_order_id: string,
+  razorpay_payment_id: string,
+  razorpay_signature: string
+) => {
+  const hmac = crypto.createHmac("sha256", env.RAZORPAY_KEY_SECRET);
+  hmac.update(razorpay_order_id + "|" + razorpay_payment_id);
+  const generatedSignature = hmac.digest("hex");
+
+  if (generatedSignature !== razorpay_signature) {
+    throw new CustomError("Invalid payment signature", 400);
+  }
+
+  return true;
 };
 
 export const updateOrderStatus = async (

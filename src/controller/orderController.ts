@@ -51,6 +51,85 @@ export const createOrder = async (req: AuthRequest, res: Response): Promise<void
     }
 };
 
+export const initializeRazorpayPayment = async (req: AuthRequest, res: Response): Promise<void> => {
+    try {
+        if (!req.user) {
+            throw new CustomError("User not authenticated", 401);
+        }
+
+        const { addressId, items, couponCode, deliveryCharge } = req.body;
+
+        if (!items || !Array.isArray(items) || items.length === 0) {
+            throw new CustomError("Items are required", 400);
+        }
+
+        if (!addressId) {
+            throw new CustomError("Address ID is required", 400);
+        }
+
+        const razorpayOrder = await orderService.createRazorpayOrder({
+            userId: req.user.id,
+            addressId,
+            items,
+            couponCode,
+            deliveryCharge: deliveryCharge ? parseFloat(deliveryCharge) : 0
+        });
+
+        res.status(200).json({
+            success: true,
+            message: "Razorpay order initialized",
+            data: razorpayOrder
+        });
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const verifyPaymentAndPlaceOrder = async (req: AuthRequest, res: Response): Promise<void> => {
+    try {
+        if (!req.user) {
+            throw new CustomError("User not authenticated", 401);
+        }
+
+        const { 
+            razorpay_order_id, 
+            razorpay_payment_id, 
+            razorpay_signature,
+            addressId,
+            items,
+            couponCode,
+            deliveryCharge
+        } = req.body;
+
+        if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
+            throw new CustomError("Payment verification details are required", 400);
+        }
+
+        // Verify signature
+        await orderService.verifyRazorpayPayment(razorpay_order_id, razorpay_payment_id, razorpay_signature);
+
+        // Place the order
+        const order = await orderService.createOrder({
+            userId: req.user.id,
+            addressId,
+            items,
+            paymentMethod: "Razorpay",
+            paymentId: razorpay_payment_id,
+            couponCode,
+            deliveryCharge: deliveryCharge ? parseFloat(deliveryCharge) : 0,
+            razorpayOrderId: razorpay_order_id
+        });
+
+        res.status(201).json({
+            success: true,
+            message: "Payment verified and order placed successfully",
+            data: formatOrder(order)
+        });
+    } catch (error) {
+        throw error;
+    }
+};
+
 export const getMyOrders = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
         if (!req.user) {
