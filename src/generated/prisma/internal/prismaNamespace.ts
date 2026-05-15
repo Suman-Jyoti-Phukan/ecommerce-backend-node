@@ -420,7 +420,8 @@ export const ModelName = {
   StoreBranding: 'StoreBranding',
   ReturnReason: 'ReturnReason',
   ShipRocketOrder: 'ShipRocketOrder',
-  Popup: 'Popup'
+  Popup: 'Popup',
+  RefundPolicy: 'RefundPolicy'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -436,7 +437,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "bankDetails" | "category" | "product" | "productVariant" | "cart" | "address" | "wishlist" | "colorScheme" | "sizeChart" | "coupon" | "couponUser" | "couponProduct" | "couponCategory" | "blog" | "order" | "orderItem" | "orderItemHistory" | "orderHistory" | "pincode" | "pincodeGroup" | "pincodeGroupPincode" | "aboutPageContent" | "contactPageInformation" | "policyPageContent" | "deliveryManagement" | "review" | "return" | "returnHistory" | "privacyPolicy" | "service" | "disclaimer" | "shippingPolicy" | "storeBranding" | "returnReason" | "shipRocketOrder" | "popup"
+    modelProps: "user" | "bankDetails" | "category" | "product" | "productVariant" | "cart" | "address" | "wishlist" | "colorScheme" | "sizeChart" | "coupon" | "couponUser" | "couponProduct" | "couponCategory" | "blog" | "order" | "orderItem" | "orderItemHistory" | "orderHistory" | "pincode" | "pincodeGroup" | "pincodeGroupPincode" | "aboutPageContent" | "contactPageInformation" | "policyPageContent" | "deliveryManagement" | "review" | "return" | "returnHistory" | "privacyPolicy" | "service" | "disclaimer" | "shippingPolicy" | "storeBranding" | "returnReason" | "shipRocketOrder" | "popup" | "refundPolicy"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2882,6 +2883,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    RefundPolicy: {
+      payload: Prisma.$RefundPolicyPayload<ExtArgs>
+      fields: Prisma.RefundPolicyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RefundPolicyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefundPolicyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RefundPolicyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefundPolicyPayload>
+        }
+        findFirst: {
+          args: Prisma.RefundPolicyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefundPolicyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RefundPolicyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefundPolicyPayload>
+        }
+        findMany: {
+          args: Prisma.RefundPolicyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefundPolicyPayload>[]
+        }
+        create: {
+          args: Prisma.RefundPolicyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefundPolicyPayload>
+        }
+        createMany: {
+          args: Prisma.RefundPolicyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.RefundPolicyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefundPolicyPayload>
+        }
+        update: {
+          args: Prisma.RefundPolicyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefundPolicyPayload>
+        }
+        deleteMany: {
+          args: Prisma.RefundPolicyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RefundPolicyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.RefundPolicyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefundPolicyPayload>
+        }
+        aggregate: {
+          args: Prisma.RefundPolicyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRefundPolicy>
+        }
+        groupBy: {
+          args: Prisma.RefundPolicyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RefundPolicyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RefundPolicyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RefundPolicyCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -3182,6 +3249,7 @@ export const OrderScalarFieldEnum = {
   paymentStatus: 'paymentStatus',
   paymentMethod: 'paymentMethod',
   paymentId: 'paymentId',
+  razorpayOrderId: 'razorpayOrderId',
   couponId: 'couponId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -3466,6 +3534,18 @@ export const PopupScalarFieldEnum = {
 export type PopupScalarFieldEnum = (typeof PopupScalarFieldEnum)[keyof typeof PopupScalarFieldEnum]
 
 
+export const RefundPolicyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  content: 'content',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RefundPolicyScalarFieldEnum = (typeof RefundPolicyScalarFieldEnum)[keyof typeof RefundPolicyScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3689,7 +3769,8 @@ export const OrderOrderByRelevanceFieldEnum = {
   userId: 'userId',
   addressId: 'addressId',
   paymentMethod: 'paymentMethod',
-  paymentId: 'paymentId'
+  paymentId: 'paymentId',
+  razorpayOrderId: 'razorpayOrderId'
 } as const
 
 export type OrderOrderByRelevanceFieldEnum = (typeof OrderOrderByRelevanceFieldEnum)[keyof typeof OrderOrderByRelevanceFieldEnum]
@@ -3894,6 +3975,14 @@ export const PopupOrderByRelevanceFieldEnum = {
 } as const
 
 export type PopupOrderByRelevanceFieldEnum = (typeof PopupOrderByRelevanceFieldEnum)[keyof typeof PopupOrderByRelevanceFieldEnum]
+
+
+export const RefundPolicyOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type RefundPolicyOrderByRelevanceFieldEnum = (typeof RefundPolicyOrderByRelevanceFieldEnum)[keyof typeof RefundPolicyOrderByRelevanceFieldEnum]
 
 
 
@@ -4117,6 +4206,7 @@ export type GlobalOmitConfig = {
   returnReason?: Prisma.ReturnReasonOmit
   shipRocketOrder?: Prisma.ShipRocketOrderOmit
   popup?: Prisma.PopupOmit
+  refundPolicy?: Prisma.RefundPolicyOmit
 }
 
 /* Types for Logging */

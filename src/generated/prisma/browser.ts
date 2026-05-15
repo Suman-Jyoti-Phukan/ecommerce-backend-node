@@ -202,3 +202,8 @@ export type ShipRocketOrder = Prisma.ShipRocketOrderModel
  * 
  */
 export type Popup = Prisma.PopupModel
+/**
+ * Model RefundPolicy
+ * 
+ */
+export type RefundPolicy = Prisma.RefundPolicyModel

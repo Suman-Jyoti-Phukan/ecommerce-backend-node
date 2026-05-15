@@ -407,9 +407,10 @@ model Order {
   finalAmount    Float
 
   status        OrderStatus   @default(PENDING)
-  paymentStatus PaymentStatus @default(PENDING)
-  paymentMethod String
-  paymentId     String?
+  paymentStatus  PaymentStatus @default(PENDING)
+  paymentMethod  String
+  paymentId      String?
+  razorpayOrderId String?
 
   couponId Int?
   coupon   Coupon? @relation(fields: [couponId], references: [id])
@@ -785,4 +786,27 @@ model RefundPolicy {
   updatedAt DateTime @updatedAt
 
   @@map("refund_policy")
+}
+
+model PendingRazorpayOrder {
+  id               String   @id @default(uuid())
+  razorpayOrderId  String   @unique
+  userId           String
+  addressId        String
+  itemsSnapshot    Json
+  couponCode       String?
+  deliveryCharge   Float    @default(0)
+  totalAmount      Float
+  discountAmount   Float    @default(0)
+  finalAmount      Float
+  resolvedCouponId Int?
+  orderItemsData   Json
+  isUsed           Boolean  @default(false)
+  expiresAt        DateTime
+  createdAt        DateTime @default(now())
+
+  @@index([razorpayOrderId])
+  @@index([isUsed])
+  @@index([expiresAt])
+  @@map("pending_razorpay_order")
 }

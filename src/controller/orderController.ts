@@ -17,7 +17,7 @@ export const createOrder = async (req: AuthRequest, res: Response): Promise<void
             throw new CustomError("User not authenticated", 401);
         }
 
-        const { addressId, items, paymentMethod, paymentId, couponCode, deliveryCharge } = req.body;
+        const { addressId, items, paymentMethod, couponCode, deliveryCharge } = req.body;
 
         if (!items || !Array.isArray(items) || items.length === 0) {
             throw new CustomError("Items are required", 400);
@@ -36,7 +36,6 @@ export const createOrder = async (req: AuthRequest, res: Response): Promise<void
             addressId,
             items,
             paymentMethod,
-            paymentId,
             couponCode,
             deliveryCharge: deliveryCharge ? parseFloat(deliveryCharge) : 0
         });
@@ -95,29 +94,18 @@ export const verifyPaymentAndPlaceOrder = async (req: AuthRequest, res: Response
             razorpay_order_id, 
             razorpay_payment_id, 
             razorpay_signature,
-            addressId,
-            items,
-            couponCode,
-            deliveryCharge
         } = req.body;
 
         if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
             throw new CustomError("Payment verification details are required", 400);
         }
 
-        // Verify signature
-        await orderService.verifyRazorpayPayment(razorpay_order_id, razorpay_payment_id, razorpay_signature);
-
-        // Place the order
-        const order = await orderService.createOrder({
+        // Verify signature and place order using saved snapshot
+        const order = await orderService.verifyAndPlaceRazorpayOrder({
             userId: req.user.id,
-            addressId,
-            items,
-            paymentMethod: "Razorpay",
-            paymentId: razorpay_payment_id,
-            couponCode,
-            deliveryCharge: deliveryCharge ? parseFloat(deliveryCharge) : 0,
-            razorpayOrderId: razorpay_order_id
+            razorpay_order_id,
+            razorpay_payment_id,
+            razorpay_signature,
         });
 
         res.status(201).json({

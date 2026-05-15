@@ -975,6 +975,11 @@ export type ProductScalarRelationFilter = {
   isNot?: Prisma.ProductWhereInput
 }
 
+export type ProductNullableScalarRelationFilter = {
+  is?: Prisma.ProductWhereInput | null
+  isNot?: Prisma.ProductWhereInput | null
+}
+
 export type ProductCreateNestedManyWithoutMasterCategoryInput = {
   create?: Prisma.XOR<Prisma.ProductCreateWithoutMasterCategoryInput, Prisma.ProductUncheckedCreateWithoutMasterCategoryInput> | Prisma.ProductCreateWithoutMasterCategoryInput[] | Prisma.ProductUncheckedCreateWithoutMasterCategoryInput[]
   connectOrCreate?: Prisma.ProductCreateOrConnectWithoutMasterCategoryInput | Prisma.ProductCreateOrConnectWithoutMasterCategoryInput[]
@@ -1197,10 +1202,12 @@ export type ProductCreateNestedOneWithoutReviewsInput = {
   connect?: Prisma.ProductWhereUniqueInput
 }
 
-export type ProductUpdateOneRequiredWithoutReviewsNestedInput = {
+export type ProductUpdateOneWithoutReviewsNestedInput = {
   create?: Prisma.XOR<Prisma.ProductCreateWithoutReviewsInput, Prisma.ProductUncheckedCreateWithoutReviewsInput>
   connectOrCreate?: Prisma.ProductCreateOrConnectWithoutReviewsInput
   upsert?: Prisma.ProductUpsertWithoutReviewsInput
+  disconnect?: Prisma.ProductWhereInput | boolean
+  delete?: Prisma.ProductWhereInput | boolean
   connect?: Prisma.ProductWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutReviewsInput, Prisma.ProductUpdateWithoutReviewsInput>, Prisma.ProductUncheckedUpdateWithoutReviewsInput>
 }

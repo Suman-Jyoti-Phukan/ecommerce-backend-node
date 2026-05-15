@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { prisma } from "../db/prisma";
-import { razorpay } from "../lib/razorpay";
+import { getRazorpay } from "../lib/razorpay";
 import env from "../config/env";
 
 import { OrderStatus, PaymentStatus } from "../generated/prisma/enums";
@@ -184,7 +184,7 @@ export const calculateOrderAmount = async (data: {
 };
 
 export const createOrder = async (data: CreateOrderData) => {
-  const { userId, addressId, items, paymentMethod, paymentId, couponCode, deliveryCharge = 0 } = data;
+  const { userId, addressId, items, paymentMethod, paymentId, couponCode, deliveryCharge = 0, razorpayOrderId } = data;
 
   const {
     totalAmount,
@@ -196,6 +196,9 @@ export const createOrder = async (data: CreateOrderData) => {
 
   const orderNumber = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
+  // For COD orders, payment status is always PENDING regardless of paymentId
+  const isCOD = paymentMethod === "COD" || paymentMethod === "Cash on Delivery";
+  const paymentStatus = isCOD ? PaymentStatus.PENDING : (paymentId ? PaymentStatus.COMPLETED : PaymentStatus.PENDING);
 
   const order = await prisma.$transaction(async (tx) => {
 
@@ -210,7 +213,8 @@ export const createOrder = async (data: CreateOrderData) => {
         finalAmount,
         paymentMethod,
         paymentId,
-        paymentStatus: paymentId ? PaymentStatus.COMPLETED : PaymentStatus.PENDING,
+        razorpayOrderId,
+        paymentStatus,
         couponId: resolvedCouponId,
         status: OrderStatus.PENDING,
         orderItems: {
@@ -278,6 +282,10 @@ export const createOrder = async (data: CreateOrderData) => {
   return order;
 };
 
+/**
+ * Creates a Razorpay order, reserves stock, and saves a snapshot of the
+ * calculated amounts so that verification doesn't need to recalculate.
+ */
 export const createRazorpayOrder = async (data: {
   userId: string;
   addressId: string;
@@ -285,7 +293,15 @@ export const createRazorpayOrder = async (data: {
   couponCode?: string;
   deliveryCharge?: number;
 }) => {
-  const { finalAmount } = await calculateOrderAmount(data);
+  const { userId, addressId, items, couponCode, deliveryCharge = 0 } = data;
+
+  const {
+    totalAmount,
+    discountAmount,
+    finalAmount,
+    orderItemsData,
+    resolvedCouponId
+  } = await calculateOrderAmount({ userId, addressId, items, couponCode, deliveryCharge });
 
   if (finalAmount <= 0) {
     throw new CustomError("Order amount must be greater than zero", 400);
@@ -297,19 +313,259 @@ export const createRazorpayOrder = async (data: {
     receipt: `rcpt_${Date.now()}`,
   };
 
+  let razorpayOrder: any;
   try {
-    const order = await razorpay.orders.create(options);
-    return order;
+    razorpayOrder = await getRazorpay().orders.create(options);
   } catch (error: any) {
     throw new CustomError(`Razorpay Order Creation Failed: ${error.message}`, 500);
   }
+
+  // Reserve stock inside a transaction and save the snapshot
+  await prisma.$transaction(async (tx) => {
+    // Decrement stock for each item
+    for (const item of items) {
+      if (item.variantId) {
+        const variant = await tx.productVariant.findUnique({ where: { id: item.variantId } });
+        if (!variant || variant.quantity < item.quantity) {
+          throw new CustomError(`Insufficient stock for variant: ${item.variantId}`, 400);
+        }
+        await tx.productVariant.update({
+          where: { id: item.variantId },
+          data: { quantity: { decrement: item.quantity } },
+        });
+      } else {
+        const productId = item.productId || orderItemsData[items.indexOf(item)]?.productId;
+        const product = await tx.product.findUnique({ where: { id: productId } });
+        if (!product || product.quantity < item.quantity) {
+          throw new CustomError(`Insufficient stock for product: ${productId}`, 400);
+        }
+        await tx.product.update({
+          where: { id: productId },
+          data: { quantity: { decrement: item.quantity } },
+        });
+      }
+    }
+
+    // Reserve the coupon usage so it can't be used again during the payment window
+    if (resolvedCouponId) {
+      await tx.couponUser.create({
+        data: {
+          couponId: resolvedCouponId,
+          userId,
+          usedAt: null, // Will be set on order creation
+        },
+      });
+    }
+
+    // Save the snapshot for later use during verification (30 min expiry)
+    await (tx as any).pendingRazorpayOrder.create({
+      data: {
+        razorpayOrderId: razorpayOrder.id,
+        userId,
+        addressId,
+        itemsSnapshot: items,
+        couponCode: couponCode || null,
+        deliveryCharge,
+        totalAmount,
+        discountAmount,
+        finalAmount,
+        resolvedCouponId,
+        orderItemsData,
+        expiresAt: new Date(Date.now() + 30 * 60 * 1000), // 30 minutes
+      },
+    });
+  });
+
+  return {
+    ...razorpayOrder,
+    key_id: env.RAZORPAY_KEY_ID,
+  };
 };
 
-export const verifyRazorpayPayment = async (
+/**
+ * Verifies the Razorpay payment signature, then creates the actual order
+ * using the saved snapshot (no recalculation, no re-reserving stock).
+ */
+export const verifyAndPlaceRazorpayOrder = async (data: {
+  userId: string;
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+}) => {
+  const { userId, razorpay_order_id, razorpay_payment_id, razorpay_signature } = data;
+
+  // 1. Verify signature
+  verifyRazorpaySignature(razorpay_order_id, razorpay_payment_id, razorpay_signature);
+
+  // 2. Look up the saved snapshot
+  const pending = await (prisma as any).pendingRazorpayOrder.findUnique({
+    where: { razorpayOrderId: razorpay_order_id },
+  });
+
+  if (!pending) {
+    throw new CustomError("No pending order found for this Razorpay order", 404);
+  }
+
+  if (pending.isUsed) {
+    throw new CustomError("This payment has already been processed", 400);
+  }
+
+  if (pending.userId !== userId) {
+    throw new CustomError("Unauthorized: order belongs to a different user", 403);
+  }
+
+  if (new Date() > new Date(pending.expiresAt)) {
+    throw new CustomError("Payment session has expired. Please place a new order.", 400);
+  }
+
+  const orderNumber = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+  const orderItemsData = pending.orderItemsData as any[];
+
+  const order = await prisma.$transaction(async (tx) => {
+    // Mark the pending order as used
+    await (tx as any).pendingRazorpayOrder.update({
+      where: { razorpayOrderId: razorpay_order_id },
+      data: { isUsed: true },
+    });
+
+    // Update coupon usedAt timestamp if a coupon was reserved
+    if (pending.resolvedCouponId) {
+      await tx.couponUser.updateMany({
+        where: {
+          couponId: pending.resolvedCouponId,
+          userId,
+          usedAt: null,
+        },
+        data: { usedAt: new Date() },
+      });
+    }
+
+    // Create the order using snapshot data (no recalculation)
+    const newOrder = await tx.order.create({
+      data: {
+        orderNumber,
+        userId,
+        addressId: pending.addressId,
+        totalAmount: pending.totalAmount,
+        discountAmount: pending.discountAmount,
+        deliveryCharge: pending.deliveryCharge,
+        finalAmount: pending.finalAmount,
+        paymentMethod: "Razorpay",
+        paymentId: razorpay_payment_id,
+        razorpayOrderId: razorpay_order_id,
+        paymentStatus: PaymentStatus.COMPLETED,
+        couponId: pending.resolvedCouponId,
+        status: OrderStatus.PENDING,
+        orderItems: {
+          create: orderItemsData.map((item: any) => ({
+            productId: item.productId,
+            variantId: item.variantId || undefined,
+            quantity: item.quantity,
+            price: item.price,
+            size: item.size,
+            color: item.color,
+            status: OrderStatus.PENDING,
+            orderItemHistories: {
+              create: {
+                status: OrderStatus.PENDING,
+                comment: "Order item created",
+              },
+            },
+          })),
+        },
+        history: {
+          create: {
+            status: OrderStatus.PENDING,
+            comment: "Order created via Razorpay payment",
+          },
+        },
+      },
+      include: {
+        orderItems: {
+          include: {
+            product: true,
+            variant: true,
+            orderItemHistories: {
+              orderBy: { createdAt: 'desc' }
+            }
+          }
+        },
+        history: true,
+      },
+    });
+
+    // Stock was already decremented during initialization — no need to do it again
+
+    return newOrder;
+  });
+
+  return order;
+};
+
+/**
+ * Releases reserved stock for expired/failed pending Razorpay orders.
+ * Can be called periodically (e.g. cron) or on-demand.
+ */
+export const releaseExpiredReservations = async () => {
+  const expired = await (prisma as any).pendingRazorpayOrder.findMany({
+    where: {
+      isUsed: false,
+      expiresAt: { lt: new Date() },
+    },
+  });
+
+  for (const pending of expired) {
+    const items = pending.itemsSnapshot as CreateOrderItemData[];
+    const orderItemsData = pending.orderItemsData as any[];
+
+    await prisma.$transaction(async (tx) => {
+      // Restore stock
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        if (item.variantId) {
+          await tx.productVariant.update({
+            where: { id: item.variantId },
+            data: { quantity: { increment: item.quantity } },
+          });
+        } else {
+          const productId = item.productId || orderItemsData[i]?.productId;
+          await tx.product.update({
+            where: { id: productId },
+            data: { quantity: { increment: item.quantity } },
+          });
+        }
+      }
+
+      // Release coupon reservation
+      if (pending.resolvedCouponId) {
+        await tx.couponUser.deleteMany({
+          where: {
+            couponId: pending.resolvedCouponId,
+            userId: pending.userId,
+            usedAt: null,
+          },
+        });
+      }
+
+      // Mark as used so we don't process it again
+      await (tx as any).pendingRazorpayOrder.update({
+        where: { id: pending.id },
+        data: { isUsed: true },
+      });
+    });
+  }
+
+  return { released: expired.length };
+};
+
+export const verifyRazorpaySignature = (
   razorpay_order_id: string,
   razorpay_payment_id: string,
   razorpay_signature: string
 ) => {
+  if (!env.RAZORPAY_KEY_SECRET) {
+    throw new CustomError("Razorpay secret key not configured", 500);
+  }
   const hmac = crypto.createHmac("sha256", env.RAZORPAY_KEY_SECRET);
   hmac.update(razorpay_order_id + "|" + razorpay_payment_id);
   const generatedSignature = hmac.digest("hex");
